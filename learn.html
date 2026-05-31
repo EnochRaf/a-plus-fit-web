@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Learn — A Plus Fit</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@200..700&family=Teko:wght@300..700&family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://ajax.cdnjs.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="css/all.css">
+	<style>
+		.sr{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+		.sr.sl{transform:translateX(-28px)}.sr.sr2{transform:translateX(28px)}
+		.sr.up{opacity:1;transform:none}
+		.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+		.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+
+		@keyframes ticker-l{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+		.ticker{animation:ticker-l 26s linear infinite}
+
+		/* article cards */
+		.art-card{transition:border-color .2s,transform .2s}
+		.art-card:hover{border-color:rgba(204,20,20,.45);transform:translateY(-4px)}
+		.art-card .art-img{transition:transform .5s ease}
+		.art-card:hover .art-img{transform:scale(1.04)}
+
+		/* filter pill */
+		.cat-pill{transition:all .18s}
+		.cat-pill.active{background:#CC1414;color:#fff;border-color:#CC1414}
+
+		/* resource card */
+		.res-card{transition:border-color .2s,background .2s}
+		.res-card:hover{border-color:rgba(204,20,20,.4);background:#111118}
+
+		/* newsletter */
+		.nl-input:focus{outline:none;border-color:#CC1414}
+
+		/* reading progress bar */
+		#read-progress{position:fixed;top:0;left:0;height:3px;background:#CC1414;z-index:9999;width:0%;transition:width .1s linear}
+
+		/* footer */
+		@keyframes footer-reveal{from{opacity:0;filter:blur(4px);transform:translateY(-8px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+		.ft-col{opacity:0}.ft-col.ft-vis{animation:footer-reveal .8s ease forwards}
+		@keyframes apf-draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+		.apf-draw-anim{animation:apf-draw 4s ease-in-out forwards;stroke-dasharray:1000;stroke-dashoffset:1000}
+	</style>
+</head>
+<body class="bg-[#01010F] text-[#E7E7E7] text-[18px] leading-[1.5] font-[Vazirmatn]">
+
+<div id="read-progress"></div>
+
+<!-- ════════════════════ NAV ════════════════════════════════════════════ -->
+<div class="pt-[40px]"></div>
+<div class="sticky z-50 top-0 bg-[#01010F]">
+<div class="max-w-[1320px] mx-auto px-[15px]">
+<div class="flex justify-between items-center h-[180px] font-[Teko]">
+	<div><a class="flex items-center" href="index.html"><img class="h-[160px] w-auto" src="A Plus Fit Logo.png" alt=""></a></div>
+	<div class="hidden xl:block">
+		<div class="flex text-[20px] font-medium">
+			<div class="group relative"><a href="#" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div></div></div></a></div>
+			<div class="group relative"><a href="programs.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div></div></div></a></div>
+			<div class="group relative"><a href="schedule.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div></div></div></a></div>
+			<div class="group relative"><a href="community.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div></div></div></a></div>
+			<div class="group relative"><a href="learn.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">LEARN</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">LEARN</div></div></div></a></div>
+		</div>
+	</div>
+	<div class="flex items-center">
+		<a class="xl:hidden group relative" data-c-toggle="a" href="#offcanvas"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] w-[54px] flex justify-center items-center"><i class="fa-solid fa-bars"></i></div></a>
+		<div class="xl:hidden md:px-[20px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="schedule.html"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] px-[24px] flex justify-center items-center"><div class="relative"><div class="absolute inset-0 group-[:not(:hover)]:scale-y-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div><div class="group-hover:scale-y-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div></div></div></a>
+		<div class="hidden md:block px-[20px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="#"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-facebook-f"></i></div></a>
+		<div class="hidden md:block px-[5px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="#"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-instagram"></i></div></a>
+	</div>
+</div>
+</div>
+</div>
+
+<!-- ════════════════════ HERO ════════════════════════════════════════════ -->
+<section class="relative bg-[#01010F] overflow-hidden pt-[80px] pb-[100px] lg:pt-[100px] lg:pb-[120px]">
+	<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,.04) 1px,transparent 1px);background-size:80px 80px;"></div>
+	<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full bg-[#CC1414]/[.06] blur-[120px] pointer-events-none"></div>
+	<div class="absolute top-0 right-0 w-[3px] h-full bg-[#CC1414]/30"></div>
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+		<div class="sr flex items-center gap-[8px] font-[Teko] text-[13px] tracking-[3px] uppercase text-[#E7E7E7]/30 mb-[40px]">
+			<a href="index.html" class="hover:text-[#CC1414] transition-colors">Home</a>
+			<span class="text-[#CC1414]">/</span>
+			<span class="text-[#CC1414]">Learn</span>
+		</div>
+		<div class="grid lg:grid-cols-2 gap-[60px] items-end">
+			<div>
+				<div class="sr d1 font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">Knowledge Base</div>
+				<div class="sr d2 font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-white mb-[4px]">Train</div>
+				<div class="sr d3 font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-[#CC1414] mb-[32px]">Smarter.</div>
+				<div class="sr d4 font-[Montserrat] font-medium text-[16px] text-[#E7E7E7]/55 leading-[1.8] max-w-[480px]">Practical guides on training, nutrition, recovery, and mindset—written from real coaching experience, not a copy-paste from somewhere else.</div>
+			</div>
+			<!-- category quick links -->
+			<div class="sr sr2 d3 grid grid-cols-2 gap-[2px] bg-[#CC1414]/20">
+				<a href="#articles" onclick="setFilter('training')" class="bg-[#01010F] p-[28px] group hover:bg-[#0C0C14] transition-colors cursor-pointer">
+					<i class="fa-solid fa-dumbbell text-[#CC1414] text-[22px] mb-[12px] block group-hover:scale-110 transition-transform"></i>
+					<div class="font-[Oswald] font-bold text-[18px] uppercase text-white leading-none">Training</div>
+					<div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mt-[4px]">5 articles</div>
+				</a>
+				<a href="#articles" onclick="setFilter('nutrition')" class="bg-[#01010F] p-[28px] group hover:bg-[#0C0C14] transition-colors cursor-pointer">
+					<i class="fa-solid fa-apple-whole text-[#CC1414] text-[22px] mb-[12px] block group-hover:scale-110 transition-transform"></i>
+					<div class="font-[Oswald] font-bold text-[18px] uppercase text-white leading-none">Nutrition</div>
+					<div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mt-[4px]">3 articles</div>
+				</a>
+				<a href="#articles" onclick="setFilter('recovery')" class="bg-[#01010F] p-[28px] group hover:bg-[#0C0C14] transition-colors cursor-pointer">
+					<i class="fa-solid fa-bed text-[#CC1414] text-[22px] mb-[12px] block group-hover:scale-110 transition-transform"></i>
+					<div class="font-[Oswald] font-bold text-[18px] uppercase text-white leading-none">Recovery</div>
+					<div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mt-[4px]">3 articles</div>
+				</a>
+				<a href="#articles" onclick="setFilter('mindset')" class="bg-[#01010F] p-[28px] group hover:bg-[#0C0C14] transition-colors cursor-pointer">
+					<i class="fa-solid fa-brain text-[#CC1414] text-[22px] mb-[12px] block group-hover:scale-110 transition-transform"></i>
+					<div class="font-[Oswald] font-bold text-[18px] uppercase text-white leading-none">Mindset</div>
+					<div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mt-[4px]">2 articles</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ════════════════════ FEATURED ARTICLE ══════════════════════════════ -->
+<section class="bg-[#0C0C14] py-[60px] lg:py-[80px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[28px]">Featured Article</div>
+		<a href="#" class="group block">
+			<div class="grid lg:grid-cols-[1fr_480px] gap-[0] bg-[#01010F] border border-white/[.07] hover:border-[#CC1414]/40 transition-colors overflow-hidden">
+				<!-- image side -->
+				<div class="relative overflow-hidden h-[320px] lg:h-auto" style="clip-path:none">
+					<img src="wall-aaron3.png" alt="Featured" class="w-full h-full object-cover transition-transform duration-[.6s] group-hover:scale-[1.03]">
+					<div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#01010F] hidden lg:block"></div>
+					<div class="absolute inset-0 bg-gradient-to-t from-[#01010F] to-transparent lg:hidden"></div>
+					<div class="absolute top-[20px] left-[20px] bg-[#CC1414] px-[12px] py-[5px]">
+						<span class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-white">Training</span>
+					</div>
+				</div>
+				<!-- content side -->
+				<div class="p-[36px] lg:p-[48px] flex flex-col justify-center">
+					<div class="font-[Montserrat] text-[12px] text-[#E7E7E7]/35 mb-[16px] flex items-center gap-[12px]">
+						<span>By Aaron</span><span class="text-[#CC1414]">·</span><span>8 min read</span><span class="text-[#CC1414]">·</span><span>May 2026</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[28px] md:text-[34px] lg:text-[38px] uppercase text-white leading-[1.05] mb-[20px] group-hover:text-[#CC1414] transition-colors">Why Training Outdoors Builds Mental Toughness Faster Than Any Gym</div>
+					<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/55 leading-[1.8] mb-[28px]">There's a reason military training happens outside. When the environment is unpredictable—heat, cold, wind, rain—your brain learns to adapt in ways a climate-controlled gym never forces it to. This is the edge outdoor CrossFit gives you that no membership fee can replicate.</p>
+					<div class="flex items-center gap-[8px] font-[Teko] font-semibold text-[15px] tracking-[1px] uppercase text-[#CC1414] group-hover:text-white transition-colors">
+						Read Article <i class="fa-solid fa-arrow-right text-[12px] group-hover:translate-x-[4px] transition-transform"></i>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</section>
+
+<!-- ════════════════════ FILTER + ARTICLE GRID ═════════════════════════ -->
+<section id="articles" class="bg-[#01010F] py-[60px] lg:py-[80px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<!-- filter bar -->
+		<div class="sr flex flex-wrap items-center justify-between gap-[20px] mb-[48px]">
+			<div>
+				<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[6px]">All Articles</div>
+				<div class="font-[Oswald] font-bold text-[32px] md:text-[40px] leading-none uppercase text-white">Browse <span class="text-[#CC1414]">Everything.</span></div>
+			</div>
+			<div class="flex flex-wrap gap-[6px]" id="filter-bar">
+				<button onclick="setFilter('all')"      id="f-all"      class="cat-pill active font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[16px] py-[7px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">All</button>
+				<button onclick="setFilter('training')" id="f-training" class="cat-pill font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[16px] py-[7px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">Training</button>
+				<button onclick="setFilter('nutrition')"id="f-nutrition"class="cat-pill font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[16px] py-[7px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">Nutrition</button>
+				<button onclick="setFilter('recovery')" id="f-recovery" class="cat-pill font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[16px] py-[7px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">Recovery</button>
+				<button onclick="setFilter('mindset')"  id="f-mindset"  class="cat-pill font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[16px] py-[7px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">Mindset</button>
+			</div>
+		</div>
+		<!-- grid -->
+		<div id="article-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-[20px]"></div>
+		<div id="no-results" class="hidden py-[80px] text-center font-[Montserrat] text-[14px] text-[#E7E7E7]/30">No articles in this category yet.</div>
+	</div>
+</section>
+
+<!-- ════════════════════ EXERCISE QUICK-REF ════════════════════════════ -->
+<section class="bg-[#0C0C14] py-[80px] lg:py-[100px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr text-center mb-[56px]">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">Movement Library</div>
+			<div class="font-[Oswald] font-bold text-[40px] md:text-[52px] leading-none uppercase text-white">The Foundational <span class="text-[#CC1414]">Movements.</span></div>
+			<p class="font-[Montserrat] text-[15px] text-[#E7E7E7]/45 max-w-[520px] mx-auto mt-[14px] leading-[1.7]">Master these nine patterns and you can handle anything a CrossFit WOD throws at you.</p>
+		</div>
+		<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[2px] bg-[#CC1414]/15">
+			<!-- movement card macro -->
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">01</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Air Squat</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">The foundation of all lower body work. Hips below parallel, knees tracking over toes, chest up. Get this right before loading anything.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Lower Body</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Beginner</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr d1">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">02</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Deadlift</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">The most natural human movement pattern—picking something up. Neutral spine, bar over mid-foot, drive through the floor. Master it light before going heavy.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Posterior Chain</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Beginner</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr d2">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">03</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Push-Up</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Locked core, full range of motion, no snake necks. The pull-up's less celebrated but equally important counterpart. Scale with knees before breaking form.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Upper Body</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Beginner</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr d1">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">04</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Pull-Up</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Full extension at the bottom, chin clear of the bar. Start with ring rows and band-assisted variations. Don't kip until you own a strict rep.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Upper Body</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Intermediate</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr d2">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">05</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Kettlebell Swing</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Hip hinge power, not a squat. Drive with the hips, not the arms. One of the most efficient conditioning movements in existence when done with intent.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Full Body</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Intermediate</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr d3">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">06</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Box Jump</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Explosive hip extension, land soft and controlled. Start lower than your ego suggests. Step down if you're fatigued—don't let the descent become the injury.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Power</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Intermediate</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">07</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Hang Power Clean</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">The gateway Olympic lift. Powerful shrug, fast elbows, catch in a front rack. Teaches explosive hip drive like nothing else in the gym toolkit.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Olympic</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Advanced</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr d1">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">08</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Burpee</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Everyone's least favorite. Full chest to floor, explosive jump, clap overhead. No skipping the lockout—a half rep is a wasted rep. The benchmark of honest effort.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Conditioning</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">All Levels</span>
+				</div>
+			</div>
+			<div class="bg-[#0C0C14] p-[32px] hover:bg-[#111118] transition-colors group sr d2">
+				<div class="flex items-center gap-[14px] mb-[16px]">
+					<div class="w-[40px] h-[40px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#CC1414]/25 transition-colors">
+						<span class="font-[Teko] font-bold text-[14px] text-[#CC1414]">09</span>
+					</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">Double-Under</div>
+				</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Jump rope passing twice per jump. Relax the wrists, keep the jump small, stay patient. The most skill-dependent conditioning tool in CrossFit—and worth every frustrating practice session.</p>
+				<div class="mt-[16px] flex gap-[8px]">
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Skill</span>
+					<span class="font-[Teko] text-[11px] tracking-[2px] uppercase text-[#CC1414]/70 border border-[#CC1414]/25 px-[8px] py-[2px]">Intermediate</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ════════════════════ TICKER ════════════════════════════════════════ -->
+<div class="bg-[#0C0C14] border-y border-[#CC1414]/20 py-[15px] overflow-hidden">
+	<div class="flex ticker whitespace-nowrap font-[Teko] font-semibold text-[14px] tracking-[4px] uppercase text-[#E7E7E7]/25">
+		<span class="px-[28px]">Training</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Nutrition</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Recovery</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Mindset</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Movement Library</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Free Resources</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Train Smarter</span><span class="text-[#CC1414] px-[12px]">✦</span>
+		<span class="px-[28px]">Training</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Nutrition</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Recovery</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Mindset</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Movement Library</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Free Resources</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Train Smarter</span><span class="text-[#CC1414] px-[12px]">✦</span>
+	</div>
+</div>
+
+<!-- ════════════════════ FREE RESOURCES ════════════════════════════════ -->
+<section class="bg-[#01010F] py-[80px] lg:py-[100px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr mb-[52px]">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[8px]">Free Downloads</div>
+			<div class="font-[Oswald] font-bold text-[40px] md:text-[52px] leading-none uppercase text-white">Resources <span class="text-[#CC1414]">Worth Keeping.</span></div>
+		</div>
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-[16px]">
+			<div class="res-card sr bg-[#0C0C14] border border-white/[.07] p-[28px] flex flex-col gap-[20px]">
+				<div class="w-[48px] h-[48px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center">
+					<i class="fa-solid fa-file-pdf text-[#CC1414] text-[18px]"></i>
+				</div>
+				<div>
+					<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[6px]">Beginner Guide</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-tight mb-[10px]">Your First 30 Days of CrossFit</div>
+					<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">What to expect, how to scale, what to eat, and how to recover. Everything a first-timer needs in one place.</p>
+				</div>
+				<a href="#" class="mt-auto inline-flex items-center gap-[8px] font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#CC1414] hover:text-white transition-colors">
+					Download Free <i class="fa-solid fa-download text-[11px]"></i>
+				</a>
+			</div>
+			<div class="res-card sr d1 bg-[#0C0C14] border border-white/[.07] p-[28px] flex flex-col gap-[20px]">
+				<div class="w-[48px] h-[48px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center">
+					<i class="fa-solid fa-file-pdf text-[#CC1414] text-[18px]"></i>
+				</div>
+				<div>
+					<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[6px]">Nutrition Guide</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-tight mb-[10px]">Eat to Perform: A CrossFit Athlete's Nutrition Primer</div>
+					<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Practical macros, meal timing, pre/post-WOD fueling, and hydration without the obsession or complexity.</p>
+				</div>
+				<a href="#" class="mt-auto inline-flex items-center gap-[8px] font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#CC1414] hover:text-white transition-colors">
+					Download Free <i class="fa-solid fa-download text-[11px]"></i>
+				</a>
+			</div>
+			<div class="res-card sr d2 bg-[#0C0C14] border border-white/[.07] p-[28px] flex flex-col gap-[20px]">
+				<div class="w-[48px] h-[48px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center">
+					<i class="fa-solid fa-file-pdf text-[#CC1414] text-[18px]"></i>
+				</div>
+				<div>
+					<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[6px]">Recovery Protocol</div>
+					<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-tight mb-[10px]">The 10-Minute Daily Recovery Routine</div>
+					<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7]">Mobility, breathwork, and soft-tissue work that fits before bed. The protocol Aaron uses with every athlete he coaches.</p>
+				</div>
+				<a href="#" class="mt-auto inline-flex items-center gap-[8px] font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#CC1414] hover:text-white transition-colors">
+					Download Free <i class="fa-solid fa-download text-[11px]"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ════════════════════ NEWSLETTER ════════════════════════════════════ -->
+<section class="bg-[#CC1414] py-[80px] lg:py-[100px] relative overflow-hidden">
+	<div class="absolute inset-0 pointer-events-none opacity-10" style="background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:12px 12px;"></div>
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+		<div class="grid lg:grid-cols-2 gap-[48px] items-center">
+			<div>
+				<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-white/60 mb-[10px]">Stay Sharp</div>
+				<div class="sr d1 font-[Oswald] font-bold text-[44px] md:text-[56px] leading-[.92] uppercase text-white mb-[16px]">Weekly tips.<br>No fluff.</div>
+				<div class="sr d2 font-[Montserrat] text-[15px] text-white/70 leading-[1.8]">Every week Aaron sends one practical insight—training, nutrition, or recovery. Short, specific, and actually useful. No newsletters that read like a press release.</div>
+			</div>
+			<div class="sr sr2 d2">
+				<form onsubmit="handleNewsletter(event)" class="space-y-[12px]">
+					<div class="flex gap-[0]">
+						<input type="email" id="nl-email" placeholder="Your email address" required class="nl-input flex-1 bg-white/10 border border-white/30 text-white placeholder-white/40 font-[Montserrat] text-[14px] px-[20px] py-[16px] focus:border-white transition-colors" style="outline:none">
+						<button type="submit" class="bg-[#01010F] hover:bg-[#0C0C14] text-white font-[Teko] font-semibold text-[16px] tracking-[1px] uppercase px-[28px] py-[16px] transition-colors flex-shrink-0">
+							Subscribe
+						</button>
+					</div>
+					<p class="font-[Montserrat] text-[12px] text-white/40">No spam. Unsubscribe any time. Usually one email per week.</p>
+					<div id="nl-success" class="hidden font-[Teko] font-semibold text-[16px] tracking-[1px] uppercase text-white bg-[#01010F]/30 px-[20px] py-[12px]">
+						<i class="fa-solid fa-check mr-[8px]"></i> You're in. First tip coming shortly.
+					</div>
+				</form>
+				<div class="mt-[28px] flex items-center gap-[24px] pt-[24px] border-t border-white/20">
+					<div class="text-center">
+						<div class="font-[Oswald] font-bold text-[28px] text-white leading-none">500+</div>
+						<div class="font-[Montserrat] text-[11px] text-white/50 tracking-[1px] uppercase mt-[3px]">Subscribers</div>
+					</div>
+					<div class="w-[1px] h-[36px] bg-white/20"></div>
+					<div class="text-center">
+						<div class="font-[Oswald] font-bold text-[28px] text-white leading-none">Weekly</div>
+						<div class="font-[Montserrat] text-[11px] text-white/50 tracking-[1px] uppercase mt-[3px]">Every Sunday</div>
+					</div>
+					<div class="w-[1px] h-[36px] bg-white/20"></div>
+					<div class="text-center">
+						<div class="font-[Oswald] font-bold text-[28px] text-white leading-none">Free</div>
+						<div class="font-[Montserrat] text-[11px] text-white/50 tracking-[1px] uppercase mt-[3px]">Always</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ════════════════════ CTA ════════════════════════════════════════════ -->
+<section class="relative bg-[#01010F] py-[100px] lg:py-[120px] overflow-hidden">
+	<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,.03) 1px,transparent 1px);background-size:60px 60px;"></div>
+	<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] rounded-full bg-[#CC1414]/[.06] blur-[120px] pointer-events-none"></div>
+	<div class="absolute top-0 left-0 right-0 h-[1px] bg-white/[.05]"></div>
+	<div class="relative max-w-[1320px] mx-auto px-[30px] lg:px-[60px] text-center">
+		<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Put it into practice</div>
+		<div class="sr d1 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-white mb-[6px]">Reading is good.</div>
+		<div class="sr d2 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-[#CC1414] mb-[40px]">Doing is better.</div>
+		<div class="sr d3 font-[Montserrat] font-medium text-[16px] md:text-[18px] text-[#E7E7E7]/55 leading-[1.7] max-w-[520px] mx-auto mb-[52px]">The best thing you can learn is what your body is capable of under a good coach. First class is free.</div>
+		<div class="sr d4 flex flex-col sm:flex-row items-center justify-center gap-[16px]">
+			<a class="group/c1 relative inline-block" href="schedule.html">
+				<div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.4s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+				<div class="relative h-[58px] w-[240px] flex justify-center items-center font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase">
+					<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/c1:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book Free Class <i class="fa-solid fa-arrow-right text-[13px]"></i></div>
+					<div class="flex items-center gap-[10px] group-hover/c1:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book Free Class <i class="fa-solid fa-arrow-right text-[13px]"></i></div>
+				</div>
+			</a>
+			<a class="group/c2 relative inline-block" href="programs.html">
+				<div class="absolute inset-0 border border-white/20 group-hover/c2:border-white/0 transition-colors duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-white/0 group-hover/c2:bg-white/[.05] transition-colors duration-[.3s]"></div>
+				<div class="relative h-[58px] w-[200px] flex justify-center items-center font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase text-white/60 group-hover/c2:text-white transition-colors duration-[.3s]">View Programs</div>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════════════════════════ -->
+<footer class="relative overflow-hidden mx-[24px] mb-[24px] rounded-[24px] bg-[#0C0C14]">
+	<div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-white/20 blur-[2px] pointer-events-none"></div>
+	<div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(35% 200px at 50% 0%,rgba(204,20,20,.10),transparent);"></div>
+	<div class="relative z-10 max-w-[1320px] mx-auto px-[30px] lg:px-[60px] pt-[60px] lg:pt-[72px] pb-[40px]">
+		<div class="grid gap-[48px] xl:grid-cols-3 xl:gap-[64px]">
+			<div class="ft-col space-y-[20px]"><a href="index.html"><img class="h-[100px] w-auto" src="A Plus Fit Logo.png" alt="A Plus Fit"></a><p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/40 leading-[1.8] max-w-[240px]">Outdoor CrossFit coached by Aaron. Real training. Real community. Real air.</p><p class="font-[Montserrat] text-[12px] text-[#E7E7E7]/20">&copy; 2026 A Plus Fit. All rights reserved.</p></div>
+			<div class="grid grid-cols-2 gap-[32px] md:grid-cols-4 xl:col-span-2">
+				<div class="ft-col" style="animation-delay:.10s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Train</h3><ul class="space-y-[14px]"><li><a href="programs.html#group-crossfit" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Group CrossFit</a></li><li><a href="programs.html#beginner-onramp" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Beginner On-Ramp</a></li><li><a href="programs.html#personal-programming" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Personal Programming</a></li><li><a href="programs.html#open-gym" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Open Gym</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.20s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Company</h3><ul class="space-y-[14px]"><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">About Aaron</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Contact</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Privacy Policy</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Terms of Service</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.30s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Learn</h3><ul class="space-y-[14px]"><li><a href="learn.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">All Articles</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Free Resources</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Movement Library</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Newsletter</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.40s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Follow Us</h3><ul class="space-y-[14px]"><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-instagram w-[14px]"></i>Instagram</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-facebook-f w-[14px]"></i>Facebook</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-youtube w-[14px]"></i>YouTube</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-tiktok w-[14px]"></i>TikTok</a></li></ul></div>
+			</div>
+		</div>
+	</div>
+	<div class="relative z-10 hidden lg:flex" style="height:28rem;margin-top:-4rem;margin-bottom:-8rem;">
+		<svg id="apf-svg" width="100%" height="100%" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" class="select-none cursor-pointer uppercase">
+			<defs><linearGradient id="apfGrad" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="300" y2="50"><stop offset="0%" stop-color="#eab308"/><stop offset="25%" stop-color="#ef4444"/><stop offset="50%" stop-color="#80eeb4"/><stop offset="75%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient><radialGradient id="apfReveal" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%"><stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="black"/></radialGradient><mask id="apfMask"><rect x="0" y="0" width="100%" height="100%" fill="url(#apfReveal)"/></mask></defs>
+			<text id="apf-t1" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#e5e5e5" stroke-width="0.3" style="opacity:0;transition:opacity 0.3s;">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#CC1414" stroke-width="0.3" stroke-opacity="0.8" class="apf-draw-anim">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="url(#apfGrad)" stroke-width="0.3" mask="url(#apfMask)">A PLUS FIT</text>
+		</svg>
+	</div>
+	<script>(function(){var svg=document.getElementById('apf-svg'),t1=document.getElementById('apf-t1'),mg=document.getElementById('apfReveal');if(svg){svg.addEventListener('mouseenter',function(){t1.style.opacity='0.7';});svg.addEventListener('mouseleave',function(){t1.style.opacity='0';mg.setAttribute('cx','50%');mg.setAttribute('cy','50%');});svg.addEventListener('mousemove',function(e){var r=svg.getBoundingClientRect();mg.setAttribute('cx',(((e.clientX-r.left)/r.width)*100).toFixed(1)+'%');mg.setAttribute('cy',(((e.clientY-r.top)/r.height)*100).toFixed(1)+'%');});}var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('ft-vis');});},{threshold:0.1});document.querySelectorAll('.ft-col').forEach(function(el){obs.observe(el);});})();</script>
+</footer>
+
+<!-- ════════════════════ OFFCANVAS ══════════════════════════════════════ -->
+<div id="offcanvas" class="group">
+	<div class="fixed z-[49] top-0 right-0 bottom-0 left-0 group-[:not([data-t='a'])]:invisible">
+		<div class="absolute inset-0 bg-[#CC1414] group-[[data-t='a']]:scale-y-0 delay-0 transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#E86060] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.4s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#01010F] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414]/10 group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 flex items-center justify-center group-[:not([data-t='a'])]:scale-y-0 delay-[.3s] transition-all duration-[.3s]">
+			<div class="pt-[90px]"><div class="grid grid-cols-1 gap-[20px] w-[300px] font-[Teko] text-[20px] font-semibold tracking-[2px] uppercase">
+				<a href="index.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Home</a>
+				<a href="programs.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Programs</a>
+				<a href="schedule.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Schedule</a>
+				<a href="community.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Community</a>
+				<a href="#" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">About</a>
+				<a href="learn.html" class="pb-[16px] text-[#CC1414]">Learn</a>
+				<a href="schedule.html" class="mt-[8px] bg-[#CC1414] text-white text-center py-[14px] tracking-[2px] hover:bg-[#E86060] transition-colors">Book Free Class</a>
+			</div></div>
+		</div>
+	</div>
+</div>
+
+<script src="js/all.js"></script>
+<script>
+// ─── ARTICLE DATA ─────────────────────────────────────────────────────
+var ARTICLES = [
+  { cat:'training', icon:'fa-dumbbell', title:'The 5 CrossFit Movements Every Beginner Needs to Master First', excerpt:'Before you touch a barbell, these five patterns will determine your ceiling. Nail them now and everything else accelerates. Skip them and you will eventually pay the price.', read:'6 min', date:'May 2026', img:'wall-aaron3.png' },
+  { cat:'nutrition', icon:'fa-apple-whole', title:'What to Eat Before a 6AM CrossFit Class Without Feeling Like Death', excerpt:'Training fasted works for some people. For most, it doesn\'t. Here\'s a simple framework for pre-workout nutrition that keeps your performance up without wrecking your stomach.', read:'5 min', date:'Apr 2026', img:'wall-aplus1.png' },
+  { cat:'recovery', icon:'fa-bed', title:'Sleep Is Training: Why 7 Hours Matters More Than an Extra Session', excerpt:'The session you skip to sleep is almost always better for your adaptation than the session you push through on four hours. Here\'s the physiology that makes this non-negotiable.', read:'7 min', date:'Apr 2026', img:'wall-community.png' },
+  { cat:'mindset', icon:'fa-brain', title:'The Psychology of Showing Up: Why Consistency Beats Motivation Every Time', excerpt:'Motivation is a feeling. Feelings are unreliable. The athletes who make the biggest jumps aren\'t more motivated—they\'ve just removed the decision. This is how you do that.', read:'6 min', date:'Mar 2026', img:'wall-community3.png' },
+  { cat:'training', icon:'fa-dumbbell', title:'How to Read a CrossFit WOD (And Actually Understand What You\'re Walking Into)', excerpt:'AMRAP, EMOM, RFT—the abbreviations can feel like another language. This quick reference breaks down every format you\'ll see on the board, with pacing strategy for each.', read:'4 min', date:'Mar 2026', img:'wall-aaron5.png' },
+  { cat:'nutrition', icon:'fa-apple-whole', title:'Protein: How Much You Actually Need and the Simplest Ways to Hit It', excerpt:'Most people eating "enough protein" are eating 60% of what their training demands. No complicated macros—just a realistic framework based on your bodyweight and output.', read:'5 min', date:'Feb 2026', img:'wall-apluss.png' },
+  { cat:'recovery', icon:'fa-bed', title:'The Recovery Protocol Aaron Uses With Every Athlete He Coaches', excerpt:'10 minutes before bed. Three mobility drills, two breathing exercises, and one simple practice that lowers cortisol faster than almost anything else. Evidence-based, time-efficient.', read:'6 min', date:'Feb 2026', img:'wall-community1.png' },
+  { cat:'training', icon:'fa-dumbbell', title:'Progressive Overload: The Only Principle You Actually Need to Build Strength', excerpt:'Every plateau comes from the same mistake—doing the same work at the same intensity for too long. Here is a simple model for adding load or volume without grinding yourself into the ground.', read:'7 min', date:'Jan 2026', img:'wall-aaron4.png' },
+  { cat:'mindset', icon:'fa-brain', title:'How to Stop Comparing Yourself to Other Athletes (And Actually Get Better)', excerpt:'Comparison kills progress because it measures your insides against someone else\'s outsides. The athletes who improve fastest are benchmarking against their own previous performance—nothing else.', read:'5 min', date:'Jan 2026', img:'wall-aaron8.png' },
+  { cat:'nutrition', icon:'fa-apple-whole', title:'Hydration for Outdoor Athletes: More Than Just Drinking Water', excerpt:'Outdoor training in heat depletes electrolytes, not just fluid. Here\'s what to drink, when to drink it, and the signs you\'re already behind before you feel thirsty.', read:'4 min', date:'Dec 2025', img:'aaron.png' },
+  { cat:'training', icon:'fa-dumbbell', title:'Scaling CrossFit Without Feeling Like You\'re Cheating', excerpt:'Scaling is not a compromise—it is the prescription. The right scale gets you the intended stimulus. The wrong weight chases someone else\'s workout and usually leads to bad form, injury, or both.', read:'5 min', date:'Nov 2025', img:'wall-community.png' },
+  { cat:'recovery', icon:'fa-bed', title:'Mobility Work That Takes 10 Minutes and Actually Makes a Difference', excerpt:'Most mobility routines are too long to be sustainable. This one targets the three areas CrossFit athletes wreck the most—hips, thoracic spine, and shoulders—in under ten minutes.', read:'6 min', date:'Nov 2025', img:'wall-aplus1.png' }
+];
+
+var CAT_COLORS = { training:'#CC1414', nutrition:'#D97706', recovery:'#0891B2', mindset:'#7C3AED' };
+var activeFilter = 'all';
+
+function catColor(cat){ return CAT_COLORS[cat]||'#CC1414'; }
+
+function renderCards(){
+  var grid = document.getElementById('article-grid');
+  var noRes = document.getElementById('no-results');
+  grid.innerHTML = '';
+  var filtered = activeFilter==='all' ? ARTICLES : ARTICLES.filter(function(a){ return a.cat===activeFilter; });
+  if(!filtered.length){ noRes.classList.remove('hidden'); return; }
+  noRes.classList.add('hidden');
+  filtered.forEach(function(a, i){
+    var delay = (i%3)*0.08;
+    var card = document.createElement('a');
+    card.href = '#';
+    card.className = 'art-card block bg-[#0C0C14] border border-white/[.07] overflow-hidden opacity-0 translate-y-[20px]';
+    card.style.transitionDelay = delay+'s';
+    card.style.transition = 'border-color .2s, transform .2s, opacity .5s '+delay+'s, transform .5s '+delay+'s';
+    card.innerHTML =
+      '<div class="overflow-hidden h-[200px]">'
+      +'<img src="'+a.img+'" alt="" class="art-img w-full h-full object-cover">'
+      +'</div>'
+      +'<div class="p-[24px]">'
+      +'<div class="flex items-center gap-[8px] mb-[12px]">'
+      +'<span class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase px-[8px] py-[2px]" style="background:'+catColor(a.cat)+'22;color:'+catColor(a.cat)+'">'+a.cat+'</span>'
+      +'<span class="font-[Montserrat] text-[11px] text-[#E7E7E7]/30">'+a.read+'</span>'
+      +'<span class="text-[#E7E7E7]/20">·</span>'
+      +'<span class="font-[Montserrat] text-[11px] text-[#E7E7E7]/30">'+a.date+'</span>'
+      +'</div>'
+      +'<div class="font-[Oswald] font-bold text-[19px] uppercase text-white leading-[1.1] mb-[12px] group-hover:text-[#CC1414] transition-colors">'+a.title+'</div>'
+      +'<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7] line-clamp-3 mb-[18px]">'+a.excerpt+'</p>'
+      +'<div class="flex items-center gap-[6px] font-[Teko] font-semibold text-[13px] tracking-[1px] uppercase" style="color:'+catColor(a.cat)+'">'
+      +'<i class="fa-solid fa-'+a.icon+' text-[11px]"></i> Read Article <i class="fa-solid fa-arrow-right text-[10px] ml-[2px]"></i>'
+      +'</div>'
+      +'</div>';
+    grid.appendChild(card);
+    requestAnimationFrame(function(el){ return function(){ setTimeout(function(){ el.style.opacity='1'; el.style.transform='none'; }, 20); }; }(card));
+  });
+}
+
+function setFilter(f){
+  activeFilter = f;
+  ['all','training','nutrition','recovery','mindset'].forEach(function(id){
+    var el = document.getElementById('f-'+id);
+    if(el) el.classList.remove('active');
+  });
+  var target = document.getElementById('f-'+f);
+  if(target) target.classList.add('active');
+  renderCards();
+}
+
+renderCards();
+
+// ─── SCROLL REVEAL ────────────────────────────────────────────────────
+(function(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('up'); obs.unobserve(e.target); } });
+  },{threshold:0.08});
+  document.querySelectorAll('.sr').forEach(function(el){ obs.observe(el); });
+})();
+
+// ─── READING PROGRESS BAR ─────────────────────────────────────────────
+window.addEventListener('scroll', function(){
+  var el = document.getElementById('read-progress');
+  var scrollTop = window.scrollY;
+  var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  el.style.width = Math.min(100, (scrollTop/docHeight)*100) + '%';
+});
+
+// ─── NEWSLETTER ───────────────────────────────────────────────────────
+function handleNewsletter(e){
+  e.preventDefault();
+  document.getElementById('nl-success').classList.remove('hidden');
+  document.getElementById('nl-email').value = '';
+}
+</script>
+</body>
+</html>

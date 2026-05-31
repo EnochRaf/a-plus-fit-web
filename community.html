@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Community — A Plus Fit</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@200..700&family=Teko:wght@300..700&family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://ajax.cdnjs.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="css/all.css">
+	<style>
+		/* scroll reveal */
+		.sr{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+		.sr.sl{transform:translateX(-30px)}.sr.sr2{transform:translateX(30px)}
+		.sr.up{opacity:1;transform:none}
+		.d1{transition-delay:.10s}.d2{transition-delay:.20s}.d3{transition-delay:.30s}
+		.d4{transition-delay:.40s}.d5{transition-delay:.50s}.d6{transition-delay:.60s}
+
+		/* wall scroll */
+		@keyframes wall-left {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+		@keyframes wall-right{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+		.wall-left {animation:wall-left  38s linear infinite}
+		.wall-right{animation:wall-right 44s linear infinite}
+
+		/* ticker */
+		@keyframes ticker-l{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+		.ticker{animation:ticker-l 22s linear infinite}
+
+		/* quote card hover */
+		.q-card{transition:border-color .2s,transform .2s}
+		.q-card:hover{border-color:rgba(204,20,20,.45);transform:translateY(-4px)}
+
+		/* social card */
+		.soc-card{transition:border-color .2s,transform .2s,background .2s}
+		.soc-card:hover{transform:translateY(-4px)}
+
+		/* pillar hover */
+		.pillar{transition:background .2s,border-color .2s}
+		.pillar:hover{background:#111118;border-color:rgba(204,20,20,.3)}
+
+		/* count-up */
+		.count{display:inline-block}
+
+		/* footer */
+		@keyframes footer-reveal{from{opacity:0;filter:blur(4px);transform:translateY(-8px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+		.ft-col{opacity:0}.ft-col.ft-vis{animation:footer-reveal .8s ease forwards}
+		@keyframes apf-draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+		.apf-draw-anim{animation:apf-draw 4s ease-in-out forwards;stroke-dasharray:1000;stroke-dashoffset:1000}
+	</style>
+</head>
+<body class="bg-[#01010F] text-[#E7E7E7] text-[18px] leading-[1.5] font-[Vazirmatn]">
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<div class="pt-[40px]"></div>
+<div class="sticky z-50 top-0 bg-[#01010F]">
+<div class="max-w-[1320px] mx-auto px-[15px]">
+<div class="flex justify-between items-center h-[180px] font-[Teko]">
+	<div><a class="flex items-center" href="index.html"><img class="h-[160px] w-auto" src="A Plus Fit Logo.png" alt=""></a></div>
+	<div class="hidden xl:block">
+		<div class="flex text-[20px] font-medium">
+			<div class="group relative"><a href="#" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div></div></div></a></div>
+			<div class="group relative"><a href="programs.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div></div></div></a></div>
+			<div class="group relative"><a href="schedule.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div></div></div></a></div>
+			<div class="group relative"><a href="community.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">COMMUNITY</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">COMMUNITY</div></div></div></a></div>
+			<div class="group relative"><a href="#" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">LEARN</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">LEARN</div></div></div></a></div>
+		</div>
+	</div>
+	<div class="flex items-center">
+		<a class="xl:hidden group relative" data-c-toggle="a" href="#offcanvas"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] w-[54px] flex justify-center items-center"><i class="fa-solid fa-bars"></i></div></a>
+		<div class="xl:hidden md:px-[20px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="book.html"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] px-[24px] flex justify-center items-center"><div class="relative"><div class="absolute inset-0 group-[:not(:hover)]:scale-y-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div></div></div></a>
+		<div class="hidden md:block px-[20px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="#"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-facebook-f"></i></div></a>
+		<div class="hidden md:block px-[5px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="#"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-instagram"></i></div></a>
+	</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="relative bg-[#01010F] overflow-hidden pt-[80px] pb-[0]">
+	<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,.04) 1px,transparent 1px);background-size:80px 80px;"></div>
+	<div class="absolute top-0 right-0 w-[3px] h-full bg-[#CC1414]/30 pointer-events-none"></div>
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+		<div class="sr flex items-center gap-[8px] font-[Teko] text-[13px] tracking-[3px] uppercase text-[#E7E7E7]/30 mb-[40px]">
+			<a href="index.html" class="hover:text-[#CC1414] transition-colors">Home</a>
+			<span class="text-[#CC1414]">/</span>
+			<span class="text-[#CC1414]">Community</span>
+		</div>
+		<div class="grid lg:grid-cols-2 gap-[60px] lg:gap-[80px] items-end pb-[80px] lg:pb-[100px]">
+			<div>
+				<div class="sr d1 font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">A Plus Fit</div>
+				<div class="sr d2 font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-white mb-[4px]">Built on</div>
+				<div class="sr d3 font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-[#CC1414] mb-[32px]">Trust.</div>
+				<div class="sr d4 font-[Montserrat] font-medium text-[16px] text-[#E7E7E7]/55 leading-[1.8] max-w-[480px] mb-[40px]">This isn't just a gym. It's a group of people who show up for each other—under open sky, through hard workouts, and past every excuse. You'll feel it on day one.</div>
+				<div class="sr d5 flex flex-wrap gap-[12px]">
+					<a href="#the-wall" class="font-[Teko] font-semibold text-[14px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[20px] py-[10px] hover:bg-[#CC1414]/10 transition-colors">See The Wall</a>
+					<a href="#discord" class="font-[Teko] font-semibold text-[14px] tracking-[2px] uppercase text-white/60 border border-white/20 px-[20px] py-[10px] hover:text-white hover:border-white/40 transition-colors">Join Discord</a>
+				</div>
+			</div>
+			<!-- stat grid -->
+			<div class="sr sr2 d3">
+				<div class="grid grid-cols-2 gap-[2px] bg-[#CC1414]/20">
+					<div class="bg-[#01010F] p-[32px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-white"><span class="count" data-target="200">0</span>+</div>
+						<div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Members</div>
+					</div>
+					<div class="bg-[#01010F] p-[32px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-white"><span class="count" data-target="3">0</span>+</div>
+						<div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Years Strong</div>
+					</div>
+					<div class="bg-[#01010F] p-[32px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-white"><span class="count" data-target="6">0</span></div>
+						<div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Days a Week</div>
+					</div>
+					<div class="bg-[#01010F] p-[32px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-[#CC1414]">100%</div>
+						<div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Outdoors</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THE WALL — PHOTO SCROLL
+══════════════════════════════════════════ -->
+<section id="the-wall" class="bg-[#01010F] pt-[80px] pb-[80px] overflow-hidden">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] mb-[48px]">
+		<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[8px]">The Community</div>
+		<div class="sr d1 font-[Oswald] font-bold text-[56px] md:text-[72px] lg:text-[88px] leading-[.92] uppercase text-white">The <span class="text-[#CC1414]">Wall.</span></div>
+	</div>
+	<div class="relative">
+		<div class="absolute inset-y-0 left-0 w-[80px] md:w-[120px] bg-gradient-to-r from-[#01010F] to-transparent z-10 pointer-events-none"></div>
+		<div class="absolute inset-y-0 right-0 w-[80px] md:w-[120px] bg-gradient-to-l from-[#01010F] to-transparent z-10 pointer-events-none"></div>
+		<!-- row 1 -->
+		<div class="overflow-hidden mb-[14px]">
+			<div class="flex gap-[14px] wall-left">
+				<img src="wall-community.png"  alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron3.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aplus1.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron5.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron4.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-apluss.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-community.png"  alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron3.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aplus1.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron5.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron4.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-apluss.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+			</div>
+		</div>
+		<!-- row 2 -->
+		<div class="overflow-hidden">
+			<div class="flex gap-[14px] wall-right">
+				<img src="wall-community1.png" alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron8.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-community3.png" alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="aaron.png"           alt="" class="h-[240px] md:h-[300px] w-auto object-cover object-top flex-shrink-0">
+				<img src="wall-aaron5.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-community.png"  alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-community1.png" alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-aaron8.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-community3.png" alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="aaron.png"           alt="" class="h-[240px] md:h-[300px] w-auto object-cover object-top flex-shrink-0">
+				<img src="wall-aaron5.png"     alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+				<img src="wall-community.png"  alt="" class="h-[240px] md:h-[300px] w-auto object-cover flex-shrink-0">
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THREE PILLARS
+══════════════════════════════════════════ -->
+<section class="bg-[#0C0C14] py-[80px] lg:py-[100px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr text-center mb-[60px]">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">What We Stand For</div>
+			<div class="font-[Oswald] font-bold text-[40px] md:text-[52px] leading-none uppercase text-white">The A Plus Fit <span class="text-[#CC1414]">Code.</span></div>
+		</div>
+		<div class="grid md:grid-cols-3 gap-[2px] bg-[#CC1414]/15">
+			<div class="pillar sr bg-[#0C0C14] border border-transparent p-[40px] lg:p-[52px]">
+				<div class="w-[52px] h-[52px] border border-[#CC1414]/50 flex items-center justify-center mb-[28px]">
+					<i class="fa-solid fa-person-running text-[#CC1414] text-[20px]"></i>
+				</div>
+				<div class="font-[Oswald] font-bold text-[32px] uppercase text-white leading-none mb-[16px]">Show<br>Up.</div>
+				<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/50 leading-[1.8]">Consistency beats intensity. The people who get the best results are the ones who come back—rain, cold, tired, whatever. Showing up is the whole game.</p>
+			</div>
+			<div class="pillar sr d1 bg-[#0C0C14] border border-transparent p-[40px] lg:p-[52px]">
+				<div class="w-[52px] h-[52px] border border-[#CC1414]/50 flex items-center justify-center mb-[28px]">
+					<i class="fa-solid fa-fire text-[#CC1414] text-[20px]"></i>
+				</div>
+				<div class="font-[Oswald] font-bold text-[32px] uppercase text-white leading-none mb-[16px]">Push<br>Hard.</div>
+				<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/50 leading-[1.8]">Comfortable workouts don't change bodies. We train with real intensity—scaled to your level, but never scaled down to easy. You'll always walk out having worked.</p>
+			</div>
+			<div class="pillar sr d2 bg-[#0C0C14] border border-transparent p-[40px] lg:p-[52px]">
+				<div class="w-[52px] h-[52px] border border-[#CC1414]/50 flex items-center justify-center mb-[28px]">
+					<i class="fa-solid fa-users text-[#CC1414] text-[20px]"></i>
+				</div>
+				<div class="font-[Oswald] font-bold text-[32px] uppercase text-white leading-none mb-[16px]">Lift Each<br>Other.</div>
+				<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/50 leading-[1.8]">The last person finishing a workout gets the loudest cheers. Ego stays outside. Everyone here is working toward something—and everyone here roots for each other to get there.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MEMBER VOICES — TESTIMONIALS
+══════════════════════════════════════════ -->
+<section class="bg-[#01010F] py-[80px] lg:py-[100px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr mb-[56px]">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">Real People</div>
+			<div class="font-[Oswald] font-bold text-[40px] md:text-[54px] leading-none uppercase text-white">What They're <span class="text-[#CC1414]">Saying.</span></div>
+		</div>
+
+		<!-- bento grid -->
+		<div class="grid gap-[14px] sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-2">
+
+			<!-- featured 2×2 -->
+			<div class="sm:col-span-2 lg:row-span-2 sr sl">
+				<div class="q-card h-full grid grid-rows-[auto_1fr] gap-[28px] p-[32px] lg:p-[40px] bg-[#0C0C14] border border-white/[.08]">
+					<div class="flex items-center gap-[10px]">
+						<div class="font-[Teko] font-bold text-[20px] tracking-[2px] text-white uppercase leading-none">A <span class="text-[#CC1414]">Plus</span> Fit</div>
+						<div class="font-[Teko] font-medium text-[11px] tracking-[3px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[8px] py-[3px]">Featured</div>
+					</div>
+					<blockquote class="grid grid-rows-[1fr_auto] gap-[24px]">
+						<div>
+							<div class="font-[Georgia,serif] text-[36px] leading-none text-[#CC1414] mb-[12px]">&ldquo;</div>
+							<p class="font-[Montserrat] font-medium text-[18px] lg:text-[20px] leading-[1.65] text-white/85">Aaron changed how I think about fitness entirely. The outdoor setup, the accountability, the programming—it all works together in a way I've never experienced anywhere else. Two years in and I still look forward to every single session.</p>
+						</div>
+						<div class="flex items-center gap-[14px]">
+							<div class="w-[48px] h-[48px] rounded-full bg-[#CC1414] flex items-center justify-center flex-shrink-0"><span class="font-[Teko] font-bold text-[15px] text-white leading-none">MS</span></div>
+							<div>
+								<cite class="not-italic font-[Teko] font-semibold text-[16px] text-white leading-none">Maria S.</cite>
+								<div class="font-[Montserrat] text-[12px] text-[#E7E7E7]/40 mt-[3px]">Member since 2023</div>
+							</div>
+						</div>
+					</blockquote>
+				</div>
+			</div>
+
+			<!-- wide card -->
+			<div class="md:col-span-2 sr d1">
+				<div class="q-card h-full p-[28px] bg-[#0C0C14] border border-white/[.08]">
+					<blockquote class="grid grid-rows-[1fr_auto] gap-[20px] h-full">
+						<div>
+							<div class="font-[Georgia,serif] text-[28px] leading-none text-[#CC1414] mb-[10px]">&ldquo;</div>
+							<p class="font-[Montserrat] font-medium text-[16px] leading-[1.65] text-white/80">No mirrors, no screens, no ego. Just the work and a coach who actually watches. I hit a PR last month that I genuinely didn't think was possible for me.</p>
+						</div>
+						<div class="flex items-center gap-[12px]">
+							<div class="w-[40px] h-[40px] rounded-full bg-[#CC1414]/80 flex items-center justify-center flex-shrink-0"><span class="font-[Teko] font-bold text-[13px] text-white leading-none">DL</span></div>
+							<div><cite class="not-italic font-[Teko] font-semibold text-[15px] text-white leading-none">David L.</cite><div class="font-[Montserrat] text-[12px] text-[#E7E7E7]/40 mt-[2px]">Personal Programming</div></div>
+						</div>
+					</blockquote>
+				</div>
+			</div>
+
+			<!-- small card -->
+			<div class="sr d2">
+				<div class="q-card h-full p-[28px] bg-[#0C0C14] border border-white/[.08]">
+					<blockquote class="grid grid-rows-[1fr_auto] gap-[20px] h-full">
+						<div>
+							<div class="font-[Georgia,serif] text-[28px] leading-none text-[#CC1414] mb-[10px]">&ldquo;</div>
+							<p class="font-[Montserrat] font-medium text-[14px] leading-[1.75] text-[#E7E7E7]/75">I was nervous to start CrossFit at 45. Aaron's On-Ramp made me feel capable before it ever got hard.</p>
+						</div>
+						<div class="flex items-center gap-[12px]">
+							<div class="w-[38px] h-[38px] rounded-full bg-[#CC1414]/70 flex items-center justify-center flex-shrink-0"><span class="font-[Teko] font-bold text-[12px] text-white leading-none">SK</span></div>
+							<div><cite class="not-italic font-[Teko] font-semibold text-[14px] text-white leading-none">Sandra K.</cite><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/40 mt-[2px]">On-Ramp Graduate</div></div>
+						</div>
+					</blockquote>
+				</div>
+			</div>
+
+			<!-- small card -->
+			<div class="sr d3">
+				<div class="q-card h-full p-[28px] bg-[#0C0C14] border border-white/[.08]">
+					<blockquote class="grid grid-rows-[1fr_auto] gap-[20px] h-full">
+						<div>
+							<div class="font-[Georgia,serif] text-[28px] leading-none text-[#CC1414] mb-[10px]">&ldquo;</div>
+							<p class="font-[Montserrat] font-medium text-[14px] leading-[1.75] text-[#E7E7E7]/75">The community kept me accountable when I wanted to quit. I didn't quit. Best decision I've made for my health.</p>
+						</div>
+						<div class="flex items-center gap-[12px]">
+							<div class="w-[38px] h-[38px] rounded-full bg-[#CC1414]/70 flex items-center justify-center flex-shrink-0"><span class="font-[Teko] font-bold text-[12px] text-white leading-none">KP</span></div>
+							<div><cite class="not-italic font-[Teko] font-semibold text-[14px] text-white leading-none">Kevin P.</cite><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/40 mt-[2px]">On-Ramp → Group CrossFit</div></div>
+						</div>
+					</blockquote>
+				</div>
+			</div>
+		</div>
+
+		<!-- second row of quotes -->
+		<div class="grid md:grid-cols-3 gap-[14px] mt-[14px]">
+			<div class="sr d1">
+				<div class="q-card h-full p-[28px] bg-[#0C0C14] border border-white/[.08]">
+					<div class="font-[Georgia,serif] text-[28px] leading-none text-[#CC1414] mb-[10px]">&ldquo;</div>
+					<p class="font-[Montserrat] font-medium text-[14px] leading-[1.75] text-[#E7E7E7]/70 mb-[20px]">I've tried big-box gyms my whole life. This is completely different. Everyone knows your name before you've even finished your first class.</p>
+					<div class="flex items-center gap-[12px] pt-[16px] border-t border-white/[.06]">
+						<div class="w-[36px] h-[36px] rounded-full bg-[#CC1414]/60 flex items-center justify-center flex-shrink-0"><span class="font-[Teko] font-bold text-[12px] text-white">RN</span></div>
+						<div><cite class="not-italic font-[Teko] font-semibold text-[14px] text-white leading-none">Ray N.</cite><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mt-[2px]">Long-Distance Member</div></div>
+					</div>
+				</div>
+			</div>
+			<div class="sr d2">
+				<div class="q-card h-full p-[28px] bg-[#0C0C14] border border-white/[.08]">
+					<div class="font-[Georgia,serif] text-[28px] leading-none text-[#CC1414] mb-[10px]">&ldquo;</div>
+					<p class="font-[Montserrat] font-medium text-[14px] leading-[1.75] text-[#E7E7E7]/70 mb-[20px]">My kids saw me training here and wanted to join in. That says everything about the vibe. It's infectious in the best possible way.</p>
+					<div class="flex items-center gap-[12px] pt-[16px] border-t border-white/[.06]">
+						<div class="w-[36px] h-[36px] rounded-full bg-[#CC1414]/60 flex items-center justify-center flex-shrink-0"><span class="font-[Teko] font-bold text-[12px] text-white">LH</span></div>
+						<div><cite class="not-italic font-[Teko] font-semibold text-[14px] text-white leading-none">Lisa H.</cite><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mt-[2px]">Community Member</div></div>
+					</div>
+				</div>
+			</div>
+			<div class="sr d3">
+				<div class="q-card h-full p-[28px] bg-[#0C0C14] border border-white/[.08]">
+					<div class="font-[Georgia,serif] text-[28px] leading-none text-[#CC1414] mb-[10px]">&ldquo;</div>
+					<p class="font-[Montserrat] font-medium text-[14px] leading-[1.75] text-[#E7E7E7]/70 mb-[20px]">Best investment I've made in my health. Aaron genuinely cares about where you're headed, not just what you did today.</p>
+					<div class="flex items-center gap-[12px] pt-[16px] border-t border-white/[.06]">
+						<div class="w-[36px] h-[36px] rounded-full bg-[#CC1414]/60 flex items-center justify-center flex-shrink-0"><span class="font-[Teko] font-bold text-[12px] text-white">AW</span></div>
+						<div><cite class="not-italic font-[Teko] font-semibold text-[14px] text-white leading-none">Angela W.</cite><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mt-[2px]">Member since 2022</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TICKER
+══════════════════════════════════════════ -->
+<div class="bg-[#0C0C14] border-y border-[#CC1414]/20 py-[16px] overflow-hidden">
+	<div class="flex ticker whitespace-nowrap font-[Teko] font-semibold text-[14px] tracking-[4px] uppercase text-[#E7E7E7]/25">
+		<span class="px-[28px]">Real People</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Real Results</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Real Air</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Built on Trust</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Backed by Results</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Show Up</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Push Hard</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Lift Each Other</span><span class="text-[#CC1414] px-[12px]">✦</span>
+		<span class="px-[28px]">Real People</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Real Results</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Real Air</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Built on Trust</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Backed by Results</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Show Up</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Push Hard</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Lift Each Other</span><span class="text-[#CC1414] px-[12px]">✦</span>
+	</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     DISCORD
+══════════════════════════════════════════ -->
+<section id="discord" class="bg-[#01010F] py-[80px] lg:py-[100px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr grid lg:grid-cols-[1fr_420px] gap-[48px] lg:gap-[80px] items-center">
+			<div>
+				<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Online Community</div>
+				<div class="font-[Oswald] font-bold text-[44px] md:text-[56px] lg:text-[64px] leading-[.92] uppercase text-white mb-[8px]">Join the</div>
+				<div class="font-[Oswald] font-bold text-[44px] md:text-[56px] lg:text-[64px] leading-[.92] uppercase text-[#CC1414] mb-[28px]">Discord.</div>
+				<p class="font-[Montserrat] font-medium text-[15px] text-[#E7E7E7]/55 leading-[1.8] max-w-[480px] mb-[40px]">The training doesn't stop when the workout ends. Our Discord server is where the community lives between sessions—WOD results, form checks, nutrition talk, and the kind of accountability that actually works.</p>
+				<div class="grid sm:grid-cols-2 gap-[16px] mb-[40px]">
+					<div class="flex items-start gap-[14px]">
+						<div class="w-[32px] h-[32px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 mt-[2px]"><i class="fa-solid fa-dumbbell text-[#CC1414] text-[12px]"></i></div>
+						<div><div class="font-[Teko] font-semibold text-[16px] text-white leading-none mb-[4px]">Daily WOD Channel</div><div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 leading-[1.6]">Post results, compare scores, celebrate PRs.</div></div>
+					</div>
+					<div class="flex items-start gap-[14px]">
+						<div class="w-[32px] h-[32px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 mt-[2px]"><i class="fa-solid fa-video text-[#CC1414] text-[12px]"></i></div>
+						<div><div class="font-[Teko] font-semibold text-[16px] text-white leading-none mb-[4px]">Form Check Videos</div><div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 leading-[1.6]">Post a clip, get feedback from Aaron and the crew.</div></div>
+					</div>
+					<div class="flex items-start gap-[14px]">
+						<div class="w-[32px] h-[32px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 mt-[2px]"><i class="fa-solid fa-trophy text-[#CC1414] text-[12px]"></i></div>
+						<div><div class="font-[Teko] font-semibold text-[16px] text-white leading-none mb-[4px]">Member Challenges</div><div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 leading-[1.6]">Weekly challenges, leaderboards, and prizes.</div></div>
+					</div>
+					<div class="flex items-start gap-[14px]">
+						<div class="w-[32px] h-[32px] bg-[#CC1414]/15 border border-[#CC1414]/30 flex items-center justify-center flex-shrink-0 mt-[2px]"><i class="fa-solid fa-apple-whole text-[#CC1414] text-[12px]"></i></div>
+						<div><div class="font-[Teko] font-semibold text-[16px] text-white leading-none mb-[4px]">Nutrition & Recovery</div><div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 leading-[1.6]">Real talk on what to eat and how to rest.</div></div>
+					</div>
+				</div>
+				<a href="#" class="group/dc inline-flex items-center gap-[14px] bg-[#5865F2] hover:bg-[#4752C4] transition-colors duration-200 px-[32px] py-[16px]">
+					<!-- Discord logo SVG -->
+					<svg width="24" height="18" viewBox="0 0 24 18" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 1.492a19.823 19.823 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 1.492a.07.07 0 00-.032.027C.533 6.093-.32 10.555.099 14.961a.08.08 0 00.031.055 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 12.278c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+					<span class="font-[Teko] font-semibold text-[18px] tracking-[1px] uppercase text-white">Join Our Discord</span>
+				</a>
+			</div>
+			<!-- discord card mockup -->
+			<div class="sr sr2 d2 hidden lg:block">
+				<div class="bg-[#0D0D1A] border border-[#5865F2]/25 rounded-[8px] overflow-hidden">
+					<!-- server header -->
+					<div class="bg-[#CC1414] p-[24px] flex items-center gap-[14px]">
+						<div class="w-[48px] h-[48px] rounded-full bg-white/20 flex items-center justify-center">
+							<span class="font-[Teko] font-bold text-[18px] text-white">A+</span>
+						</div>
+						<div>
+							<div class="font-[Teko] font-bold text-[18px] tracking-[1px] uppercase text-white">A Plus Fit</div>
+							<div class="font-[Montserrat] text-[12px] text-white/60">Official Server · 200+ members</div>
+						</div>
+					</div>
+					<!-- channel list -->
+					<div class="flex">
+						<div class="w-[200px] bg-[#0A0A16] p-[12px] border-r border-white/[.06]">
+							<div class="font-[Teko] font-semibold text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/30 px-[8px] py-[6px] mb-[4px]">General</div>
+							<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/60 px-[8px] py-[6px] rounded-sm bg-[#CC1414]/15 text-[#CC1414] mb-[2px]"># welcome</div>
+							<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 px-[8px] py-[6px] hover:bg-white/[.04] rounded-sm mb-[2px]"># announcements</div>
+							<div class="font-[Teko] font-semibold text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/30 px-[8px] py-[6px] mb-[4px] mt-[8px]">Training</div>
+							<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 px-[8px] py-[6px] hover:bg-white/[.04] rounded-sm mb-[2px]"># daily-wod</div>
+							<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 px-[8px] py-[6px] hover:bg-white/[.04] rounded-sm mb-[2px]"># form-check</div>
+							<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 px-[8px] py-[6px] hover:bg-white/[.04] rounded-sm mb-[2px]"># prs-&-wins</div>
+							<div class="font-[Teko] font-semibold text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/30 px-[8px] py-[6px] mb-[4px] mt-[8px]">Lifestyle</div>
+							<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 px-[8px] py-[6px] hover:bg-white/[.04] rounded-sm mb-[2px]"># nutrition</div>
+							<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 px-[8px] py-[6px] hover:bg-white/[.04] rounded-sm"># recovery</div>
+						</div>
+						<!-- chat area -->
+						<div class="flex-1 p-[16px] space-y-[14px]">
+							<div class="flex items-start gap-[10px]">
+								<div class="w-[32px] h-[32px] rounded-full bg-[#CC1414] flex items-center justify-center flex-shrink-0 mt-[1px]"><span class="font-[Teko] font-bold text-[11px] text-white">A+</span></div>
+								<div>
+									<div class="flex items-center gap-[8px] mb-[3px]"><span class="font-[Teko] font-semibold text-[14px] text-[#CC1414]">Aaron</span><span class="font-[Montserrat] text-[10px] text-[#E7E7E7]/25">Today at 6:05 AM</span></div>
+									<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/65 leading-[1.6]">Today's WOD is posted 💪 Who's hitting the 6AM? 🔥</div>
+								</div>
+							</div>
+							<div class="flex items-start gap-[10px]">
+								<div class="w-[32px] h-[32px] rounded-full bg-[#3A3A5C] flex items-center justify-center flex-shrink-0 mt-[1px]"><span class="font-[Teko] font-bold text-[11px] text-white">MS</span></div>
+								<div>
+									<div class="flex items-center gap-[8px] mb-[3px]"><span class="font-[Teko] font-semibold text-[14px] text-[#E7E7E7]/80">Maria S.</span><span class="font-[Montserrat] text-[10px] text-[#E7E7E7]/25">Today at 6:08 AM</span></div>
+									<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/65 leading-[1.6]">I'm in! Just hit a new clean PR yesterday 🙌</div>
+								</div>
+							</div>
+							<div class="flex items-start gap-[10px]">
+								<div class="w-[32px] h-[32px] rounded-full bg-[#2A4A2A] flex items-center justify-center flex-shrink-0 mt-[1px]"><span class="font-[Teko] font-bold text-[11px] text-white">KP</span></div>
+								<div>
+									<div class="flex items-center gap-[8px] mb-[3px]"><span class="font-[Teko] font-semibold text-[14px] text-[#E7E7E7]/80">Kevin P.</span><span class="font-[Montserrat] text-[10px] text-[#E7E7E7]/25">Today at 6:12 AM</span></div>
+									<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/65 leading-[1.6]">See you all there. No excuses 💯</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SOCIAL MEDIA
+══════════════════════════════════════════ -->
+<section class="bg-[#0C0C14] py-[80px] lg:py-[100px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr text-center mb-[56px]">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">Stay Connected</div>
+			<div class="font-[Oswald] font-bold text-[40px] md:text-[52px] leading-none uppercase text-white">Follow the <span class="text-[#CC1414]">Journey.</span></div>
+			<p class="font-[Montserrat] text-[15px] text-[#E7E7E7]/45 leading-[1.7] max-w-[520px] mx-auto mt-[16px]">Daily workouts, community moments, member wins, and behind-the-scenes content. Follow along on all platforms.</p>
+		</div>
+
+		<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-[14px]">
+			<!-- Instagram -->
+			<div class="soc-card sr d1 bg-[#0C0C14] border border-white/[.07] p-[32px] flex flex-col items-center text-center hover:border-[#E1306C]/40 hover:bg-[#1A0A0F]">
+				<div class="w-[56px] h-[56px] rounded-full flex items-center justify-center mb-[20px]" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+					<i class="fa-brands fa-instagram text-white text-[24px]"></i>
+				</div>
+				<div class="font-[Teko] font-bold text-[26px] text-white leading-none mb-[4px]">Instagram</div>
+				<div class="font-[Teko] font-semibold text-[13px] tracking-[2px] uppercase text-[#E7E7E7]/40 mb-[16px]">@aplusfitness</div>
+				<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7] mb-[24px] flex-1">Daily WOD clips, community photos, training tips, and member highlights.</div>
+				<a href="#" class="w-full font-[Teko] font-semibold text-[14px] tracking-[2px] uppercase text-center py-[10px] border border-[#E1306C]/50 text-[#E1306C] hover:bg-[#E1306C] hover:text-white transition-all duration-200">Follow</a>
+			</div>
+
+			<!-- Facebook -->
+			<div class="soc-card sr d2 bg-[#0C0C14] border border-white/[.07] p-[32px] flex flex-col items-center text-center hover:border-[#1877F2]/40 hover:bg-[#090D1A]">
+				<div class="w-[56px] h-[56px] rounded-full bg-[#1877F2] flex items-center justify-center mb-[20px]">
+					<i class="fa-brands fa-facebook-f text-white text-[24px]"></i>
+				</div>
+				<div class="font-[Teko] font-bold text-[26px] text-white leading-none mb-[4px]">Facebook</div>
+				<div class="font-[Teko] font-semibold text-[13px] tracking-[2px] uppercase text-[#E7E7E7]/40 mb-[16px]">A Plus Fit</div>
+				<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7] mb-[24px] flex-1">Events, schedule updates, community announcements, and member stories.</div>
+				<a href="#" class="w-full font-[Teko] font-semibold text-[14px] tracking-[2px] uppercase text-center py-[10px] border border-[#1877F2]/50 text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all duration-200">Like Page</a>
+			</div>
+
+			<!-- YouTube -->
+			<div class="soc-card sr d3 bg-[#0C0C14] border border-white/[.07] p-[32px] flex flex-col items-center text-center hover:border-[#FF0000]/40 hover:bg-[#150505]">
+				<div class="w-[56px] h-[56px] rounded-full bg-[#FF0000] flex items-center justify-center mb-[20px]">
+					<i class="fa-brands fa-youtube text-white text-[24px]"></i>
+				</div>
+				<div class="font-[Teko] font-bold text-[26px] text-white leading-none mb-[4px]">YouTube</div>
+				<div class="font-[Teko] font-semibold text-[13px] tracking-[2px] uppercase text-[#E7E7E7]/40 mb-[16px]">A Plus Fit</div>
+				<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7] mb-[24px] flex-1">Full WOD walkthroughs, movement tutorials, programming breakdowns, and interviews.</div>
+				<a href="#" class="w-full font-[Teko] font-semibold text-[14px] tracking-[2px] uppercase text-center py-[10px] border border-[#FF0000]/50 text-[#FF0000] hover:bg-[#FF0000] hover:text-white transition-all duration-200">Subscribe</a>
+			</div>
+
+			<!-- TikTok -->
+			<div class="soc-card sr d4 bg-[#0C0C14] border border-white/[.07] p-[32px] flex flex-col items-center text-center hover:border-white/20 hover:bg-[#111118]">
+				<div class="w-[56px] h-[56px] rounded-full bg-[#010101] border border-white/20 flex items-center justify-center mb-[20px]">
+					<i class="fa-brands fa-tiktok text-white text-[22px]"></i>
+				</div>
+				<div class="font-[Teko] font-bold text-[26px] text-white leading-none mb-[4px]">TikTok</div>
+				<div class="font-[Teko] font-semibold text-[13px] tracking-[2px] uppercase text-[#E7E7E7]/40 mb-[16px]">@aplusfitness</div>
+				<div class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 leading-[1.7] mb-[24px] flex-1">Quick tips, behind-the-scenes, outdoor CrossFit highlights, and member transformations.</div>
+				<a href="#" class="w-full font-[Teko] font-semibold text-[14px] tracking-[2px] uppercase text-center py-[10px] border border-white/25 text-white/70 hover:bg-white hover:text-black transition-all duration-200">Follow</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     AARON'S MESSAGE
+══════════════════════════════════════════ -->
+<section class="bg-[#01010F] py-[80px] lg:py-[100px] overflow-hidden">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="grid lg:grid-cols-[320px_1fr] gap-[60px] lg:gap-[80px] items-center">
+			<!-- photo -->
+			<div class="sr sl">
+				<div class="relative" style="clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,0 100%);">
+					<img src="aaron.png" alt="Aaron" class="w-full h-[420px] object-cover object-top">
+					<div class="absolute inset-0 bg-gradient-to-t from-[#01010F]/70 via-transparent to-transparent"></div>
+					<div class="absolute top-0 left-0 bottom-0 w-[3px] bg-[#CC1414]"></div>
+					<div class="absolute bottom-[20px] left-[20px] bg-[#CC1414] px-[14px] py-[8px]">
+						<div class="font-[Teko] font-semibold text-[12px] tracking-[3px] uppercase text-white">Head Coach & Founder</div>
+					</div>
+				</div>
+			</div>
+			<!-- message -->
+			<div>
+				<div class="sr d1 font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[14px]">From Aaron</div>
+				<div class="sr d2 font-[Georgia,serif] text-[40px] md:text-[52px] leading-none text-white mb-[28px]">&ldquo;</div>
+				<div class="sr d2 font-[Montserrat] font-medium text-[18px] md:text-[20px] leading-[1.7] text-white/80 mb-[24px]">I started A Plus Fit because I believe the best training happens outside, with people who genuinely care whether you show up.</div>
+				<div class="sr d3 font-[Montserrat] text-[15px] text-[#E7E7E7]/55 leading-[1.8] mb-[24px]">Every member here has a name, a story, and a goal I take seriously. There's no algorithm programming your workouts, no front desk you'll never see again. It's just a coach, a crew, and a set of standards that push all of us forward.</div>
+				<div class="sr d4 font-[Montserrat] text-[15px] text-[#E7E7E7]/55 leading-[1.8] mb-[36px]">If you're looking for a place where hard work is the only requirement for belonging—you've found it.</div>
+				<div class="sr d5 font-[Oswald] font-bold text-[24px] uppercase text-[#CC1414] tracking-[2px]">— Aaron</div>
+				<div class="sr d5 font-[Montserrat] text-[13px] text-[#E7E7E7]/35 mt-[4px]">NASM Certified Personal Trainer · Head Coach, A Plus Fit</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════════ -->
+<section class="relative bg-[#01010F] py-[100px] lg:py-[120px] overflow-hidden">
+	<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,.03) 1px,transparent 1px);background-size:60px 60px;"></div>
+	<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-[#CC1414]/[.06] blur-[120px] pointer-events-none"></div>
+	<div class="absolute top-0 left-0 right-0 h-[1px] bg-white/[.05]"></div>
+	<div class="relative max-w-[1320px] mx-auto px-[30px] lg:px-[60px] text-center">
+		<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Become Part of It</div>
+		<div class="sr d1 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-white mb-[6px]">Join the</div>
+		<div class="sr d2 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-[#CC1414] mb-[40px]">Community.</div>
+		<div class="sr d3 font-[Montserrat] font-medium text-[16px] md:text-[18px] text-[#E7E7E7]/55 leading-[1.7] max-w-[520px] mx-auto mb-[52px]">Your first class is free. Your first conversation with Aaron costs nothing. Everything else follows from that.</div>
+		<div class="sr d4 flex flex-col sm:flex-row items-center justify-center gap-[16px]">
+			<a class="group/c1 relative inline-block" href="schedule.html">
+				<div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.4s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+				<div class="relative h-[58px] w-[240px] flex justify-center items-center font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase">
+					<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/c1:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book Free Class <i class="fa-solid fa-arrow-right text-[13px]"></i></div>
+					<div class="flex items-center gap-[10px] group-hover/c1:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book Free Class <i class="fa-solid fa-arrow-right text-[13px]"></i></div>
+				</div>
+			</a>
+			<a class="group/c2 relative inline-block" href="#discord">
+				<div class="absolute inset-0 border border-white/20 group-hover/c2:border-white/0 transition-colors duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-white/0 group-hover/c2:bg-white/[.05] transition-colors duration-[.3s]"></div>
+				<div class="relative h-[58px] w-[200px] flex justify-center items-center font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase text-white/60 group-hover/c2:text-white transition-colors duration-[.3s]">Join Discord</div>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="relative overflow-hidden mx-[24px] mb-[24px] rounded-[24px] bg-[#0C0C14]">
+	<div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-white/20 blur-[2px] pointer-events-none"></div>
+	<div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(35% 200px at 50% 0%,rgba(204,20,20,.10),transparent);"></div>
+	<div class="relative z-10 max-w-[1320px] mx-auto px-[30px] lg:px-[60px] pt-[60px] lg:pt-[72px] pb-[40px]">
+		<div class="grid gap-[48px] xl:grid-cols-3 xl:gap-[64px]">
+			<div class="ft-col space-y-[20px]"><a href="index.html"><img class="h-[100px] w-auto" src="A Plus Fit Logo.png" alt="A Plus Fit"></a><p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/40 leading-[1.8] max-w-[240px]">Outdoor CrossFit coached by Aaron. Real training. Real community. Real air.</p><p class="font-[Montserrat] text-[12px] text-[#E7E7E7]/20">&copy; 2026 A Plus Fit. All rights reserved.</p></div>
+			<div class="grid grid-cols-2 gap-[32px] md:grid-cols-4 xl:col-span-2">
+				<div class="ft-col" style="animation-delay:.10s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Train</h3><ul class="space-y-[14px]"><li><a href="programs.html#group-crossfit" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Group CrossFit</a></li><li><a href="programs.html#beginner-onramp" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Beginner On-Ramp</a></li><li><a href="programs.html#personal-programming" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Personal Programming</a></li><li><a href="programs.html#open-gym" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Open Gym</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.20s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Company</h3><ul class="space-y-[14px]"><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">About Aaron</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Contact</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Privacy Policy</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Terms of Service</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.30s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Schedule</h3><ul class="space-y-[14px]"><li><a href="schedule.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">View Schedule</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Book a Class</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">FAQs</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Getting Started</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.40s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Follow Us</h3><ul class="space-y-[14px]"><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-instagram w-[14px]"></i>Instagram</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-facebook-f w-[14px]"></i>Facebook</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-youtube w-[14px]"></i>YouTube</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-tiktok w-[14px]"></i>TikTok</a></li></ul></div>
+			</div>
+		</div>
+	</div>
+	<div class="relative z-10 hidden lg:flex" style="height:28rem;margin-top:-4rem;margin-bottom:-8rem;">
+		<svg id="apf-svg" width="100%" height="100%" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" class="select-none cursor-pointer uppercase">
+			<defs><linearGradient id="apfGrad" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="300" y2="50"><stop offset="0%" stop-color="#eab308"/><stop offset="25%" stop-color="#ef4444"/><stop offset="50%" stop-color="#80eeb4"/><stop offset="75%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient><radialGradient id="apfReveal" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%"><stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="black"/></radialGradient><mask id="apfMask"><rect x="0" y="0" width="100%" height="100%" fill="url(#apfReveal)"/></mask></defs>
+			<text id="apf-t1" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#e5e5e5" stroke-width="0.3" style="opacity:0;transition:opacity 0.3s;">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#CC1414" stroke-width="0.3" stroke-opacity="0.8" class="apf-draw-anim">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="url(#apfGrad)" stroke-width="0.3" mask="url(#apfMask)">A PLUS FIT</text>
+		</svg>
+	</div>
+	<script>(function(){var svg=document.getElementById('apf-svg'),t1=document.getElementById('apf-t1'),mg=document.getElementById('apfReveal');if(svg){svg.addEventListener('mouseenter',function(){t1.style.opacity='0.7';});svg.addEventListener('mouseleave',function(){t1.style.opacity='0';mg.setAttribute('cx','50%');mg.setAttribute('cy','50%');});svg.addEventListener('mousemove',function(e){var r=svg.getBoundingClientRect();mg.setAttribute('cx',(((e.clientX-r.left)/r.width)*100).toFixed(1)+'%');mg.setAttribute('cy',(((e.clientY-r.top)/r.height)*100).toFixed(1)+'%');});}var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('ft-vis');});},{threshold:0.1});document.querySelectorAll('.ft-col').forEach(function(el){obs.observe(el);});})();</script>
+</footer>
+
+<!-- ══════════════════════════════════════
+     OFFCANVAS
+══════════════════════════════════════════ -->
+<div id="offcanvas" class="group">
+	<div class="fixed z-[49] top-0 right-0 bottom-0 left-0 group-[:not([data-t='a'])]:invisible">
+		<div class="absolute inset-0 bg-[#CC1414] group-[[data-t='a']]:scale-y-0 delay-0 transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#E86060] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.4s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#01010F] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414]/10 group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 flex items-center justify-center group-[:not([data-t='a'])]:scale-y-0 delay-[.3s] transition-all duration-[.3s]">
+			<div class="pt-[90px]"><div class="grid grid-cols-1 gap-[20px] w-[300px] font-[Teko] text-[20px] font-semibold tracking-[2px] uppercase">
+				<a href="index.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Home</a>
+				<a href="programs.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Programs</a>
+				<a href="schedule.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Schedule</a>
+				<a href="community.html" class="border-b border-[#CC1414]/30 pb-[16px] text-[#CC1414]">Community</a>
+				<a href="#" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">About</a>
+				<a href="#" class="pb-[16px] hover:text-[#CC1414] transition-colors">Learn</a>
+				<a href="#" class="mt-[8px] bg-[#CC1414] text-white text-center py-[14px] tracking-[2px] hover:bg-[#E86060] transition-colors">Book Free Class</a>
+			</div></div>
+		</div>
+	</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script src="js/all.js"></script>
+<script>
+// ── scroll reveal ──────────────────────────────────────────────────────
+(function(){
+	var obs=new IntersectionObserver(function(entries){
+		entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target);}});
+	},{threshold:0.1});
+	document.querySelectorAll('.sr').forEach(function(el){obs.observe(el);});
+})();
+
+// ── count-up animation ─────────────────────────────────────────────────
+(function(){
+	function animateCount(el){
+		var target=parseInt(el.getAttribute('data-target'),10);
+		var duration=1200, start=null;
+		function step(ts){
+			if(!start) start=ts;
+			var prog=Math.min((ts-start)/duration,1);
+			var ease=1-Math.pow(1-prog,3);
+			el.textContent=Math.round(ease*target);
+			if(prog<1) requestAnimationFrame(step);
+			else el.textContent=target;
+		}
+		requestAnimationFrame(step);
+	}
+	var obs=new IntersectionObserver(function(entries){
+		entries.forEach(function(e){
+			if(e.isIntersecting){animateCount(e.target);obs.unobserve(e.target);}
+		});
+	},{threshold:0.5});
+	document.querySelectorAll('.count').forEach(function(el){obs.observe(el);});
+})();
+</script>
+</body>
+</html>

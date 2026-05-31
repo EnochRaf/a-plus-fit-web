@@ -1,0 +1,14 @@
+# Backup files from development
+*.bak
+*.bak2
+*.bak3
+*.bak4
+*.bak5
+*.bak6
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/

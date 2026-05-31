@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Programs — A Plus Fit</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@200..700&family=Teko:wght@300..700&family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://ajax.cdnjs.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="css/all.css">
+		<style>
+			/* ── scroll-reveal ─────────────────────────────────────── */
+			.sr { opacity:0; transform:translateY(32px); transition:opacity .7s ease, transform .7s ease; }
+			.sr.sr-left  { transform:translateX(-32px); }
+			.sr.sr-right { transform:translateX(32px); }
+			.sr.sr-scale { transform:scale(.96); }
+			.sr.visible  { opacity:1; transform:none; }
+			.sr.sr-d1    { transition-delay:.1s; }
+			.sr.sr-d2    { transition-delay:.2s; }
+			.sr.sr-d3    { transition-delay:.3s; }
+			.sr.sr-d4    { transition-delay:.4s; }
+			.sr.sr-d5    { transition-delay:.5s; }
+
+			/* ── program tabs ──────────────────────────────────────── */
+			.prog-tab.active { color:#CC1414; border-color:#CC1414; }
+
+			/* ── FAQ accordion ─────────────────────────────────────── */
+			.faq-body   { max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease; }
+			.faq-body.open { max-height:400px; }
+			.faq-icon   { transition:transform .3s ease; }
+			.faq-item.open .faq-icon { transform:rotate(45deg); color:#CC1414; }
+			.faq-item.open .faq-question { color:#fff; }
+
+			/* ── ticker ────────────────────────────────────────────── */
+			@keyframes ticker-left { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+			.ticker-track { animation: ticker-left 22s linear infinite; }
+
+			/* ── footer ────────────────────────────────────────────── */
+			@keyframes footer-reveal {
+				from { opacity:0; filter:blur(4px); transform:translateY(-8px); }
+				to   { opacity:1; filter:blur(0);   transform:translateY(0); }
+			}
+			.ft-col { opacity:0; }
+			.ft-col.ft-vis { animation:footer-reveal .8s ease forwards; }
+			@keyframes apf-draw { from{stroke-dashoffset:1000} to{stroke-dashoffset:0} }
+			.apf-draw-anim { animation:apf-draw 4s ease-in-out forwards; stroke-dasharray:1000; stroke-dashoffset:1000; }
+
+			/* ── number bg ─────────────────────────────────────────── */
+			.num-bg {
+				position:absolute; top:50%; right:-0.05em;
+				transform:translateY(-50%);
+				font-family:'Oswald',sans-serif; font-weight:900;
+				font-size:clamp(120px,18vw,260px);
+				line-height:1; color:transparent;
+				-webkit-text-stroke:1px rgba(204,20,20,0.12);
+				pointer-events:none; user-select:none;
+				letter-spacing:-0.02em;
+			}
+			.num-bg.left { right:auto; left:-0.05em; }
+		</style>
+	</head>
+	<body class="bg-[#01010F] text-[#E7E7E7] text-[18px] leading-[1.5] font-[Vazirmatn]">
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     NAV
+		══════════════════════════════════════════════════════════════ -->
+		<div class="pt-[40px]"></div>
+		<div class="sticky z-50 top-0 bg-[#01010F]">
+			<div class="max-w-[1320px] mx-auto px-[15px]">
+				<div class="flex justify-between items-center h-[180px] font-[Teko]">
+					<div class="">
+						<a class="flex items-center gap-[5px]" href="index.html">
+							<img class="h-[160px] w-auto" src="A Plus Fit Logo.png" alt="">
+						</a>
+					</div>
+					<div class="hidden xl:block">
+						<div class="flex text-[20px] font-medium">
+						<div class="group relative">
+							<a href="#" class="relative block">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-r-[1px] border-[#CC1414] border-opacity-40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[180px] flex items-center px-[20px]">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="group relative">
+							<a href="programs.html" class="relative block">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-r-[1px] border-[#CC1414] border-opacity-40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[180px] flex items-center px-[20px]">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">PROGRAMS</div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">PROGRAMS</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="group relative">
+							<a href="#" class="relative block">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-r-[1px] border-[#CC1414] border-opacity-40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[180px] flex items-center px-[20px]">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="group relative">
+							<a href="#" class="relative block">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-r-[1px] border-[#CC1414] border-opacity-40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[180px] flex items-center px-[20px]">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="group relative">
+							<a href="#" class="relative block">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-r-[1px] border-[#CC1414] border-opacity-40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[180px] flex items-center px-[20px]">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]">LEARN</div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">LEARN</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						</div>
+					</div>
+					<div class="">
+						<div class="flex items-center">
+							<a class="xl:hidden group relative" data-c-toggle="a" href="#offcanvas">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-[1px] border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[54px] w-[54px] flex justify-center items-center">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]"><i class="fa-solid fa-bars"></i></div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]"><i class="fa-solid fa-bars"></i></div>
+									</div>
+								</div>
+							</a>
+							<div class="xl:hidden md:px-[20px] border-t-[1px] border-[#CC1414]"></div>
+							<a class="hidden md:block group relative" href="book.html">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-[1px] border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[54px] px-[24px] flex justify-center items-center">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div>
+									</div>
+								</div>
+							</a>
+							<div class="hidden md:block px-[20px] border-t-[1px] border-[#CC1414]"></div>
+							<a class="hidden md:block group relative" href="#">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-[1px] border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px] leading-[1]">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]"><i class="fa-brands fa-facebook-f"></i></div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]"><i class="fa-brands fa-facebook-f"></i></div>
+									</div>
+								</div>
+							</a>
+							<div class="hidden md:block px-[5px] border-t-[1px] border-[#CC1414]"></div>
+							<a class="hidden md:block group relative" href="#">
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 border-[1px] border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px] leading-[1]">
+									<div class="relative">
+										<div class="absolute top-0 right-0 bottom-0 left-0 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]"><i class="fa-brands fa-instagram"></i></div>
+										<div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]"><i class="fa-brands fa-instagram"></i></div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+		</div>
+		</div>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     HERO
+		══════════════════════════════════════════════════════════════ -->
+		<section class="relative bg-[#01010F] overflow-hidden pt-[80px] pb-[100px] lg:pt-[100px] lg:pb-[120px]">
+			<!-- grid lines bg -->
+			<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,0.04) 1px,transparent 1px);background-size:80px 80px;"></div>
+			<!-- red glow -->
+			<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] rounded-full bg-[#CC1414]/[.07] blur-[120px] pointer-events-none"></div>
+			<!-- diagonal accent bar -->
+			<div class="absolute top-0 right-0 w-[3px] h-full bg-[#CC1414]/30"></div>
+
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+				<!-- breadcrumb -->
+				<div class="sr flex items-center gap-[8px] font-[Teko] text-[13px] tracking-[3px] uppercase text-[#E7E7E7]/30 mb-[40px]">
+					<a href="index.html" class="hover:text-[#CC1414] transition-colors">Home</a>
+					<span class="text-[#CC1414]">/</span>
+					<span class="text-[#CC1414]">Programs</span>
+				</div>
+
+				<div class="grid lg:grid-cols-2 gap-[60px] items-end">
+					<div>
+						<div class="sr sr-d1 overflow-hidden mb-[6px]">
+							<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414]">A Plus Fit</div>
+						</div>
+						<div class="sr sr-d2 overflow-hidden mb-[4px]">
+							<div class="font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-white">Train</div>
+						</div>
+						<div class="sr sr-d3 overflow-hidden mb-[32px]">
+							<div class="font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-[#CC1414]">Your Way.</div>
+						</div>
+						<div class="sr sr-d4">
+							<p class="font-[Montserrat] font-medium text-[16px] text-[#E7E7E7]/55 leading-[1.8] max-w-[480px]">Four distinct paths. One outdoor environment. Every program coached by Aaron—NASM certified, results obsessed, and here every day you show up.</p>
+						</div>
+					</div>
+					<!-- stat strip -->
+					<div class="sr sr-right sr-d3 grid grid-cols-3 gap-[1px] bg-[#CC1414]/20">
+						<div class="bg-[#01010F] p-[28px] text-center">
+							<div class="font-[Oswald] font-bold text-[42px] text-white leading-none">4</div>
+							<div class="font-[Montserrat] text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Programs</div>
+						</div>
+						<div class="bg-[#01010F] p-[28px] text-center">
+							<div class="font-[Oswald] font-bold text-[42px] text-white leading-none">6AM</div>
+							<div class="font-[Montserrat] text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">First Class</div>
+						</div>
+						<div class="bg-[#01010F] p-[28px] text-center">
+							<div class="font-[Oswald] font-bold text-[42px] text-white leading-none">100%</div>
+							<div class="font-[Montserrat] text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Outdoors</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     STICKY PROGRAM TABS
+		══════════════════════════════════════════════════════════════ -->
+		<div id="prog-tabs" class="sticky top-0 z-40 bg-[#0C0C14] border-b border-[#CC1414]/20 hidden md:block">
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+				<div class="flex overflow-x-auto gap-0 font-[Teko] text-[16px] tracking-[2px] uppercase">
+					<a href="#group-crossfit"    class="prog-tab flex-shrink-0 px-[28px] py-[18px] text-[#E7E7E7]/50 border-b-[2px] border-transparent hover:text-white hover:border-[#CC1414]/50 transition-all duration-200">Group CrossFit</a>
+					<a href="#beginner-onramp"   class="prog-tab flex-shrink-0 px-[28px] py-[18px] text-[#E7E7E7]/50 border-b-[2px] border-transparent hover:text-white hover:border-[#CC1414]/50 transition-all duration-200">Beginner On-Ramp</a>
+					<a href="#personal-programming" class="prog-tab flex-shrink-0 px-[28px] py-[18px] text-[#E7E7E7]/50 border-b-[2px] border-transparent hover:text-white hover:border-[#CC1414]/50 transition-all duration-200">Personal Programming</a>
+					<a href="#open-gym"          class="prog-tab flex-shrink-0 px-[28px] py-[18px] text-[#E7E7E7]/50 border-b-[2px] border-transparent hover:text-white hover:border-[#CC1414]/50 transition-all duration-200">Open Gym</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     PROGRAM 01 — GROUP CROSSFIT
+		══════════════════════════════════════════════════════════════ -->
+		<section id="group-crossfit" class="relative bg-[#01010F] py-[80px] lg:py-[120px] overflow-hidden">
+			<div class="num-bg">01</div>
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+				<div class="grid lg:grid-cols-2 gap-[60px] lg:gap-[80px] items-center">
+
+					<!-- photo -->
+					<div class="sr sr-left order-2 lg:order-1">
+						<div class="relative" style="clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%);">
+							<img src="wall-community.png" alt="Group CrossFit" class="w-full h-[480px] object-cover">
+							<div class="absolute inset-0 bg-gradient-to-t from-[#01010F]/60 to-transparent"></div>
+							<!-- badge -->
+							<div class="absolute bottom-[24px] left-[24px] bg-[#CC1414] px-[16px] py-[10px]">
+								<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white">6 Days / Week</div>
+							</div>
+						</div>
+						<!-- vertical accent line -->
+						<div class="hidden lg:block absolute top-0 left-0 w-[3px] h-full bg-[#CC1414] scale-y-0 origin-top transition-all duration-[.8s] sr-line"></div>
+					</div>
+
+					<!-- content -->
+					<div class="order-1 lg:order-2">
+						<div class="sr sr-d1 font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Program 01</div>
+						<div class="sr sr-d2 font-[Oswald] font-bold text-[44px] md:text-[56px] leading-[.95] uppercase text-white mb-[24px]">Group<br><span class="text-[#CC1414]">CrossFit</span></div>
+						<div class="sr sr-d3 font-[Montserrat] font-medium text-[15px] text-[#E7E7E7]/60 leading-[1.8] mb-[36px]">The heart of A Plus Fit. Coach-led outdoor workouts programmed daily by Aaron and run with a crew that shows up every single time you do. Expect structure, intensity, and the kind of accountability that actually moves the needle.</div>
+
+						<!-- feature list -->
+						<ul class="sr sr-d3 space-y-[14px] mb-[40px]">
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Daily Coached Programming</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Aaron writes every workout. Nothing is random.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">All Fitness Levels Welcome</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Every movement is scalable. The standard adjusts to you.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Real-Time Technique Coaching</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Aaron watches and corrects every rep that matters.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Community Accountability</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">The people around you make you push harder. Period.</p>
+								</div>
+							</li>
+						</ul>
+
+						<!-- tags + cta -->
+						<div class="sr sr-d4 flex flex-wrap items-center gap-[12px]">
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">60 min</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">Outdoor</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">All Levels</span>
+						</div>
+						<div class="sr sr-d5 mt-[32px]">
+							<a class="group/btn relative inline-block" href="#">
+								<div class="absolute top-0 right-0 bottom-0 left-0 border border-[#CC1414] group-hover/btn:scale-y-0 group-hover/btn:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[52px] px-[32px] flex items-center gap-[10px] font-[Teko] font-semibold text-[19px] tracking-[1px] uppercase">
+									<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book a Free Class <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+									<div class="flex items-center gap-[10px] group-hover/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book a Free Class <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- divider -->
+		<div class="h-[1px] bg-[#CC1414]/15 mx-[30px] lg:mx-[60px]"></div>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     PROGRAM 02 — BEGINNER ON-RAMP
+		══════════════════════════════════════════════════════════════ -->
+		<section id="beginner-onramp" class="relative bg-[#01010F] py-[80px] lg:py-[120px] overflow-hidden">
+			<div class="num-bg left">02</div>
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+				<div class="grid lg:grid-cols-2 gap-[60px] lg:gap-[80px] items-center">
+
+					<!-- content -->
+					<div>
+						<div class="sr sr-d1 font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Program 02</div>
+						<div class="sr sr-d2 font-[Oswald] font-bold text-[44px] md:text-[56px] leading-[.95] uppercase text-white mb-[24px]">Beginner<br><span class="text-[#CC1414]">On-Ramp</span></div>
+						<div class="sr sr-d3 font-[Montserrat] font-medium text-[15px] text-[#E7E7E7]/60 leading-[1.8] mb-[36px]">Your first four weeks. Before you ever hit a group class, this program builds the foundation—the movements, the vocabulary, the confidence. You'll leave On-Ramp ready to compete, not just survive.</div>
+
+						<ul class="sr sr-d3 space-y-[14px] mb-[40px]">
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">4-Week Structured Curriculum</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Progressively builds from basics to full workouts.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Movement Fundamentals</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Squat, hinge, push, pull—learned right the first time.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Dedicated 1-on-1 Coach Time</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Aaron is focused on you, not a class of thirty.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Seamless Group Transition</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Graduate On-Ramp and step directly into group classes.</p>
+								</div>
+							</li>
+						</ul>
+
+						<div class="sr sr-d4 flex flex-wrap items-center gap-[12px]">
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">4 Weeks</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">Small Group</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">True Beginners</span>
+						</div>
+						<div class="sr sr-d5 mt-[32px]">
+							<a class="group/btn relative inline-block" href="#">
+								<div class="absolute top-0 right-0 bottom-0 left-0 border border-[#CC1414] group-hover/btn:scale-y-0 group-hover/btn:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[52px] px-[32px] flex items-center gap-[10px] font-[Teko] font-semibold text-[19px] tracking-[1px] uppercase">
+									<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Start On-Ramp <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+									<div class="flex items-center gap-[10px] group-hover/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Start On-Ramp <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<!-- photo -->
+					<div class="sr sr-right">
+						<div class="relative" style="clip-path:polygon(28px 0,100% 0,100% 100%,0 100%,0 28px);">
+							<img src="aaron.png" alt="Beginner On-Ramp" class="w-full h-[480px] object-cover object-top">
+							<div class="absolute inset-0 bg-gradient-to-t from-[#01010F]/60 to-transparent"></div>
+							<div class="absolute bottom-[24px] right-[24px] bg-[#CC1414] px-[16px] py-[10px]">
+								<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white">Start Here</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- divider -->
+		<div class="h-[1px] bg-[#CC1414]/15 mx-[30px] lg:mx-[60px]"></div>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     PROGRAM 03 — PERSONAL PROGRAMMING
+		══════════════════════════════════════════════════════════════ -->
+		<section id="personal-programming" class="relative bg-[#0C0C14] py-[80px] lg:py-[120px] overflow-hidden">
+			<div class="num-bg">03</div>
+			<!-- subtle dot grid -->
+			<div class="absolute inset-0 pointer-events-none opacity-30" style="background-image:radial-gradient(rgba(204,20,20,0.15) 1px,transparent 1px);background-size:32px 32px;"></div>
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+				<div class="grid lg:grid-cols-2 gap-[60px] lg:gap-[80px] items-center">
+
+					<!-- photo -->
+					<div class="sr sr-left order-2 lg:order-1">
+						<div class="relative" style="clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%);">
+							<img src="wall-aaron3.png" alt="Personal Programming" class="w-full h-[480px] object-cover">
+							<div class="absolute inset-0 bg-gradient-to-t from-[#0C0C14]/70 to-transparent"></div>
+							<div class="absolute bottom-[24px] left-[24px] bg-[#CC1414] px-[16px] py-[10px]">
+								<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white">1-on-1 with Aaron</div>
+							</div>
+						</div>
+						<!-- quote overlay card -->
+						<div class="mt-[-60px] ml-[32px] relative z-10 max-w-[320px] bg-[#01010F] border border-white/[.08] p-[24px]">
+							<div class="font-[Georgia,serif] text-[28px] leading-none text-[#CC1414] mb-[8px]">&ldquo;</div>
+							<p class="font-[Montserrat] font-medium text-[13px] leading-[1.7] text-[#E7E7E7]/70">Aaron programs intelligently. I hit a PR every single month.</p>
+							<div class="font-[Teko] font-semibold text-[13px] text-white/60 mt-[12px] tracking-[1px]">— David L., Personal Programming</div>
+						</div>
+					</div>
+
+					<!-- content -->
+					<div class="order-1 lg:order-2">
+						<div class="sr sr-d1 font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Program 03</div>
+						<div class="sr sr-d2 font-[Oswald] font-bold text-[44px] md:text-[56px] leading-[.95] uppercase text-white mb-[24px]">Personal<br><span class="text-[#CC1414]">Programming</span></div>
+						<div class="sr sr-d3 font-[Montserrat] font-medium text-[15px] text-[#E7E7E7]/60 leading-[1.8] mb-[36px]">A custom training plan built entirely around your goal. Aaron writes it, tracks your progress, reviews your form, and adjusts as you grow. This is what coaching is supposed to feel like.</div>
+
+						<ul class="sr sr-d3 space-y-[14px] mb-[40px]">
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">100% Custom Weekly Plan</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Written around your schedule, goals, and equipment.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Direct Access to Aaron</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Regular check-ins, not a chatbot and a PDF.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Video Form Review</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Send footage. Get real feedback. Fix what's holding you back.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Monthly Programming Adjustments</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Your plan evolves as you do. Never stale, always progressive.</p>
+								</div>
+							</li>
+						</ul>
+
+						<div class="sr sr-d4 flex flex-wrap items-center gap-[12px]">
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">Train Anywhere</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">Custom Goals</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">Performance Focus</span>
+						</div>
+						<div class="sr sr-d5 mt-[32px]">
+							<a class="group/btn relative inline-block" href="#">
+								<div class="absolute top-0 right-0 bottom-0 left-0 border border-[#CC1414] group-hover/btn:scale-y-0 group-hover/btn:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#0C0C14] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[52px] px-[32px] flex items-center gap-[10px] font-[Teko] font-semibold text-[19px] tracking-[1px] uppercase">
+									<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Apply for Programming <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+									<div class="flex items-center gap-[10px] group-hover/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Apply for Programming <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- divider -->
+		<div class="h-[1px] bg-[#CC1414]/15 mx-[30px] lg:mx-[60px]"></div>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     PROGRAM 04 — OPEN GYM
+		══════════════════════════════════════════════════════════════ -->
+		<section id="open-gym" class="relative bg-[#01010F] py-[80px] lg:py-[120px] overflow-hidden">
+			<div class="num-bg left">04</div>
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+				<div class="grid lg:grid-cols-2 gap-[60px] lg:gap-[80px] items-center">
+
+					<!-- content -->
+					<div>
+						<div class="sr sr-d1 font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Program 04</div>
+						<div class="sr sr-d2 font-[Oswald] font-bold text-[44px] md:text-[56px] leading-[.95] uppercase text-white mb-[24px]">Open<br><span class="text-[#CC1414]">Gym</span></div>
+						<div class="sr sr-d3 font-[Montserrat] font-medium text-[15px] text-[#E7E7E7]/60 leading-[1.8] mb-[36px]">Train on your time. Access the full outdoor space and equipment independently when the mood—or your schedule—demands it. The environment is dialed. The work is yours.</div>
+
+						<ul class="sr sr-d3 space-y-[14px] mb-[40px]">
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Full Equipment Access</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Barbells, dumbbells, rigs, sleds, kettlebells—all of it.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Pure Outdoor Environment</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">No mirrors, no indoor air, no fluorescent lighting.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">Flexible Drop-In Access</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Month-to-month, no lock-in, no fine print.</p>
+								</div>
+							</li>
+							<li class="flex items-start gap-[14px]">
+								<div class="w-[6px] h-[6px] rounded-full bg-[#CC1414] mt-[8px] flex-shrink-0"></div>
+								<div>
+									<span class="font-[Teko] font-semibold text-[17px] text-white">A Plus Fit Community Around You</span>
+									<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/45 mt-[2px]">Even solo sessions happen inside a culture that trains hard.</p>
+								</div>
+							</li>
+						</ul>
+
+						<div class="sr sr-d4 flex flex-wrap items-center gap-[12px]">
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">Self-Directed</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">Flexible Hours</span>
+							<span class="font-[Teko] text-[12px] tracking-[2px] uppercase text-[#CC1414] border border-[#CC1414]/40 px-[10px] py-[4px]">No Contract</span>
+						</div>
+						<div class="sr sr-d5 mt-[32px]">
+							<a class="group/btn relative inline-block" href="#">
+								<div class="absolute top-0 right-0 bottom-0 left-0 border border-[#CC1414] group-hover/btn:scale-y-0 group-hover/btn:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+								<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/btn:scale-y-0 group-[:not(:hover)]/btn:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+								<div class="relative h-[52px] px-[32px] flex items-center gap-[10px] font-[Teko] font-semibold text-[19px] tracking-[1px] uppercase">
+									<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Get Access <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+									<div class="flex items-center gap-[10px] group-hover/btn:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Get Access <i class="fa-solid fa-arrow-right text-[14px]"></i></div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<!-- photo -->
+					<div class="sr sr-right">
+						<div class="relative" style="clip-path:polygon(28px 0,100% 0,100% 100%,0 100%,0 28px);">
+							<img src="wall-aplus1.png" alt="Open Gym" class="w-full h-[480px] object-cover">
+							<div class="absolute inset-0 bg-gradient-to-t from-[#01010F]/60 to-transparent"></div>
+							<div class="absolute bottom-[24px] right-[24px] bg-[#CC1414] px-[16px] py-[10px]">
+								<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white">Your Schedule</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     WHY OUTDOOR — DIFFERENTIATOR STRIP
+		══════════════════════════════════════════════════════════════ -->
+		<section class="relative bg-[#CC1414] py-[80px] lg:py-[100px] overflow-hidden">
+			<!-- diagonal texture -->
+			<div class="absolute inset-0 pointer-events-none opacity-10" style="background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:12px 12px;"></div>
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-white/20">
+					<div class="sr bg-[#CC1414] p-[40px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-white mb-[8px]">100%</div>
+						<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white/70 mb-[12px]">Outdoors</div>
+						<div class="font-[Montserrat] text-[13px] text-white/60 leading-[1.7]">Every session happens under open sky. Real air, real sun, real weather.</div>
+					</div>
+					<div class="sr sr-d1 bg-[#CC1414] p-[40px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-white mb-[8px]">0</div>
+						<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white/70 mb-[12px]">Mirrors</div>
+						<div class="font-[Montserrat] text-[13px] text-white/60 leading-[1.7]">Train for performance, not aesthetics. Focus on the work.</div>
+					</div>
+					<div class="sr sr-d2 bg-[#CC1414] p-[40px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-white mb-[8px]">1</div>
+						<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white/70 mb-[12px]">Coach</div>
+						<div class="font-[Montserrat] text-[13px] text-white/60 leading-[1.7]">Aaron knows your name, your goals, and your weak points.</div>
+					</div>
+					<div class="sr sr-d3 bg-[#CC1414] p-[40px]">
+						<div class="font-[Oswald] font-bold text-[52px] leading-none text-white mb-[8px]">NASM</div>
+						<div class="font-[Teko] font-semibold text-[13px] tracking-[3px] uppercase text-white/70 mb-[12px]">Certified</div>
+						<div class="font-[Montserrat] text-[13px] text-white/60 leading-[1.7]">The programming is smart. The results are not an accident.</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     SCROLLING TICKER
+		══════════════════════════════════════════════════════════════ -->
+		<div class="bg-[#0C0C14] border-y border-[#CC1414]/20 py-[18px] overflow-hidden">
+			<div class="flex ticker-track whitespace-nowrap font-[Teko] font-semibold text-[16px] tracking-[4px] uppercase text-[#E7E7E7]/30">
+				<span class="inline-block px-[32px]">Group CrossFit</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Beginner On-Ramp</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Personal Programming</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Open Gym</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Outdoor CrossFit</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Coached by Aaron</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">NASM Certified</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Real Air. Real Results.</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<!-- duplicate for seamless loop -->
+				<span class="inline-block px-[32px]">Group CrossFit</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Beginner On-Ramp</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Personal Programming</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Open Gym</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Outdoor CrossFit</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Coached by Aaron</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">NASM Certified</span><span class="text-[#CC1414] px-[16px]">✦</span>
+				<span class="inline-block px-[32px]">Real Air. Real Results.</span><span class="text-[#CC1414] px-[16px]">✦</span>
+			</div>
+		</div>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     FAQ
+		══════════════════════════════════════════════════════════════ -->
+		<section class="bg-[#01010F] py-[80px] lg:py-[100px]">
+			<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+				<div class="grid lg:grid-cols-[1fr_2fr] gap-[60px] lg:gap-[100px]">
+
+					<!-- heading -->
+					<div>
+						<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Got Questions</div>
+						<div class="sr sr-d1 font-[Oswald] font-bold text-[44px] md:text-[54px] leading-[.95] uppercase text-white mb-[24px]">Common<br><span class="text-[#CC1414]">FAQs.</span></div>
+						<div class="sr sr-d2 font-[Montserrat] text-[14px] text-[#E7E7E7]/45 leading-[1.8]">Still not sure which program fits? <a href="#" class="text-[#CC1414] hover:underline">Message Aaron directly</a> and he'll point you in the right direction.</div>
+					</div>
+
+					<!-- accordion -->
+					<div class="sr sr-right space-y-0 border-t border-[#CC1414]/20">
+
+						<div class="faq-item border-b border-[#CC1414]/20">
+							<button class="faq-question w-full flex items-center justify-between gap-[20px] py-[24px] text-left font-[Teko] font-semibold text-[20px] uppercase text-[#E7E7E7]/70 hover:text-white transition-colors duration-200" onclick="toggleFaq(this)">
+								<span>Do I need CrossFit experience to join?</span>
+								<span class="faq-icon text-[#E7E7E7]/40 text-[22px] flex-shrink-0">+</span>
+							</button>
+							<div class="faq-body">
+								<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/55 leading-[1.8] pb-[24px]">Not at all. If you're brand new, the Beginner On-Ramp is specifically designed to get you ready. If you have some experience, you can often jump straight into Group CrossFit—Aaron will assess where you land in your free intro class.</p>
+							</div>
+						</div>
+
+						<div class="faq-item border-b border-[#CC1414]/20">
+							<button class="faq-question w-full flex items-center justify-between gap-[20px] py-[24px] text-left font-[Teko] font-semibold text-[20px] uppercase text-[#E7E7E7]/70 hover:text-white transition-colors duration-200" onclick="toggleFaq(this)">
+								<span>What should I bring to my first class?</span>
+								<span class="faq-icon text-[#E7E7E7]/40 text-[22px] flex-shrink-0">+</span>
+							</button>
+							<div class="faq-body">
+								<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/55 leading-[1.8] pb-[24px]">Athletic shoes, water, and the willingness to work. Since training is outdoors, consider the weather—a light layer for cool mornings is smart. Everything else you'll need is provided.</p>
+							</div>
+						</div>
+
+						<div class="faq-item border-b border-[#CC1414]/20">
+							<button class="faq-question w-full flex items-center justify-between gap-[20px] py-[24px] text-left font-[Teko] font-semibold text-[20px] uppercase text-[#E7E7E7]/70 hover:text-white transition-colors duration-200" onclick="toggleFaq(this)">
+								<span>How long is the On-Ramp program?</span>
+								<span class="faq-icon text-[#E7E7E7]/40 text-[22px] flex-shrink-0">+</span>
+							</button>
+							<div class="faq-body">
+								<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/55 leading-[1.8] pb-[24px]">Four weeks, training 2–3 days per week. At the end you'll have the foundational skills to train confidently in Group CrossFit—and a baseline to measure your progress from day one.</p>
+							</div>
+						</div>
+
+						<div class="faq-item border-b border-[#CC1414]/20">
+							<button class="faq-question w-full flex items-center justify-between gap-[20px] py-[24px] text-left font-[Teko] font-semibold text-[20px] uppercase text-[#E7E7E7]/70 hover:text-white transition-colors duration-200" onclick="toggleFaq(this)">
+								<span>Can I combine Personal Programming with Group classes?</span>
+								<span class="faq-icon text-[#E7E7E7]/40 text-[22px] flex-shrink-0">+</span>
+							</button>
+							<div class="faq-body">
+								<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/55 leading-[1.8] pb-[24px]">Yes, and many members do exactly that. Aaron programs it so they complement each other—your personal plan accounts for group session volume so you're not overtraining.</p>
+							</div>
+						</div>
+
+						<div class="faq-item border-b border-[#CC1414]/20">
+							<button class="faq-question w-full flex items-center justify-between gap-[20px] py-[24px] text-left font-[Teko] font-semibold text-[20px] uppercase text-[#E7E7E7]/70 hover:text-white transition-colors duration-200" onclick="toggleFaq(this)">
+								<span>What equipment is available?</span>
+								<span class="faq-icon text-[#E7E7E7]/40 text-[22px] flex-shrink-0">+</span>
+							</button>
+							<div class="faq-body">
+								<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/55 leading-[1.8] pb-[24px]">The full outdoor setup includes barbells, bumper plates, pull-up rigs, kettlebells, dumbbells, sleds, jump ropes, and more. It's a fully equipped CrossFit facility—just under the sky instead of a roof.</p>
+							</div>
+						</div>
+
+						<div class="faq-item border-b border-[#CC1414]/20">
+							<button class="faq-question w-full flex items-center justify-between gap-[20px] py-[24px] text-left font-[Teko] font-semibold text-[20px] uppercase text-[#E7E7E7]/70 hover:text-white transition-colors duration-200" onclick="toggleFaq(this)">
+								<span>What are the class times?</span>
+								<span class="faq-icon text-[#E7E7E7]/40 text-[22px] flex-shrink-0">+</span>
+							</button>
+							<div class="faq-body">
+								<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/55 leading-[1.8] pb-[24px]">Group CrossFit runs morning and evening sessions 6 days a week, starting at 6AM. View the full schedule to see current time slots and availability.</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     FINAL CTA
+		══════════════════════════════════════════════════════════════ -->
+		<section class="relative bg-[#01010F] py-[100px] lg:py-[120px] overflow-hidden">
+			<div class="absolute top-0 left-0 right-0 h-[1px] bg-white/[.06]"></div>
+			<div class="absolute bottom-0 left-0 right-0 h-[1px] bg-white/[.06]"></div>
+			<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#CC1414]/[.07] blur-[120px] pointer-events-none"></div>
+
+			<div class="relative max-w-[1320px] mx-auto px-[30px] lg:px-[60px] text-center">
+				<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">Get Started</div>
+				<div class="sr sr-d1 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[100px] leading-[.9] uppercase text-white mb-[8px]">Your first class</div>
+				<div class="sr sr-d2 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[100px] leading-[.9] uppercase text-[#CC1414] mb-[40px]">starts here.</div>
+				<div class="sr sr-d3 font-[Montserrat] font-medium text-[16px] md:text-[18px] text-[#E7E7E7]/55 leading-[1.7] max-w-[520px] mx-auto mb-[52px]">Check the schedule, pick a time, and show up. Aaron takes care of the rest.</div>
+
+				<div class="sr sr-d4 flex flex-col sm:flex-row items-center justify-center gap-[16px]">
+					<a class="group/cta1 relative inline-block" href="#">
+						<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(:hover)]/cta1:scale-y-0 group-[:not(:hover)]/cta1:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+						<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/cta1:scale-y-0 group-[:not(:hover)]/cta1:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+						<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]/cta1:scale-y-0 group-[:not(:hover)]/cta1:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+						<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(:hover)]/cta1:scale-y-0 group-[:not(:hover)]/cta1:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+						<div class="relative h-[58px] w-[240px] flex justify-center items-center">
+							<div class="relative font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase">
+								<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/cta1:scale-y-0 group-[:not(:hover)]/cta1:delay-0 delay-[.4s] transition-all duration-[.3s]">
+									<span>View Schedule</span>
+									<svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+								</div>
+								<div class="flex items-center gap-[10px] group-hover/cta1:scale-y-0 group-hover/cta1:delay-0 delay-[.4s] transition-all duration-[.3s]">
+									<span>View Schedule</span>
+									<svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+								</div>
+							</div>
+						</div>
+					</a>
+					<a class="group/cta2 relative inline-block" href="#">
+						<div class="absolute top-0 right-0 bottom-0 left-0 border border-white/25 group-hover/cta2:border-white/0 transition-colors duration-[.3s]"></div>
+						<div class="absolute top-0 right-0 bottom-0 left-0 bg-white/0 group-hover/cta2:bg-white/[.06] transition-colors duration-[.3s]"></div>
+						<div class="relative h-[58px] w-[200px] flex justify-center items-center font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase text-white/70 group-hover/cta2:text-white transition-colors duration-[.3s]">
+							Learn More
+						</div>
+					</a>
+				</div>
+
+				<!-- stat strip -->
+				<div class="sr sr-d5 mt-[72px] pt-[40px] border-t border-white/[.06]">
+					<div class="flex flex-col sm:flex-row items-center justify-center gap-[40px] sm:gap-[64px]">
+						<div class="text-center">
+							<div class="font-[Oswald] font-bold text-[36px] text-white leading-none">6 AM</div>
+							<div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">First Class</div>
+						</div>
+						<div class="hidden sm:block w-[1px] h-[40px] bg-white/[.10]"></div>
+						<div class="text-center">
+							<div class="font-[Oswald] font-bold text-[36px] text-white leading-none">7 Days</div>
+							<div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">A Week</div>
+						</div>
+						<div class="hidden sm:block w-[1px] h-[40px] bg-white/[.10]"></div>
+						<div class="text-center">
+							<div class="font-[Oswald] font-bold text-[36px] text-white leading-none">No Lock-in</div>
+							<div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Month to Month</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     FOOTER
+		══════════════════════════════════════════════════════════════ -->
+		<footer class="relative overflow-hidden mx-[24px] mb-[24px] rounded-[24px] bg-[#0C0C14]">
+			<div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-white/20 blur-[2px] pointer-events-none"></div>
+			<div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(35% 200px at 50% 0%, rgba(204,20,20,0.10), transparent);"></div>
+			<div class="relative z-10 max-w-[1320px] mx-auto px-[30px] lg:px-[60px] pt-[60px] lg:pt-[72px] pb-[40px]">
+				<div class="grid gap-[48px] xl:grid-cols-3 xl:gap-[64px]">
+					<div class="ft-col space-y-[20px]">
+						<a href="index.html"><img class="h-[100px] w-auto" src="A Plus Fit Logo.png" alt="A Plus Fit"></a>
+						<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/40 leading-[1.8] max-w-[240px]">Outdoor CrossFit coached by Aaron. Real training. Real community. Real air.</p>
+						<p class="font-[Montserrat] text-[12px] text-[#E7E7E7]/20">&copy; 2026 A Plus Fit. All rights reserved.</p>
+					</div>
+					<div class="grid grid-cols-2 gap-[32px] md:grid-cols-4 xl:col-span-2">
+						<div class="ft-col" style="animation-delay:.10s">
+							<h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Train</h3>
+							<ul class="space-y-[14px]">
+								<li><a href="#group-crossfit" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Group CrossFit</a></li>
+								<li><a href="#beginner-onramp" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Beginner On-Ramp</a></li>
+								<li><a href="#personal-programming" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Personal Programming</a></li>
+								<li><a href="#open-gym" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Open Gym</a></li>
+							</ul>
+						</div>
+						<div class="ft-col" style="animation-delay:.20s">
+							<h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Company</h3>
+							<ul class="space-y-[14px]">
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">About Aaron</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Contact</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Privacy Policy</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Terms of Service</a></li>
+							</ul>
+						</div>
+						<div class="ft-col" style="animation-delay:.30s">
+							<h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Schedule</h3>
+							<ul class="space-y-[14px]">
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">View Schedule</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Book a Class</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">FAQs</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none">Getting Started</a></li>
+							</ul>
+						</div>
+						<div class="ft-col" style="animation-delay:.40s">
+							<h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Follow Us</h3>
+							<ul class="space-y-[14px]">
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none inline-flex items-center gap-[8px]"><i class="fa-brands fa-instagram w-[14px]"></i>Instagram</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none inline-flex items-center gap-[8px]"><i class="fa-brands fa-facebook-f w-[14px]"></i>Facebook</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none inline-flex items-center gap-[8px]"><i class="fa-brands fa-youtube w-[14px]"></i>YouTube</a></li>
+								<li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors duration-200 leading-none inline-flex items-center gap-[8px]"><i class="fa-brands fa-tiktok w-[14px]"></i>TikTok</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="relative z-10 hidden lg:flex" style="height:28rem;margin-top:-4rem;margin-bottom:-8rem;">
+				<svg id="apf-svg" width="100%" height="100%" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" class="select-none cursor-pointer uppercase">
+					<defs>
+						<linearGradient id="apfGrad" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="300" y2="50">
+							<stop offset="0%" stop-color="#eab308"/><stop offset="25%" stop-color="#ef4444"/>
+							<stop offset="50%" stop-color="#80eeb4"/><stop offset="75%" stop-color="#06b6d4"/>
+							<stop offset="100%" stop-color="#8b5cf6"/>
+						</linearGradient>
+						<radialGradient id="apfReveal" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%">
+							<stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="black"/>
+						</radialGradient>
+						<mask id="apfMask"><rect x="0" y="0" width="100%" height="100%" fill="url(#apfReveal)"/></mask>
+					</defs>
+					<text id="apf-t1" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#e5e5e5" stroke-width="0.3" style="opacity:0;transition:opacity 0.3s;">A PLUS FIT</text>
+					<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#CC1414" stroke-width="0.3" stroke-opacity="0.8" class="apf-draw-anim">A PLUS FIT</text>
+					<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="url(#apfGrad)" stroke-width="0.3" mask="url(#apfMask)">A PLUS FIT</text>
+				</svg>
+			</div>
+			<script>
+				(function(){
+					var svg=document.getElementById('apf-svg'),t1=document.getElementById('apf-t1'),mg=document.getElementById('apfReveal');
+					if(svg){
+						svg.addEventListener('mouseenter',function(){t1.style.opacity='0.7';});
+						svg.addEventListener('mouseleave',function(){t1.style.opacity='0';mg.setAttribute('cx','50%');mg.setAttribute('cy','50%');});
+						svg.addEventListener('mousemove',function(e){var r=svg.getBoundingClientRect();mg.setAttribute('cx',(((e.clientX-r.left)/r.width)*100).toFixed(1)+'%');mg.setAttribute('cy',(((e.clientY-r.top)/r.height)*100).toFixed(1)+'%');});
+					}
+					var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('ft-vis');});},{threshold:0.1});
+					document.querySelectorAll('.ft-col').forEach(function(el){obs.observe(el);});
+				})();
+			</script>
+		</footer>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     OFFCANVAS MOBILE MENU
+		══════════════════════════════════════════════════════════════ -->
+		<div id="offcanvas" class="group">
+			<div class="fixed z-[49] top-0 right-0 bottom-0 left-0 group-[:not([data-t='a'])]:invisible">
+				<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[[data-t='a']]:scale-y-0 group-[[data-t='a']]:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
+				<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
+				<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+				<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+				<div class="absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] bg-opacity-10 group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+				<div class="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-0 delay-[.3s] transition-all duration-[.3s]">
+					<div class="pt-[90px]">
+						<div class="grid grid-cols-1 gap-[20px] w-[300px] font-[Teko] text-[20px] font-semibold tracking-[2px] uppercase">
+							<a href="index.html" class="flex items-center justify-between border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Home</a>
+							<a href="programs.html" class="flex items-center justify-between border-b border-[#CC1414]/30 pb-[16px] text-[#CC1414]">Programs</a>
+							<a href="#" class="flex items-center justify-between border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Schedule</a>
+							<a href="#" class="flex items-center justify-between border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Community</a>
+							<a href="#" class="flex items-center justify-between border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">About</a>
+							<a href="#" class="flex items-center justify-between pb-[16px] hover:text-[#CC1414] transition-colors">Learn</a>
+							<a href="#" class="mt-[8px] bg-[#CC1414] text-white text-center py-[14px] tracking-[2px] hover:bg-[#E86060] transition-colors">Book Free Class</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══════════════════════════════════════════════════════════
+		     SCRIPTS
+		══════════════════════════════════════════════════════════════ -->
+		<script src="js/all.js"></script>
+		<script>
+			// ── scroll reveal ──────────────────────────────────────────
+			(function(){
+				var obs = new IntersectionObserver(function(entries){
+					entries.forEach(function(e){
+						if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+					});
+				},{threshold:0.12});
+				document.querySelectorAll('.sr').forEach(function(el){ obs.observe(el); });
+			})();
+
+			// ── sticky tab active state ────────────────────────────────
+			(function(){
+				var sections = ['group-crossfit','beginner-onramp','personal-programming','open-gym'];
+				var tabs = document.querySelectorAll('.prog-tab');
+				var observer = new IntersectionObserver(function(entries){
+					entries.forEach(function(e){
+						if(e.isIntersecting){
+							tabs.forEach(function(t){ t.classList.remove('active'); });
+							var href = '#' + e.target.id;
+							var active = document.querySelector('.prog-tab[href="'+href+'"]');
+							if(active) active.classList.add('active');
+						}
+					});
+				},{threshold:0.4});
+				sections.forEach(function(id){
+					var el = document.getElementById(id);
+					if(el) observer.observe(el);
+				});
+			})();
+
+			// ── FAQ accordion ──────────────────────────────────────────
+			function toggleFaq(btn){
+				var item = btn.closest('.faq-item');
+				var body = item.querySelector('.faq-body');
+				var isOpen = item.classList.contains('open');
+				// close all
+				document.querySelectorAll('.faq-item.open').forEach(function(i){
+					i.classList.remove('open');
+					i.querySelector('.faq-body').classList.remove('open');
+				});
+				if(!isOpen){
+					item.classList.add('open');
+					body.classList.add('open');
+				}
+			}
+		</script>
+	</body>
+</html>

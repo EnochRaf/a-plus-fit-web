@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Schedule — A Plus Fit</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@200..700&family=Teko:wght@300..700&family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://ajax.cdnjs.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="css/all.css">
+		<style>
+			.sr{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+			.sr.sr-left{transform:translateX(-28px)}.sr.sr-right{transform:translateX(28px)}
+			.sr.visible{opacity:1;transform:none}
+			.sr.d1{transition-delay:.10s}.sr.d2{transition-delay:.20s}.sr.d3{transition-delay:.30s}.sr.d4{transition-delay:.40s}.sr.d5{transition-delay:.50s}
+			@keyframes ticker-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+			.ticker-track{animation:ticker-left 24s linear infinite}
+			.tt-cell{min-height:76px}
+			.class-pill{border-left:3px solid currentColor;transition:transform .18s,box-shadow .18s;cursor:pointer}
+			.class-pill:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(204,20,20,.2)}
+			.cal-day{aspect-ratio:1;cursor:pointer;transition:background .15s,color .15s;position:relative}
+			.cal-day:hover:not(.cal-empty):not(.past){background:rgba(204,20,20,.12)}
+			.cal-day.today{background:#CC1414 !important;color:#fff !important}
+			.cal-day.has-class::after{content:'';position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#CC1414;pointer-events:none}
+			.cal-day.today.has-class::after{background:#fff}
+			.cal-day.past{opacity:.3;pointer-events:none}
+			.cal-day.selected:not(.today){background:rgba(204,20,20,.18);outline:1px solid rgba(204,20,20,.5)}
+			.filter-pill{transition:all .2s}.filter-pill.active{background:#CC1414;color:#fff;border-color:#CC1414}
+			.upcoming-card{transition:border-color .2s,transform .2s}.upcoming-card:hover{border-color:rgba(204,20,20,.5);transform:translateY(-3px)}
+			.view-tab{transition:all .2s}.view-tab.active{background:#CC1414;color:#fff;border-color:#CC1414}
+			@keyframes footer-reveal{from{opacity:0;filter:blur(4px);transform:translateY(-8px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+			.ft-col{opacity:0}.ft-col.ft-vis{animation:footer-reveal .8s ease forwards}
+			@keyframes apf-draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+			.apf-draw-anim{animation:apf-draw 4s ease-in-out forwards;stroke-dasharray:1000;stroke-dashoffset:1000}
+			.card-enter{opacity:0;transform:translateY(16px)}.card-enter.card-in{opacity:1;transform:none;transition:opacity .4s ease,transform .4s ease}
+		</style>
+	</head>
+	<body class="bg-[#01010F] text-[#E7E7E7] text-[18px] leading-[1.5] font-[Vazirmatn]">
+
+<!-- ══════════ NAV ══════════════════════════════════════════════════════ -->
+<div class="pt-[40px]"></div>
+<div class="sticky z-50 top-0 bg-[#01010F]">
+	<div class="max-w-[1320px] mx-auto px-[15px]">
+		<div class="flex justify-between items-center h-[180px] font-[Teko]">
+			<div><a class="flex items-center" href="index.html"><img class="h-[160px] w-auto" src="A Plus Fit Logo.png" alt=""></a></div>
+			<div class="hidden xl:block">
+				<div class="flex text-[20px] font-medium">
+					<div class="group relative"><a href="#" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div></div></div></a></div>
+					<div class="group relative"><a href="programs.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div></div></div></a></div>
+					<div class="group relative"><a href="schedule.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">SCHEDULE</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">SCHEDULE</div></div></div></a></div>
+					<div class="group relative"><a href="#" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div></div></div></a></div>
+					<div class="group relative"><a href="#" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">LEARN</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.06s] transition-all duration-[.3s]">LEARN</div></div></div></a></div>
+				</div>
+			</div>
+			<div class="flex items-center">
+				<a class="xl:hidden group relative" data-c-toggle="a" href="#offcanvas"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] w-[54px] flex justify-center items-center"><i class="fa-solid fa-bars"></i></div></a>
+				<div class="xl:hidden md:px-[20px] border-t border-[#CC1414]"></div>
+				<a class="hidden md:block group relative" href="book.html"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] px-[24px] flex justify-center items-center"><div class="relative"><div class="absolute inset-0 group-[:not(:hover)]:scale-y-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div><div class="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div></div></div></a>
+				<div class="hidden md:block px-[20px] border-t border-[#CC1414]"></div>
+				<a class="hidden md:block group relative" href="#"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-facebook-f"></i></div></a>
+				<div class="hidden md:block px-[5px] border-t border-[#CC1414]"></div>
+				<a class="hidden md:block group relative" href="#"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-instagram"></i></div></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ══════════ HERO ══════════════════════════════════════════════════════ -->
+<section class="relative bg-[#01010F] overflow-hidden pt-[80px] pb-[100px] lg:pt-[100px] lg:pb-[120px]">
+	<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,.04) 1px,transparent 1px);background-size:80px 80px;"></div>
+	<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full bg-[#CC1414]/[.06] blur-[120px] pointer-events-none"></div>
+	<div class="absolute top-0 right-0 w-[3px] h-full bg-[#CC1414]/30"></div>
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+		<div class="sr flex items-center gap-[8px] font-[Teko] text-[13px] tracking-[3px] uppercase text-[#E7E7E7]/30 mb-[40px]">
+			<a href="index.html" class="hover:text-[#CC1414] transition-colors">Home</a>
+			<span class="text-[#CC1414]">/</span>
+			<span class="text-[#CC1414]">Schedule</span>
+		</div>
+		<div class="grid lg:grid-cols-2 gap-[60px] items-end">
+			<div>
+				<div class="sr d1 overflow-hidden mb-[6px]"><div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414]">A Plus Fit</div></div>
+				<div class="sr d2 overflow-hidden mb-[2px]"><div class="font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-white">Class</div></div>
+				<div class="sr d3 overflow-hidden mb-[32px]"><div class="font-[Oswald] font-bold text-[64px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-[#CC1414]">Schedule.</div></div>
+				<div class="sr d4"><p class="font-[Montserrat] font-medium text-[16px] text-[#E7E7E7]/55 leading-[1.8] max-w-[480px]">Find your slot. Claim your spot. Classes run 6 days a week starting at 6&nbsp;AM—outdoor, coached, and ready for you.</p></div>
+			</div>
+			<div class="sr sr-right d3 grid grid-cols-3 gap-[1px] bg-[#CC1414]/20">
+				<div class="bg-[#01010F] p-[28px] text-center"><div class="font-[Oswald] font-bold text-[42px] text-white leading-none">6AM</div><div class="font-[Montserrat] text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">First Class</div></div>
+				<div class="bg-[#01010F] p-[28px] text-center"><div class="font-[Oswald] font-bold text-[42px] text-white leading-none">6×</div><div class="font-[Montserrat] text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Per Week</div></div>
+				<div class="bg-[#01010F] p-[28px] text-center"><div class="font-[Oswald] font-bold text-[42px] text-white leading-none">Free</div><div class="font-[Montserrat] text-[11px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">First Class</div></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════ VIEW TABS + LEGEND ════════════════════════════════════════ -->
+<div class="sticky top-0 z-40 bg-[#0C0C14] border-b border-[#CC1414]/20">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="flex items-center justify-between gap-[16px] py-[14px] flex-wrap">
+			<div class="flex gap-[6px]">
+				<button onclick="showView('timetable')" id="tab-timetable" class="view-tab active font-[Teko] font-semibold text-[13px] tracking-[2px] uppercase px-[18px] py-[8px] border border-[#CC1414]/30 hover:border-[#CC1414]">Weekly</button>
+				<button onclick="showView('calendar')"  id="tab-calendar"  class="view-tab font-[Teko] font-semibold text-[13px] tracking-[2px] uppercase px-[18px] py-[8px] border border-[#CC1414]/30 hover:border-[#CC1414]">Calendar</button>
+				<button onclick="showView('upcoming')"  id="tab-upcoming"  class="view-tab font-[Teko] font-semibold text-[13px] tracking-[2px] uppercase px-[18px] py-[8px] border border-[#CC1414]/30 hover:border-[#CC1414]">Upcoming</button>
+			</div>
+			<div class="hidden sm:flex items-center gap-[20px]">
+				<div class="flex items-center gap-[7px]"><div class="w-[9px] h-[9px] rounded-sm bg-[#CC1414]"></div><span class="font-[Montserrat] text-[12px] text-[#E7E7E7]/45">Group CrossFit</span></div>
+				<div class="flex items-center gap-[7px]"><div class="w-[9px] h-[9px] rounded-sm bg-[#7C3535]"></div><span class="font-[Montserrat] text-[12px] text-[#E7E7E7]/45">On-Ramp</span></div>
+				<div class="flex items-center gap-[7px]"><div class="w-[9px] h-[9px] rounded-sm bg-[#1E3050]"></div><span class="font-[Montserrat] text-[12px] text-[#E7E7E7]/45">Open Gym</span></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ══════════ WEEKLY TIMETABLE ══════════════════════════════════════════ -->
+<section id="view-timetable" class="bg-[#01010F] py-[60px] lg:py-[80px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr mb-[40px]">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[8px]">Recurring Weekly Schedule</div>
+			<div class="font-[Oswald] font-bold text-[32px] md:text-[40px] leading-none uppercase text-white">Every Week, <span class="text-[#CC1414]">On Time.</span></div>
+		</div>
+		<div class="sr overflow-x-auto -mx-[30px] lg:-mx-[60px] px-[30px] lg:px-[60px] pb-[16px]">
+			<div class="min-w-[820px]">
+				<div id="tt-headers" class="grid gap-[4px] mb-[4px]"></div>
+				<div id="tt-grid" class="space-y-[4px]"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════ CALENDAR VIEW ═════════════════════════════════════════════ -->
+<section id="view-calendar" class="hidden bg-[#01010F] py-[60px] lg:py-[80px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="grid lg:grid-cols-[1fr_360px] gap-[40px] items-start">
+			<div>
+				<div class="flex items-center justify-between mb-[28px]">
+					<button onclick="prevMonth()" class="w-[42px] h-[42px] border border-[#CC1414]/40 hover:border-[#CC1414] hover:bg-[#CC1414]/10 flex items-center justify-center text-[#E7E7E7]/60 hover:text-white transition-all"><i class="fa-solid fa-chevron-left text-[13px]"></i></button>
+					<div id="cal-month-label" class="font-[Oswald] font-bold text-[26px] uppercase text-white tracking-[1px]"></div>
+					<button onclick="nextMonth()" class="w-[42px] h-[42px] border border-[#CC1414]/40 hover:border-[#CC1414] hover:bg-[#CC1414]/10 flex items-center justify-center text-[#E7E7E7]/60 hover:text-white transition-all"><i class="fa-solid fa-chevron-right text-[13px]"></i></button>
+				</div>
+				<div class="grid grid-cols-7 gap-[4px] mb-[4px]">
+					<div class="font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase text-[#CC1414] text-center py-[6px]">Sun</div>
+					<div class="font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase text-[#CC1414] text-center py-[6px]">Mon</div>
+					<div class="font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase text-[#CC1414] text-center py-[6px]">Tue</div>
+					<div class="font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase text-[#CC1414] text-center py-[6px]">Wed</div>
+					<div class="font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase text-[#CC1414] text-center py-[6px]">Thu</div>
+					<div class="font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase text-[#CC1414] text-center py-[6px]">Fri</div>
+					<div class="font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase text-[#CC1414] text-center py-[6px]">Sat</div>
+				</div>
+				<div id="cal-grid" class="grid grid-cols-7 gap-[4px]"></div>
+			</div>
+			<!-- detail panel -->
+			<div id="cal-detail" class="bg-[#0C0C14] border border-[#CC1414]/20 p-[28px] min-h-[400px] flex flex-col">
+				<div id="cal-empty" class="flex-1 flex flex-col items-center justify-center text-center">
+					<i class="fa-regular fa-calendar text-[#CC1414]/25 text-[44px] mb-[14px]"></i>
+					<p class="font-[Teko] font-semibold text-[17px] uppercase text-[#E7E7E7]/25 tracking-[2px]">Select a Day</p>
+					<p class="font-[Montserrat] text-[12px] text-[#E7E7E7]/18 mt-[6px]">Click any date to see classes</p>
+				</div>
+				<div id="cal-content" class="hidden flex-1 flex flex-col">
+					<div id="cal-head" class="mb-[20px] pb-[16px] border-b border-[#CC1414]/20"></div>
+					<div id="cal-classes" class="space-y-[10px] flex-1"></div>
+					<div class="mt-[24px] pt-[16px] border-t border-[#CC1414]/10">
+						<a href="#" class="inline-flex items-center gap-[8px] font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#CC1414] hover:text-white transition-colors">Book This Day <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════ UPCOMING CLASSES ══════════════════════════════════════════ -->
+<section id="view-upcoming" class="hidden bg-[#01010F] py-[60px] lg:py-[80px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="flex flex-wrap items-center justify-between gap-[20px] mb-[40px]">
+			<div class="sr">
+				<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[6px]">Next 14 Days</div>
+				<div class="font-[Oswald] font-bold text-[32px] md:text-[40px] leading-none uppercase text-white">Upcoming <span class="text-[#CC1414]">Classes.</span></div>
+			</div>
+			<div class="sr flex gap-[6px] flex-wrap">
+				<button onclick="filterUpcoming('all')"    id="f-all"    class="filter-pill active font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[14px] py-[6px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">All</button>
+				<button onclick="filterUpcoming('group')"  id="f-group"  class="filter-pill font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[14px] py-[6px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">Group CrossFit</button>
+				<button onclick="filterUpcoming('onramp')" id="f-onramp" class="filter-pill font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[14px] py-[6px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">On-Ramp</button>
+				<button onclick="filterUpcoming('open')"   id="f-open"   class="filter-pill font-[Teko] font-semibold text-[12px] tracking-[2px] uppercase px-[14px] py-[6px] border border-[#CC1414]/30 text-[#E7E7E7]/55 hover:text-white">Open Gym</button>
+			</div>
+		</div>
+		<div id="upcoming-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-[14px]"></div>
+	</div>
+</section>
+
+<!-- ══════════ TICKER ════════════════════════════════════════════════════ -->
+<div class="bg-[#0C0C14] border-y border-[#CC1414]/20 py-[15px] overflow-hidden">
+	<div class="flex ticker-track whitespace-nowrap font-[Teko] font-semibold text-[14px] tracking-[4px] uppercase text-[#E7E7E7]/25">
+		<span class="px-[28px]">6:00 AM Group CrossFit</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">5:00 PM Evening Class</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Tuesday On-Ramp</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Saturday 7AM</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Open Gym Access</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Coached by Aaron</span><span class="text-[#CC1414] px-[12px]">✦</span>
+		<span class="px-[28px]">6:00 AM Group CrossFit</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">5:00 PM Evening Class</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Tuesday On-Ramp</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Saturday 7AM</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Open Gym Access</span><span class="text-[#CC1414] px-[12px]">✦</span><span class="px-[28px]">Coached by Aaron</span><span class="text-[#CC1414] px-[12px]">✦</span>
+	</div>
+</div>
+
+<!-- ══════════ HOW TO BOOK ════════════════════════════════════════════════ -->
+<section class="bg-[#0C0C14] py-[80px] lg:py-[100px]">
+	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="sr text-center mb-[56px]">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">Simple Process</div>
+			<div class="font-[Oswald] font-bold text-[40px] md:text-[52px] leading-none uppercase text-white">How to <span class="text-[#CC1414]">Book.</span></div>
+		</div>
+		<div class="grid md:grid-cols-3 gap-[2px] bg-[#CC1414]/15">
+			<div class="sr bg-[#0C0C14] p-[40px] lg:p-[48px] group hover:bg-[#111118] transition-colors"><div class="font-[Oswald] font-bold text-[60px] leading-none text-[#CC1414]/20 mb-[20px] group-hover:text-[#CC1414]/40 transition-colors">01</div><div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[10px]">Step One</div><div class="font-[Oswald] font-bold text-[22px] uppercase text-white mb-[14px]">Pick Your Class</div><p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/50 leading-[1.8]">Browse the weekly view, calendar, or upcoming list. Find a time that works for your schedule and your goal.</p></div>
+			<div class="sr d1 bg-[#0C0C14] p-[40px] lg:p-[48px] group hover:bg-[#111118] transition-colors"><div class="font-[Oswald] font-bold text-[60px] leading-none text-[#CC1414]/20 mb-[20px] group-hover:text-[#CC1414]/40 transition-colors">02</div><div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[10px]">Step Two</div><div class="font-[Oswald] font-bold text-[22px] uppercase text-white mb-[14px]">Reserve Your Spot</div><p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/50 leading-[1.8]">Hit "Book" and secure your spot. First class is always free—no card required, no commitment needed.</p></div>
+			<div class="sr d2 bg-[#0C0C14] p-[40px] lg:p-[48px] group hover:bg-[#111118] transition-colors"><div class="font-[Oswald] font-bold text-[60px] leading-none text-[#CC1414]/20 mb-[20px] group-hover:text-[#CC1414]/40 transition-colors">03</div><div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[10px]">Step Three</div><div class="font-[Oswald] font-bold text-[22px] uppercase text-white mb-[14px]">Show Up & Train</div><p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/50 leading-[1.8]">Bring water and a good attitude. Everything else is covered. Aaron handles the rest from there.</p></div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════ CTA ════════════════════════════════════════════════════════ -->
+<section class="relative bg-[#01010F] py-[100px] lg:py-[120px] overflow-hidden">
+	<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,.03) 1px,transparent 1px);background-size:60px 60px;"></div>
+	<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] rounded-full bg-[#CC1414]/[.06] blur-[120px] pointer-events-none"></div>
+	<div class="absolute top-0 left-0 right-0 h-[1px] bg-white/[.05]"></div>
+	<div class="relative max-w-[1320px] mx-auto px-[30px] lg:px-[60px] text-center">
+		<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[12px]">No Commitment Needed</div>
+		<div class="sr d1 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-white mb-[6px]">First class</div>
+		<div class="sr d2 font-[Oswald] font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[.9] uppercase text-[#CC1414] mb-[40px]">is free.</div>
+		<div class="sr d3 font-[Montserrat] font-medium text-[16px] md:text-[18px] text-[#E7E7E7]/55 leading-[1.7] max-w-[520px] mx-auto mb-[52px]">Try any class on us. No credit card, no contract, no catch—just show up and train.</div>
+		<div class="sr d4 flex flex-col sm:flex-row items-center justify-center gap-[16px]">
+			<a class="group/c1 relative inline-block" href="#">
+				<div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.4s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]/c1:scale-y-0 group-[:not(:hover)]/c1:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+				<div class="relative h-[58px] w-[240px] flex justify-center items-center font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase">
+					<div class="absolute inset-0 flex items-center justify-center gap-[10px] group-[:not(:hover)]/c1:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book Free Class <i class="fa-solid fa-arrow-right text-[13px]"></i></div>
+					<div class="flex items-center gap-[10px] group-hover/c1:scale-y-0 delay-[.4s] transition-all duration-[.3s]">Book Free Class <i class="fa-solid fa-arrow-right text-[13px]"></i></div>
+				</div>
+			</a>
+			<a class="group/c2 relative inline-block" href="programs.html">
+				<div class="absolute inset-0 border border-white/20 group-hover/c2:border-white/0 transition-colors duration-[.3s]"></div>
+				<div class="absolute inset-0 bg-white/0 group-hover/c2:bg-white/[.05] transition-colors duration-[.3s]"></div>
+				<div class="relative h-[58px] w-[200px] flex justify-center items-center font-[Teko] font-semibold text-[20px] tracking-[1px] uppercase text-white/60 group-hover/c2:text-white transition-colors duration-[.3s]">View Programs</div>
+			</a>
+		</div>
+		<div class="sr d5 mt-[64px] pt-[40px] border-t border-white/[.05]">
+			<div class="flex flex-col sm:flex-row items-center justify-center gap-[40px] sm:gap-[64px]">
+				<div class="text-center"><div class="font-[Oswald] font-bold text-[36px] text-white leading-none">6 AM</div><div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">First Class</div></div>
+				<div class="hidden sm:block w-[1px] h-[40px] bg-white/10"></div>
+				<div class="text-center"><div class="font-[Oswald] font-bold text-[36px] text-white leading-none">7 Days</div><div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">A Week</div></div>
+				<div class="hidden sm:block w-[1px] h-[40px] bg-white/10"></div>
+				<div class="text-center"><div class="font-[Oswald] font-bold text-[36px] text-white leading-none">No Lock-in</div><div class="font-[Montserrat] text-[12px] tracking-[2px] uppercase text-[#E7E7E7]/40 mt-[6px]">Month to Month</div></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ══════════ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="relative overflow-hidden mx-[24px] mb-[24px] rounded-[24px] bg-[#0C0C14]">
+	<div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-white/20 blur-[2px] pointer-events-none"></div>
+	<div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(35% 200px at 50% 0%,rgba(204,20,20,.10),transparent);"></div>
+	<div class="relative z-10 max-w-[1320px] mx-auto px-[30px] lg:px-[60px] pt-[60px] lg:pt-[72px] pb-[40px]">
+		<div class="grid gap-[48px] xl:grid-cols-3 xl:gap-[64px]">
+			<div class="ft-col space-y-[20px]"><a href="index.html"><img class="h-[100px] w-auto" src="A Plus Fit Logo.png" alt="A Plus Fit"></a><p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/40 leading-[1.8] max-w-[240px]">Outdoor CrossFit coached by Aaron. Real training. Real community. Real air.</p><p class="font-[Montserrat] text-[12px] text-[#E7E7E7]/20">&copy; 2026 A Plus Fit. All rights reserved.</p></div>
+			<div class="grid grid-cols-2 gap-[32px] md:grid-cols-4 xl:col-span-2">
+				<div class="ft-col" style="animation-delay:.10s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Train</h3><ul class="space-y-[14px]"><li><a href="programs.html#group-crossfit" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Group CrossFit</a></li><li><a href="programs.html#beginner-onramp" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Beginner On-Ramp</a></li><li><a href="programs.html#personal-programming" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Personal Programming</a></li><li><a href="programs.html#open-gym" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Open Gym</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.20s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Company</h3><ul class="space-y-[14px]"><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">About Aaron</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Contact</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Privacy Policy</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Terms of Service</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.30s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Schedule</h3><ul class="space-y-[14px]"><li><a href="schedule.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">View Schedule</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Book a Class</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">FAQs</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Getting Started</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.40s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Follow Us</h3><ul class="space-y-[14px]"><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-instagram w-[14px]"></i>Instagram</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-facebook-f w-[14px]"></i>Facebook</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-youtube w-[14px]"></i>YouTube</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-tiktok w-[14px]"></i>TikTok</a></li></ul></div>
+			</div>
+		</div>
+	</div>
+	<div class="relative z-10 hidden lg:flex" style="height:28rem;margin-top:-4rem;margin-bottom:-8rem;">
+		<svg id="apf-svg" width="100%" height="100%" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" class="select-none cursor-pointer uppercase">
+			<defs><linearGradient id="apfGrad" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="300" y2="50"><stop offset="0%" stop-color="#eab308"/><stop offset="25%" stop-color="#ef4444"/><stop offset="50%" stop-color="#80eeb4"/><stop offset="75%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient><radialGradient id="apfReveal" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%"><stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="black"/></radialGradient><mask id="apfMask"><rect x="0" y="0" width="100%" height="100%" fill="url(#apfReveal)"/></mask></defs>
+			<text id="apf-t1" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#e5e5e5" stroke-width="0.3" style="opacity:0;transition:opacity 0.3s;">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#CC1414" stroke-width="0.3" stroke-opacity="0.8" class="apf-draw-anim">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="url(#apfGrad)" stroke-width="0.3" mask="url(#apfMask)">A PLUS FIT</text>
+		</svg>
+	</div>
+	<script>(function(){var svg=document.getElementById('apf-svg'),t1=document.getElementById('apf-t1'),mg=document.getElementById('apfReveal');if(svg){svg.addEventListener('mouseenter',function(){t1.style.opacity='0.7';});svg.addEventListener('mouseleave',function(){t1.style.opacity='0';mg.setAttribute('cx','50%');mg.setAttribute('cy','50%');});svg.addEventListener('mousemove',function(e){var r=svg.getBoundingClientRect();mg.setAttribute('cx',(((e.clientX-r.left)/r.width)*100).toFixed(1)+'%');mg.setAttribute('cy',(((e.clientY-r.top)/r.height)*100).toFixed(1)+'%');});}var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('ft-vis');});},{threshold:0.1});document.querySelectorAll('.ft-col').forEach(function(el){obs.observe(el);});})();</script>
+</footer>
+
+<!-- ══════════ OFFCANVAS ══════════════════════════════════════════════════ -->
+<div id="offcanvas" class="group">
+	<div class="fixed z-[49] top-0 right-0 bottom-0 left-0 group-[:not([data-t='a'])]:invisible">
+		<div class="absolute inset-0 bg-[#CC1414] group-[[data-t='a']]:scale-y-0 delay-0 transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#E86060] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.4s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#01010F] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414]/10 group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 flex items-center justify-center group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-0 delay-[.3s] transition-all duration-[.3s]">
+			<div class="pt-[90px]"><div class="grid grid-cols-1 gap-[20px] w-[300px] font-[Teko] text-[20px] font-semibold tracking-[2px] uppercase">
+				<a href="index.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Home</a>
+				<a href="programs.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Programs</a>
+				<a href="schedule.html" class="border-b border-[#CC1414]/30 pb-[16px] text-[#CC1414]">Schedule</a>
+				<a href="#" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Community</a>
+				<a href="#" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">About</a>
+				<a href="#" class="pb-[16px] hover:text-[#CC1414] transition-colors">Learn</a>
+				<a href="#" class="mt-[8px] bg-[#CC1414] text-white text-center py-[14px] tracking-[2px] hover:bg-[#E86060] transition-colors">Book Free Class</a>
+			</div></div>
+		</div>
+	</div>
+</div>
+
+<!-- ══════════ SCRIPTS ════════════════════════════════════════════════════ -->
+<script src="js/all.js"></script>
+<script>
+// ─── CLASS DATA ──────────────────────────────────────────────────────────
+var S = {
+  0:[{time:'10:00 AM',end:'11:00 AM',type:'Open Gym',       tag:'open',  dur:'60 min', spots:20}],
+  1:[{time:'6:00 AM', end:'7:00 AM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'9:00 AM', end:'10:00 AM',type:'Open Gym',       tag:'open',  dur:'60 min', spots:20},
+     {time:'5:00 PM', end:'6:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'6:00 PM', end:'7:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12}],
+  2:[{time:'6:00 AM', end:'7:00 AM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'7:00 AM', end:'8:00 AM', type:'On-Ramp',        tag:'onramp',dur:'60 min', spots:6 },
+     {time:'9:00 AM', end:'10:00 AM',type:'Open Gym',       tag:'open',  dur:'60 min', spots:20},
+     {time:'5:00 PM', end:'6:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'6:00 PM', end:'7:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12}],
+  3:[{time:'6:00 AM', end:'7:00 AM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'9:00 AM', end:'10:00 AM',type:'Open Gym',       tag:'open',  dur:'60 min', spots:20},
+     {time:'5:00 PM', end:'6:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'6:00 PM', end:'7:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12}],
+  4:[{time:'6:00 AM', end:'7:00 AM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'7:00 AM', end:'8:00 AM', type:'On-Ramp',        tag:'onramp',dur:'60 min', spots:6 },
+     {time:'9:00 AM', end:'10:00 AM',type:'Open Gym',       tag:'open',  dur:'60 min', spots:20},
+     {time:'5:00 PM', end:'6:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'6:00 PM', end:'7:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12}],
+  5:[{time:'6:00 AM', end:'7:00 AM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'9:00 AM', end:'10:00 AM',type:'Open Gym',       tag:'open',  dur:'60 min', spots:20},
+     {time:'5:00 PM', end:'6:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12},
+     {time:'6:00 PM', end:'7:00 PM', type:'Group CrossFit', tag:'group', dur:'60 min', spots:12}],
+  6:[{time:'7:00 AM', end:'8:30 AM', type:'Group CrossFit', tag:'group', dur:'90 min', spots:16},
+     {time:'9:00 AM', end:'10:00 AM',type:'On-Ramp',        tag:'onramp',dur:'60 min', spots:6 },
+     {time:'10:00 AM',end:'12:00 PM',type:'Open Gym',       tag:'open',  dur:'120 min',spots:20}]
+};
+var DAYS_S=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var DAYS_L=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function tC(t){return t==='group'?'#CC1414':t==='onramp'?'#7C3535':'#1E3050';}
+function tBg(t){return t==='group'?'rgba(204,20,20,.12)':t==='onramp'?'rgba(124,53,53,.15)':'rgba(30,48,80,.4)';}
+
+// ─── VIEW TOGGLE ─────────────────────────────────────────────────────────
+function showView(v){
+  ['timetable','calendar','upcoming'].forEach(function(id){
+    document.getElementById('view-'+id).classList.add('hidden');
+    document.getElementById('tab-'+id).classList.remove('active');
+  });
+  document.getElementById('view-'+v).classList.remove('hidden');
+  document.getElementById('tab-'+v).classList.add('active');
+  if(v==='upcoming') buildUpcoming();
+}
+
+// ─── TIMETABLE ───────────────────────────────────────────────────────────
+(function(){
+  var TIMES=['6:00 AM','7:00 AM','9:00 AM','10:00 AM','5:00 PM','6:00 PM'];
+  var COLS=[1,2,3,4,5,6,0]; // Mon→Sun
+  var todayDOW=new Date().getDay();
+
+  // header row
+  var hdr=document.getElementById('tt-headers');
+  hdr.style.gridTemplateColumns='80px repeat(7,1fr)';
+  var blank=document.createElement('div'); hdr.appendChild(blank);
+  COLS.forEach(function(d){
+    var el=document.createElement('div');
+    el.className='font-[Teko] font-semibold text-[14px] tracking-[2px] uppercase text-center py-[10px] '+(d===todayDOW?'text-[#CC1414]':'text-[#E7E7E7]/50');
+    el.textContent=DAYS_S[d];
+    hdr.appendChild(el);
+  });
+
+  var grid=document.getElementById('tt-grid');
+  TIMES.forEach(function(slot){
+    var row=document.createElement('div');
+    row.style.cssText='display:grid;grid-template-columns:80px repeat(7,1fr);gap:4px';
+    var lbl=document.createElement('div');
+    lbl.className='flex items-center font-[Teko] text-[12px] tracking-[1px] text-[#E7E7E7]/30 pr-[8px]';
+    lbl.textContent=slot; row.appendChild(lbl);
+    COLS.forEach(function(d){
+      var cell=document.createElement('div');
+      cell.className='tt-cell';
+      var match=(S[d]||[]).filter(function(c){return c.time===slot;});
+      if(match.length){
+        var c=match[0];
+        cell.innerHTML='<div class="class-pill h-full p-[10px] lg:p-[12px]" style="background:'+tBg(c.tag)+';border-left:3px solid '+tC(c.tag)+'">'
+          +'<div class="font-[Teko] font-semibold text-[13px] lg:text-[14px] leading-tight" style="color:'+tC(c.tag)+'">'+c.type+'</div>'
+          +'<div class="font-[Montserrat] text-[10px] lg:text-[11px] text-[#E7E7E7]/40 mt-[2px]">'+c.time+' · '+c.dur+'</div>'
+          +'<div class="font-[Montserrat] text-[10px] text-[#E7E7E7]/28 mt-[2px]">'+c.spots+' spots</div>'
+          +'</div>';
+      } else {
+        cell.innerHTML='<div class="h-full min-h-[76px] border border-dashed border-white/[.04]"></div>';
+      }
+      row.appendChild(cell);
+    });
+    grid.appendChild(row);
+  });
+})();
+
+// ─── CALENDAR ────────────────────────────────────────────────────────────
+var cY,cM,selDay=null;
+function initCal(){var n=new Date();cY=n.getFullYear();cM=n.getMonth();renderCal();}
+function renderCal(){
+  var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  document.getElementById('cal-month-label').textContent=MONTHS[cM]+' '+cY;
+  var grid=document.getElementById('cal-grid'); grid.innerHTML='';
+  var first=new Date(cY,cM,1).getDay(),days=new Date(cY,cM+1,0).getDate();
+  for(var i=0;i<first;i++){var b=document.createElement('div');b.className='cal-day cal-empty';grid.appendChild(b);}
+  for(var d=1;d<=days;d++){
+    var date=new Date(cY,cM,d),dow=date.getDay();
+    var isPast=date<today,isToday=date.getTime()===today.getTime();
+    var hasCls=(S[dow]&&S[dow].length>0);
+    var isSel=selDay&&selDay.d===d&&selDay.m===cM&&selDay.y===cY;
+    var el=document.createElement('div');
+    el.className='cal-day flex items-center justify-center rounded-sm'
+      +(isToday?' today':'')+(hasCls?' has-class':'')+(isPast&&!isToday?' past':'')+(isSel&&!isToday?' selected':'');
+    el.innerHTML='<span class="font-[Teko] font-semibold text-[15px] leading-none pointer-events-none">'+d+'</span>';
+    if(!isPast||(isToday))(function(dd,dw,yy,mm){el.addEventListener('click',function(){selectDay(dd,dw,yy,mm);});})(d,dow,cY,cM);
+    grid.appendChild(el);
+  }
+}
+function prevMonth(){cM--;if(cM<0){cM=11;cY--;}renderCal();}
+function nextMonth(){cM++;if(cM>11){cM=0;cY++;}renderCal();}
+function selectDay(d,dow,y,m){
+  selDay={d:d,m:m,y:y}; renderCal();
+  document.getElementById('cal-empty').classList.add('hidden');
+  document.getElementById('cal-content').classList.remove('hidden');
+  document.getElementById('cal-head').innerHTML=
+    '<div class="font-[Teko] font-semibold text-[12px] tracking-[3px] uppercase text-[#CC1414] mb-[3px]">'+DAYS_L[dow]+'</div>'
+    +'<div class="font-[Oswald] font-bold text-[28px] uppercase text-white leading-none">'+MONTHS[m]+' '+d+', '+y+'</div>';
+  var cls=S[dow]||[];
+  var list=document.getElementById('cal-classes');
+  list.innerHTML=cls.length?cls.map(function(c){
+    return '<div class="p-[12px] flex items-center gap-[14px]" style="background:'+tBg(c.tag)+';border-left:3px solid '+tC(c.tag)+'">'
+      +'<div class="flex-1"><div class="font-[Teko] font-semibold text-[15px] leading-none" style="color:'+tC(c.tag)+'">'+c.type+'</div>'
+      +'<div class="font-[Montserrat] text-[12px] text-[#E7E7E7]/45 mt-[3px]">'+c.time+' – '+c.end+' &middot; '+c.dur+'</div></div>'
+      +'<div class="text-right flex-shrink-0"><div class="font-[Teko] font-semibold text-[18px] text-white leading-none">'+c.spots+'</div>'
+      +'<div class="font-[Montserrat] text-[10px] text-[#E7E7E7]/30 uppercase tracking-[1px]">Spots</div></div></div>';
+  }).join(''):'<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/30 italic pt-[8px]">No scheduled classes.</p>';
+}
+initCal();
+
+// ─── UPCOMING ────────────────────────────────────────────────────────────
+var activeFilter='all';
+function buildUpcoming(){
+  var grid=document.getElementById('upcoming-grid'); grid.innerHTML='';
+  var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var cards=[];
+  for(var offset=0;offset<14;offset++){
+    var date=new Date(today);date.setDate(today.getDate()+offset);
+    var dow=date.getDay();
+    (S[dow]||[]).forEach(function(c){cards.push({date:new Date(date),dow:dow,c:c});});
+  }
+  var filtered=activeFilter==='all'?cards:cards.filter(function(i){return i.c.tag===activeFilter;});
+  if(!filtered.length){
+    grid.innerHTML='<div class="col-span-3 py-[60px] text-center font-[Montserrat] text-[14px] text-[#E7E7E7]/30">No classes found for this filter.</div>';
+    return;
+  }
+  filtered.forEach(function(item,i){
+    var isToday=item.date.toDateString()===now.toDateString();
+    var tomorrow=new Date(today);tomorrow.setDate(today.getDate()+1);
+    var isTomorrow=item.date.toDateString()===tomorrow.toDateString();
+    var label=isToday?'Today':isTomorrow?'Tomorrow':DAYS_L[item.dow];
+    var dateStr=MONTHS[item.date.getMonth()]+' '+item.date.getDate();
+    var card=document.createElement('div');
+    card.className='upcoming-card card-enter border '+(isToday?'border-[#CC1414]/50':'border-white/[.07]')+' bg-[#0C0C14] p-[22px] flex flex-col gap-[14px]';
+    card.style.transitionDelay=(i*0.03)+'s';
+    card.innerHTML=
+      '<div class="flex items-start justify-between gap-[10px]">'
+      +'<div>'
+      +'<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase mb-[3px]" style="color:'+tC(item.c.tag)+'">'+label+'</div>'
+      +'<div class="font-[Oswald] font-bold text-[20px] uppercase text-white leading-none">'+item.c.type+'</div>'
+      +'</div>'
+      +(isToday?'<div class="font-[Teko] font-semibold text-[10px] tracking-[2px] uppercase bg-[#CC1414] px-[7px] py-[3px] text-white flex-shrink-0">Today</div>':'')
+      +'</div>'
+      +'<div class="flex items-center gap-[14px] pt-[4px] border-t border-white/[.05]">'
+      +'<div><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mb-[1px]">Time</div><div class="font-[Teko] font-semibold text-[15px] text-white">'+item.c.time+'</div></div>'
+      +'<div class="w-[1px] h-[28px] bg-white/10"></div>'
+      +'<div><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mb-[1px]">Duration</div><div class="font-[Teko] font-semibold text-[15px] text-white">'+item.c.dur+'</div></div>'
+      +'<div class="w-[1px] h-[28px] bg-white/10"></div>'
+      +'<div><div class="font-[Montserrat] text-[11px] text-[#E7E7E7]/35 mb-[1px]">Spots</div><div class="font-[Teko] font-semibold text-[15px] text-white">'+item.c.spots+'</div></div>'
+      +'</div>'
+      +'<div class="flex items-center justify-between pt-[4px]">'
+      +'<div class="font-[Montserrat] text-[12px] text-[#E7E7E7]/30">'+dateStr+'</div>'
+      +'<a href="#" class="font-[Teko] font-semibold text-[13px] tracking-[1px] uppercase text-[#CC1414] hover:text-white transition-colors inline-flex items-center gap-[5px]">Book <i class="fa-solid fa-arrow-right text-[10px]"></i></a>'
+      +'</div>';
+    grid.appendChild(card);
+    // staggered entrance
+    requestAnimationFrame(function(el,delay){return function(){setTimeout(function(){el.classList.add('card-in');},delay);};}(card,20+i*35));
+  });
+}
+buildUpcoming();
+
+// ─── FILTER ──────────────────────────────────────────────────────────────
+function filterUpcoming(f){
+  activeFilter=f;
+  ['all','group','onramp','open'].forEach(function(id){document.getElementById('f-'+id).classList.remove('active');});
+  document.getElementById('f-'+f).classList.add('active');
+  buildUpcoming();
+}
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────────────────
+(function(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.08});
+  document.querySelectorAll('.sr').forEach(function(el){obs.observe(el);});
+})();
+</script>
+</body>
+</html>
