@@ -128,7 +128,7 @@
 <section class="bg-[#0C0C14] py-[60px] lg:py-[80px]">
 	<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
 		<div class="sr font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[28px]">Featured Article</div>
-		<a href="learn.html" class="group block">
+		<a href="article-outdoor-mental-toughness.html" class="group block">
 			<div class="grid lg:grid-cols-[1fr_480px] gap-[0] bg-[#01010F] border border-white/[.07] hover:border-[#CC1414]/40 transition-colors overflow-hidden">
 				<!-- image side -->
 				<div class="relative overflow-hidden h-[320px] lg:h-auto" style="clip-path:none">
@@ -496,7 +496,6 @@
 var ARTICLES = [
   { cat:'training', icon:'fa-dumbbell', title:'The 5 CrossFit Movements Every Beginner Needs to Master First', excerpt:'Before you touch a barbell, these five patterns will determine your ceiling. Nail them now and everything else accelerates. Skip them and you will eventually pay the price.', read:'6 min', date:'May 2026', img:'wall-aaron3.png' },
   { cat:'nutrition', icon:'fa-apple-whole', title:'What to Eat Before a 6AM CrossFit Class Without Feeling Like Death', excerpt:'Training fasted works for some people. For most, it doesn\'t. Here\'s a simple framework for pre-workout nutrition that keeps your performance up without wrecking your stomach.', read:'5 min', date:'Apr 2026', img:'wall-aplus1.png' },
-  { cat:'recovery', icon:'fa-bed', title:'Sleep Is Training: Why 7 Hours Matters More Than an Extra Session', excerpt:'The session you skip to sleep is almost always better for your adaptation than the session you push through on four hours. Here\'s the physiology that makes this non-negotiable.', read:'7 min', date:'Apr 2026', img:'wall-community.png' },
   { cat:'mindset', icon:'fa-brain', title:'The Psychology of Showing Up: Why Consistency Beats Motivation Every Time', excerpt:'Motivation is a feeling. Feelings are unreliable. The athletes who make the biggest jumps aren\'t more motivated—they\'ve just removed the decision. This is how you do that.', read:'6 min', date:'Mar 2026', img:'wall-community3.png' },
   { cat:'training', icon:'fa-dumbbell', title:'How to Read a CrossFit WOD (And Actually Understand What You\'re Walking Into)', excerpt:'AMRAP, EMOM, RFT—the abbreviations can feel like another language. This quick reference breaks down every format you\'ll see on the board, with pacing strategy for each.', read:'4 min', date:'Mar 2026', img:'wall-aaron5.png' },
   { cat:'nutrition', icon:'fa-apple-whole', title:'Protein: How Much You Actually Need and the Simplest Ways to Hit It', excerpt:'Most people eating "enough protein" are eating 60% of what their training demands. No complicated macros—just a realistic framework based on your bodyweight and output.', read:'5 min', date:'Feb 2026', img:'wall-apluss.png' },
@@ -523,7 +522,7 @@ function renderCards(){
   filtered.forEach(function(a, i){
     var delay = (i%3)*0.08;
     var card = document.createElement('a');
-    card.href = 'book.html';
+    card.href = a.href || 'book.html';
     card.className = 'art-card block bg-[#0C0C14] border border-white/[.07] overflow-hidden opacity-0 translate-y-[20px]';
     card.style.transitionDelay = delay+'s';
     card.style.transition = 'border-color .2s, transform .2s, opacity .5s '+delay+'s, transform .5s '+delay+'s';

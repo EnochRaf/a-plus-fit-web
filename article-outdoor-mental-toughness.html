@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Why Training Outdoors Builds Mental Toughness Faster Than Any Gym — A Plus Fit</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@200..700&family=Teko:wght@300..700&family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://ajax.cdnjs.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="css/all.css">
+	<style>
+		/* reading progress */
+		#read-progress{position:fixed;top:0;left:0;height:3px;background:#CC1414;z-index:9999;width:0%;transition:width .1s linear;pointer-events:none}
+
+		/* scroll reveal */
+		.sr{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+		.sr.up{opacity:1;transform:none}
+		.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+		/* article typography */
+		.prose h2{
+			font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,4vw,32px);
+			text-transform:uppercase;color:#fff;line-height:1.05;
+			margin-top:52px;margin-bottom:18px;
+			padding-bottom:12px;border-bottom:2px solid rgba(204,20,20,.3);
+		}
+		.prose h3{
+			font-family:'Teko',sans-serif;font-weight:600;font-size:20px;
+			text-transform:uppercase;letter-spacing:1px;color:#CC1414;
+			margin-top:36px;margin-bottom:10px;
+		}
+		.prose p{
+			font-family:'Montserrat',sans-serif;font-size:15px;font-weight:500;
+			line-height:1.85;color:rgba(231,231,231,.72);
+			margin-bottom:20px;
+		}
+		.prose p strong{color:#fff;font-weight:600}
+		.prose ul,.prose ol{margin-bottom:20px;padding-left:0;list-style:none}
+		.prose ul li,.prose ol li{
+			font-family:'Montserrat',sans-serif;font-size:15px;font-weight:500;
+			line-height:1.8;color:rgba(231,231,231,.72);
+			padding:6px 0 6px 22px;position:relative;border-bottom:1px solid rgba(204,20,20,.1);
+		}
+		.prose ul li::before{
+			content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+			width:6px;height:6px;border-radius:50%;background:#CC1414;
+		}
+		.prose ol{counter-reset:li}
+		.prose ol li::before{
+			content:counter(li);counter-increment:li;
+			position:absolute;left:0;top:7px;
+			font-family:'Teko',sans-serif;font-weight:700;font-size:15px;color:#CC1414;
+		}
+		.prose ul li strong,.prose ol li strong{color:#fff;font-weight:600}
+		.prose hr{border:none;border-top:1px solid rgba(204,20,20,.2);margin:40px 0}
+
+		/* blockquote — inline CTA style */
+		.prose blockquote{
+			background:rgba(204,20,20,.07);
+			border-left:3px solid #CC1414;
+			padding:20px 24px;margin:28px 0;
+		}
+		.prose blockquote p{margin-bottom:0;color:rgba(231,231,231,.85)}
+		.prose blockquote strong{color:#fff}
+		.prose blockquote a{color:#CC1414;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(204,20,20,.4)}
+		.prose blockquote a:hover{color:#fff;border-color:#fff}
+
+		/* inline link */
+		.prose a{color:#CC1414;text-decoration:none;border-bottom:1px solid rgba(204,20,20,.35);transition:color .15s,border-color .15s}
+		.prose a:hover{color:#fff;border-color:#fff}
+		/* CTA buttons inside prose — must override .prose a color */
+		.prose .cta-btn,
+		.prose .cta-btn:hover{color:#fff !important;border-bottom:none !important}
+		/* blockquote links — white on dark red bg */
+		.prose blockquote a{color:#fff !important;border-bottom-color:rgba(255,255,255,.35) !important}
+		.prose blockquote a:hover{color:#E7E7E7 !important}
+
+		/* pull quote */
+		.pull-quote{
+			font-family:'Oswald',sans-serif;font-weight:700;
+			font-size:clamp(20px,3.5vw,28px);text-transform:uppercase;
+			line-height:1.15;color:#fff;
+			border-top:2px solid #CC1414;border-bottom:2px solid #CC1414;
+			padding:20px 0;margin:36px 0;text-align:center;
+		}
+		.pull-quote span{color:#CC1414}
+
+		/* section divider label */
+		.section-cta{
+			background:#0C0C14;border:1px solid rgba(204,20,20,.3);
+			padding:28px 32px;margin:36px 0;
+		}
+
+		/* TL;DR box */
+		.tldr{background:#0C0C14;border-left:4px solid #CC1414;padding:24px 28px;margin:40px 0}
+		.tldr-title{font-family:'Teko',sans-serif;font-weight:700;font-size:18px;letter-spacing:3px;text-transform:uppercase;color:#CC1414;margin-bottom:12px}
+
+		/* footer */
+		@keyframes footer-reveal{from{opacity:0;filter:blur(4px);transform:translateY(-8px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+		.ft-col{opacity:0}.ft-col.ft-vis{animation:footer-reveal .8s ease forwards}
+		@keyframes apf-draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+		.apf-draw-anim{animation:apf-draw 4s ease-in-out forwards;stroke-dasharray:1000;stroke-dashoffset:1000}
+	</style>
+</head>
+<body class="bg-[#01010F] text-[#E7E7E7] leading-[1.5] font-[Vazirmatn]">
+
+<div id="read-progress"></div>
+
+<!-- ══════════ NAV ════════════════════════════════════════════════════ -->
+<div class="pt-[40px]"></div>
+<div class="sticky z-50 top-0 bg-[#01010F]">
+<div class="max-w-[1320px] mx-auto px-[15px]">
+<div class="flex justify-between items-center h-[180px] font-[Teko]">
+	<div><a class="flex items-center" href="index.html"><img class="h-[160px] w-auto" src="A Plus Fit Logo.png" alt=""></a></div>
+	<div class="hidden xl:block">
+		<div class="flex text-[20px] font-medium">
+			<div class="group relative"><a href="community.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">ABOUT</div></div></div></a></div>
+			<div class="group relative"><a href="programs.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">PROGRAMS</div></div></div></a></div>
+			<div class="group relative"><a href="schedule.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">SCHEDULE</div></div></div></a></div>
+			<div class="group relative"><a href="community.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s]">COMMUNITY</div></div></div></a></div>
+			<div class="group relative"><a href="learn.html" class="relative block"><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.06s] delay-0 transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.02s] delay-[.04s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border-r border-[#CC1414]/40 group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s]"></div><div class="relative h-[180px] flex items-center px-[20px]"><div class="relative"><div class="absolute inset-0 group-hover:text-[#CC1414] group-[:not(:hover)]:scale-y-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">LEARN</div><div class="group-hover:scale-y-0 delay-[.06s] transition-all duration-[.3s] text-[#CC1414]">LEARN</div></div></div></a></div>
+		</div>
+	</div>
+	<div class="flex items-center">
+		<a class="xl:hidden group relative" data-c-toggle="a" href="#offcanvas"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] w-[54px] flex justify-center items-center"><i class="fa-solid fa-bars"></i></div></a>
+		<div class="xl:hidden md:px-[20px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="book.html"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[54px] px-[24px] flex justify-center items-center"><div class="relative"><div class="absolute inset-0 group-[:not(:hover)]:scale-y-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div><div class="group-hover:scale-y-0 delay-[.3s] transition-all duration-[.3s]">BOOK FREE CLASS</div></div></div></a>
+		<div class="hidden md:block px-[20px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="https://www.facebook.com/a.plus.fit.2025" target="_blank"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-facebook-f"></i></div></a>
+		<div class="hidden md:block px-[5px] border-t border-[#CC1414]"></div>
+		<a class="hidden md:block group relative" href="https://www.instagram.com/a_plus.fit/" target="_blank"><div class="absolute inset-0 bg-[#CC1414] group-hover:scale-y-0 delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#E86060] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div><div class="absolute inset-0 bg-[#CC1414]/10 border border-[#CC1414] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div><div class="relative h-[30px] w-[30px] flex justify-center items-center text-[12px]"><i class="fa-brands fa-instagram"></i></div></a>
+	</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════ ARTICLE HERO ══════════════════════════════════════════ -->
+<section class="relative bg-[#01010F] pt-[60px] pb-[0] overflow-hidden">
+	<div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(204,20,20,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,20,20,.04) 1px,transparent 1px);background-size:80px 80px;"></div>
+	<div class="absolute top-0 right-0 w-[3px] h-full bg-[#CC1414]/30 pointer-events-none"></div>
+	<div class="max-w-[800px] mx-auto px-[30px] lg:px-[60px] relative z-10">
+
+		<!-- breadcrumb -->
+		<div class="sr flex items-center gap-[8px] font-[Teko] text-[13px] tracking-[3px] uppercase text-[#E7E7E7]/30 mb-[36px]">
+			<a href="index.html" class="hover:text-[#CC1414] transition-colors">Home</a>
+			<span class="text-[#CC1414]">/</span>
+			<a href="learn.html" class="hover:text-[#CC1414] transition-colors">Learn</a>
+			<span class="text-[#CC1414]">/</span>
+			<span class="text-[#CC1414]">Article</span>
+		</div>
+
+		<!-- category + read time -->
+		<div class="sr d1 flex flex-wrap items-center gap-[12px] mb-[20px]">
+			<span class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase px-[10px] py-[4px] bg-[#CC1414]/15 text-[#CC1414]">Training</span>
+			<span class="font-[Montserrat] text-[13px] text-[#E7E7E7]/35">8 min read</span>
+			<span class="text-[#E7E7E7]/20">·</span>
+			<span class="font-[Montserrat] text-[13px] text-[#E7E7E7]/35">May 2026</span>
+		</div>
+
+		<!-- headline -->
+		<h1 class="sr d2 font-[Oswald] font-bold text-[36px] md:text-[52px] lg:text-[60px] uppercase text-white leading-[.97] mb-[32px]">Why Training Outdoors Builds <span class="text-[#CC1414]">Mental Toughness</span> Faster Than Any Gym</h1>
+
+		<!-- author row -->
+		<div class="sr d3 flex items-center gap-[14px] pb-[32px] border-b border-[#CC1414]/20 mb-[0]">
+			<img src="aaron.png" alt="Aaron Hester" class="w-[48px] h-[48px] rounded-full object-cover object-top flex-shrink-0 border-2 border-[#CC1414]/40">
+			<div>
+				<div class="font-[Teko] font-semibold text-[16px] uppercase text-white leading-none tracking-[1px]">Aaron Hester</div>
+				<div class="font-[Montserrat] text-[12px] text-[#E7E7E7]/40 mt-[3px]">NASM-Certified · Head Coach, A Plus Fit</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<!-- ══════════ ARTICLE BODY ══════════════════════════════════════════ -->
+<article class="bg-[#01010F] py-[60px] lg:py-[80px]">
+	<div class="max-w-[720px] mx-auto px-[30px] lg:px-[60px]">
+		<div class="prose">
+
+			<p class="font-[Montserrat] font-medium text-[17px] md:text-[18px] leading-[1.85] text-[#E7E7E7]/80 mb-[28px]">There's a reason military training happens outside.</p>
+
+			<p>When the environment is unpredictable—heat, cold, wind, rain—your brain learns to adapt in ways a climate-controlled gym never forces it to. This is the edge outdoor CrossFit gives you that no membership fee can replicate.</p>
+
+			<blockquote>
+				<p><strong>New to outdoor training?</strong> Your first class with us is free. <a href="book.html"><strong>Book your intro at A Plus Fit →</strong></a></p>
+			</blockquote>
+
+			<h2>The hidden variable nobody talks about</h2>
+
+			<p>Most people pick a gym based on three things: location, price, and equipment. Almost nobody asks the question that matters more than all three combined:</p>
+
+			<p><strong>What is this environment teaching me?</strong></p>
+
+			<p>Every workout is actually two workouts at once. The physical one—the squats, the burpees, the conditioning piece—and the mental one. The mental one is the workout nobody programs but everyone leaves with. And the environment you train in is the strength coach for that second workout.</p>
+
+			<p>Climate-controlled, mirrored, music-curated, perfect-temperature indoor gyms are designed to <em>remove</em> friction. That's a great experience. It's a terrible classroom.</p>
+
+			<p>When you train outside, the environment refuses to be removed. The sun is hot. The wind is loud. Your feet feel the ground. Your body has to negotiate with conditions you didn't choose. And that negotiation—repeated three or four times a week—becomes a kind of strength that follows you home.</p>
+
+			<hr>
+
+			<h2>What "mental toughness" actually means</h2>
+
+			<p>The phrase gets thrown around like it means biting through a mouth guard and screaming "let's go." It doesn't.</p>
+
+			<div class="pull-quote">Mental toughness is one thing: <span>the ability to keep working at high quality when conditions get worse.</span></div>
+
+			<p>That's it. Not when conditions are good. When conditions get worse.</p>
+
+			<p>Indoor gyms train you for one set of conditions. Outdoor gyms train you for whatever the day gives you. Over a year, the second one builds an athlete who can deliver—even on the day everything feels off.</p>
+
+			<h3>The four ways outdoor training accelerates this</h3>
+
+			<ol>
+				<li><strong>Thermal stress.</strong> Training in heat or cold forces your nervous system to manage two challenges at once: the workout and the temperature. Your body learns to direct effort efficiently when comfort is not available. This skill carries directly into work, parenting, hard conversations, and every life situation where you have to perform without comfort.</li>
+				<li><strong>Sensory load.</strong> Outside, you're aware of the wind, the sounds, the people walking by. Indoor gyms minimize this. Outdoor training builds a stronger internal filter—you learn to focus inward while staying aware of your environment. That's executive function. That's leadership.</li>
+				<li><strong>Visible accountability.</strong> When you train where people can see you, you don't get to hide. Not from the coach. Not from yourself. The crew watches each other. So do strangers. Showing up where everyone can see you—and doing the work anyway—rewires how you think about being observed.</li>
+				<li><strong>Real terrain.</strong> Concrete is harder than rubber flooring. Grass is uneven. Wind affects your barbell path. Your body builds proprioception faster outside because the variables aren't sanitized. Translation: better balance, better movement quality, fewer injuries down the road.</li>
+			</ol>
+
+			<hr>
+
+			<h2>What the science says (briefly)</h2>
+
+			<p>I'm a coach, not a researcher. But the research is consistent enough to call out three findings.</p>
+
+			<p><strong>Studies on "green exercise"</strong> (training in natural environments) show measurable improvements in mood, perceived effort, and adherence compared to indoor exercise. Translation: you feel like you worked less hard, but you actually worked at least as hard or harder.</p>
+
+			<p><strong>Cold exposure research</strong> shows brief cold stress activates norepinephrine, which sharpens focus for hours afterward. Outdoor winter training gets you this for free, every session, without needing an ice bath.</p>
+
+			<p><strong>Sun exposure</strong> (with sensible limits) is the single most reliable trigger for vitamin D synthesis and circadian regulation. Most adults are deficient in both. Outdoor training fixes both without changing a single thing about your diet or supplements.</p>
+
+			<p>You don't have to believe any of that. Just train outside for 90 days and check how you feel. The body tells the truth.</p>
+
+			<!-- Mid-article CTA -->
+			<div class="section-cta">
+				<div class="font-[Teko] font-bold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">Train with Aaron</div>
+				<div class="font-[Oswald] font-bold text-[22px] uppercase text-white mb-[12px]">Reading about it is fine.<br>Doing it is better.</div>
+				<p class="font-[Montserrat] text-[14px] text-[#E7E7E7]/60 leading-[1.7] mb-[20px]">Come train outside with a NASM-certified coach and a crew that will not let you quit. Your first class at A Plus Fit is on us. No pressure. No commitment. No pushy sales pitch.</p>
+				<a href="book.html" class="cta-btn group/cb relative inline-flex items-center gap-[10px] font-[Teko] font-semibold text-[16px] tracking-[1px] uppercase bg-[#CC1414] hover:bg-[#E86060] text-white px-[24px] py-[12px] transition-colors">
+					Book Your Free Intro Class <i class="fa-solid fa-arrow-right text-[12px]"></i>
+				</a>
+			</div>
+
+			<h2>The objections (and what's actually true)</h2>
+
+			<p><strong>"It's too hot in summer."</strong><br>We start earlier. We hydrate aggressively. We scale intensity. You'll be wet, but you'll be safe. The first 10 days are the worst. After that, your body adapts and you stop noticing the heat the way you did. Real talk: most of our members say summer is their favorite training season after their first one.</p>
+
+			<p><strong>"It's too cold in winter."</strong><br>Layers, gloves, hat. We move faster between movements. The warm-up gets longer and more deliberate. By the third week of consistent cold training, your tolerance jumps significantly—and your indoor friends will start asking why you're sleeping better.</p>
+
+			<p><strong>"What about rain?"</strong><br>We have cover. We have a plan. We rarely cancel. Light rain is fine—your body actually performs well in cool, damp conditions. Heavy weather means we adjust the workout, not skip it.</p>
+
+			<p><strong>"I have allergies / asthma / a condition."</strong><br>Talk to your doctor. Then talk to me. We've coached athletes through almost every situation, and the answer is almost never "don't train." It's usually "train smarter."</p>
+
+			<hr>
+
+			<h2>How to start: the 30-day playbook</h2>
+
+			<p>If you're new to outdoor training, here's the playbook we use at A Plus Fit.</p>
+
+			<h3>Week 1: Show up.</h3>
+			<p>That's the whole assignment. Don't worry about output, weight, or pace. Just complete every session you signed up for. Your only job is to teach your nervous system that this is a place you go now. Identity first. Performance later.</p>
+
+			<h3>Week 2: Pay attention to recovery.</h3>
+			<p>Outdoor training puts a different demand on your system than indoor work. Three rules:</p>
+			<ul>
+				<li><strong>Drink more water than you think you need.</strong> Add electrolytes in heat. Add them again on rest days.</li>
+				<li><strong>Eat more protein.</strong> Aim for roughly 0.8–1g per pound of bodyweight per day.</li>
+				<li><strong>Sleep more.</strong> Outdoor athletes need an extra 30–60 minutes for the first month while the body adapts. Take it.</li>
+			</ul>
+			<p>If you're sore for four days straight, you're under-recovering, not training too hard.</p>
+
+			<h3>Week 3: Layer correctly.</h3>
+			<p>Wear less than feels comfortable when you arrive. You'll be hot inside of two minutes. Dress for the temperature you'll be at minute ten, not minute zero.</p>
+			<p>A simple rule: if you're warm walking from the car to the rig, you're overdressed. You should feel slightly cold for the first 60 seconds. Then the body takes over.</p>
+
+			<h3>Week 4: Notice the shift.</h3>
+			<p>Around week three or four, something flips. Mornings feel easier. Cold doesn't bother you the same way. Hard things feel less hard. That's the adaptation we're after. That's the mental toughness compounding.</p>
+			<p>This is also when most people quit—right before the reward shows up. Don't.</p>
+
+			<hr>
+
+			<h2>What I coach in every class (the technical layer)</h2>
+
+			<p>Outdoor coaching is different from indoor coaching. Three things I emphasize that you won't get in most boxes:</p>
+
+			<h3>1. Foot placement.</h3>
+			<p>On concrete or uneven ground, where your foot lands matters more than indoors. I'll cue this constantly during squats, lunges, and Olympic lifts. Get this right and your knees and ankles thank you for the next 30 years.</p>
+			<p>The cue I use most: <em>root through the tripod</em>—big toe, little toe, heel. Three points of pressure. If one lifts, the lift is leaking power and risking the joint.</p>
+
+			<h3>2. Breathing patterns.</h3>
+			<p>Wind and heat affect breathing. I teach <strong>nasal breathing during warm-up and active recovery</strong>, and mouth breathing only when intensity demands it. Most athletes default to mouth-breathing everything and gas out faster than they need to.</p>
+			<p>A quick test: if you can't nose-breathe during your warm-up, the warm-up is too hard. Slow it down. Train the nose. Save the mouth for the metcon.</p>
+
+			<h3>3. Recovery between sets.</h3>
+			<p>Outdoors, the recovery interval matters more because environmental load adds to the workout. I'll often program longer rest periods than an indoor coach would. The work stays high quality. The total stress stays manageable.</p>
+			<p>A small thing that changes the whole class: when you rest, <em>rest</em>. Don't pace. Don't check your phone. Sit down if you need to. Steal the parasympathetic state back so you can spend it on the next round.</p>
+
+			<hr>
+
+			<h2>The community part</h2>
+
+			<p>I have to mention this because it's half the reason outdoor training works.</p>
+
+			<p>When you train outside, the community is <strong>visible</strong>. You can see every face. There's nowhere to hide behind a machine or a mirror. The crew watches each other lift, struggle, finish. That visibility creates accountability that no app and no contract can replicate.</p>
+
+			<p>People in our box notice when someone's been gone. They text. They show up at the next class to find out what happened. This is what "stronger together" means when you take the slogan off the wall and put it into practice.</p>
+
+			<div class="pull-quote">Mental toughness isn't only built by suffering alone. It's also built by <span>suffering next to people who refuse to let you quit.</span></div>
+
+			<hr>
+
+			<h2>A few honest things to expect</h2>
+
+			<p>I want to be straight with you about what the first month feels like, because most marketing skips this part.</p>
+
+			<ul>
+				<li><strong>You will feel sore in places you didn't know existed.</strong> This passes.</li>
+				<li><strong>You will feel out of place for the first week.</strong> Everyone does. We notice. We pull you in.</li>
+				<li><strong>You will probably want to quit on day 14.</strong> This is the most important day. Show up anyway. Day 15 is where the change starts.</li>
+				<li><strong>You will sleep better almost immediately.</strong> This is the first dividend.</li>
+				<li><strong>You will start carrying yourself differently within a month.</strong> People will notice before you do.</li>
+			</ul>
+
+			<p>This isn't motivational fluff. It's the pattern we've watched play out with hundreds of athletes.</p>
+
+			<hr>
+
+			<h2>So here's the offer</h2>
+
+			<p>If you've been training indoors for years and you can feel the plateau—not in your strength numbers, but in <em>yourself</em>—try this for 30 days.</p>
+
+			<p>Come to A Plus Fit. Train outside, with a coach, with a crew, three or four times a week. We'll handle the programming, the movement coaching, and the environment. You handle the showing up.</p>
+
+			<p>At day 30, decide what you think.</p>
+
+			<p>Your first class is on us. No pressure, no commitment, no pushy sales pitch. Just show up. We handle the rest.</p>
+
+			<!-- Final CTA -->
+			<div class="section-cta">
+				<div class="font-[Teko] font-bold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[10px]">Ready?</div>
+				<div class="font-[Oswald] font-bold text-[28px] uppercase text-white mb-[16px]">Lock in your free intro class with Aaron.</div>
+				<div class="flex flex-col sm:flex-row gap-[12px] items-start sm:items-center mb-[16px]">
+					<a href="book.html" class="cta-btn inline-flex items-center gap-[10px] font-[Teko] font-semibold text-[16px] tracking-[1px] uppercase bg-[#CC1414] hover:bg-[#E86060] text-white px-[28px] py-[14px] transition-colors">
+						Book Free Class <i class="fa-solid fa-arrow-right text-[12px]"></i>
+					</a>
+					<a href="schedule.html" class="cta-btn inline-flex items-center gap-[8px] font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#E7E7E7]/50 hover:text-white transition-colors border border-white/20 hover:border-white/40 px-[20px] py-[14px]">
+						View Schedule
+					</a>
+				</div>
+				<p class="font-[Montserrat] text-[12px] text-[#E7E7E7]/30 m-0">Outdoor CrossFit · NASM-certified coaching · Stronger together</p>
+			</div>
+
+			<!-- TL;DR -->
+			<div class="tldr">
+				<div class="tldr-title">TL;DR</div>
+				<ul class="!mb-0">
+					<li>Outdoor training builds mental toughness faster because the environment refuses to be controlled.</li>
+					<li>"Mental toughness" means working at high quality when conditions get worse.</li>
+					<li>Four mechanisms drive the adaptation: thermal stress, sensory load, visible accountability, real terrain.</li>
+					<li>The first 10 days are the hardest. Most people quit on day 14, right before the shift.</li>
+					<li>Recovery matters more outdoors. Drink, eat protein, sleep an extra 30 minutes.</li>
+					<li>The community is half the magic. Visibility creates accountability.</li>
+					<li>Your first class at A Plus Fit is free. <a href="book.html">Book it here.</a></li>
+				</ul>
+			</div>
+
+		</div><!-- /prose -->
+
+		<!-- author bio -->
+		<div class="mt-[56px] pt-[40px] border-t border-[#CC1414]/20 flex items-start gap-[20px]">
+			<div class="w-[56px] h-[56px] rounded-full bg-[#CC1414] flex items-center justify-center flex-shrink-0">
+				<span class="font-[Teko] font-bold text-[18px] text-white leading-none">A</span>
+			</div>
+			<div>
+				<div class="font-[Teko] font-bold text-[18px] uppercase text-white tracking-[1px] mb-[4px]">Aaron Hester</div>
+				<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[10px]">NASM-Certified · Head Coach &amp; Founder, A Plus Fit</div>
+				<p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/55 leading-[1.7] m-0">Aaron is the NASM-certified founder and head coach of A Plus Fit, an outdoor CrossFit community where athletes train under the sky with a coach who actually watches every rep. <strong class="text-white/80">Stronger together.</strong></p>
+			</div>
+		</div>
+
+		<!-- read next -->
+		<div class="mt-[56px] pt-[40px] border-t border-[#CC1414]/20">
+			<div class="font-[Teko] font-semibold text-[13px] tracking-[4px] uppercase text-[#CC1414] mb-[20px]">Read Next</div>
+			<div class="grid sm:grid-cols-3 gap-[12px]">
+				<a href="learn.html" class="group bg-[#0C0C14] border border-white/[.07] hover:border-[#CC1414]/40 p-[18px] transition-all hover:transform hover:-translate-y-[2px]">
+					<div class="font-[Teko] font-semibold text-[11px] tracking-[2px] uppercase text-[#CC1414] mb-[6px]">Training</div>
+					<div class="font-[Oswald] font-bold text-[15px] uppercase text-white leading-tight group-hover:text-[#CC1414] transition-colors">How to scale a CrossFit workout without losing the stimulus</div>
+				</a>
+				<a href="learn.html" class="group bg-[#0C0C14] border border-white/[.07] hover:border-[#CC1414]/40 p-[18px] transition-all hover:transform hover:-translate-y-[2px]">
+					<div class="font-[Teko] font-semibold text-[11px] tracking-[2px] uppercase text-[#CC1414] mb-[6px]">Training</div>
+					<div class="font-[Oswald] font-bold text-[15px] uppercase text-white leading-tight group-hover:text-[#CC1414] transition-colors">Three squat fixes that take five minutes</div>
+				</a>
+				<a href="learn.html" class="group bg-[#0C0C14] border border-white/[.07] hover:border-[#CC1414]/40 p-[18px] transition-all hover:transform hover:-translate-y-[2px]">
+					<div class="font-[Teko] font-semibold text-[11px] tracking-[2px] uppercase text-[#CC1414] mb-[6px]">Beginner</div>
+					<div class="font-[Oswald] font-bold text-[15px] uppercase text-white leading-tight group-hover:text-[#CC1414] transition-colors">The first 30 days of CrossFit, day by day</div>
+				</a>
+			</div>
+		</div>
+
+	</div>
+</article>
+
+<!-- ══════════ FOOTER ════════════════════════════════════════════════ -->
+<footer class="relative overflow-hidden mx-[24px] mb-[24px] rounded-[24px] bg-[#0C0C14]">
+	<div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-white/20 blur-[2px] pointer-events-none"></div>
+	<div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(35% 200px at 50% 0%,rgba(204,20,20,.10),transparent);"></div>
+	<div class="relative z-10 max-w-[1320px] mx-auto px-[30px] lg:px-[60px] pt-[60px] lg:pt-[72px] pb-[40px]">
+		<div class="grid gap-[48px] xl:grid-cols-3 xl:gap-[64px]">
+			<div class="ft-col space-y-[20px]"><a href="index.html"><img class="h-[100px] w-auto" src="A Plus Fit Logo.png" alt="A Plus Fit"></a><p class="font-[Montserrat] text-[13px] text-[#E7E7E7]/40 leading-[1.8] max-w-[240px]">Outdoor CrossFit coached by Aaron. Real training. Real community. Real air.</p><p class="font-[Montserrat] text-[12px] text-[#E7E7E7]/20">&copy; 2026 A Plus Fit. All rights reserved.</p></div>
+			<div class="grid grid-cols-2 gap-[32px] md:grid-cols-4 xl:col-span-2">
+				<div class="ft-col" style="animation-delay:.10s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Train</h3><ul class="space-y-[14px] list-none p-0"><li><a href="programs.html#group-crossfit" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Group CrossFit</a></li><li><a href="programs.html#beginner-onramp" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Beginner On-Ramp</a></li><li><a href="programs.html#personal-programming" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Personal Programming</a></li><li><a href="programs.html#open-gym" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Open Gym</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.20s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Company</h3><ul class="space-y-[14px] list-none p-0"><li><a href="community.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">About Aaron</a></li><li><a href="book.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Contact</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Privacy Policy</a></li><li><a href="#" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Terms of Service</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.30s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Learn</h3><ul class="space-y-[14px] list-none p-0"><li><a href="learn.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">All Articles</a></li><li><a href="book.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Free Resources</a></li><li><a href="learn.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Movement Library</a></li><li><a href="learn.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors">Newsletter</a></li></ul></div>
+				<div class="ft-col" style="animation-delay:.40s"><h3 class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[20px]">Follow Us</h3><ul class="space-y-[14px] list-none p-0"><li><a href="https://www.instagram.com/a_plus.fit/" target="_blank" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-instagram w-[14px]"></i>Instagram</a></li><li><a href="https://www.facebook.com/a.plus.fit.2025" target="_blank" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-facebook-f w-[14px]"></i>Facebook</a></li><li><a href="community.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-youtube w-[14px]"></i>YouTube</a></li><li><a href="community.html" class="font-[Montserrat] text-[13px] text-[#E7E7E7]/50 hover:text-white transition-colors inline-flex items-center gap-[8px]"><i class="fa-brands fa-tiktok w-[14px]"></i>TikTok</a></li></ul></div>
+			</div>
+		</div>
+	</div>
+	<div class="relative z-10 hidden lg:flex" style="height:28rem;margin-top:-4rem;margin-bottom:-8rem;">
+		<svg id="apf-svg" width="100%" height="100%" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" class="select-none cursor-pointer uppercase">
+			<defs><linearGradient id="apfGrad" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="300" y2="50"><stop offset="0%" stop-color="#eab308"/><stop offset="25%" stop-color="#ef4444"/><stop offset="50%" stop-color="#80eeb4"/><stop offset="75%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient><radialGradient id="apfReveal" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%"><stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="black"/></radialGradient><mask id="apfMask"><rect x="0" y="0" width="100%" height="100%" fill="url(#apfReveal)"/></mask></defs>
+			<text id="apf-t1" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#e5e5e5" stroke-width="0.3" style="opacity:0;transition:opacity 0.3s;">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="#CC1414" stroke-width="0.3" stroke-opacity="0.8" class="apf-draw-anim">A PLUS FIT</text>
+			<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="helvetica" font-size="34" font-weight="bold" fill="transparent" stroke="url(#apfGrad)" stroke-width="0.3" mask="url(#apfMask)">A PLUS FIT</text>
+		</svg>
+	</div>
+	<script>(function(){var svg=document.getElementById('apf-svg'),t1=document.getElementById('apf-t1'),mg=document.getElementById('apfReveal');if(svg){svg.addEventListener('mouseenter',function(){t1.style.opacity='0.7';});svg.addEventListener('mouseleave',function(){t1.style.opacity='0';mg.setAttribute('cx','50%');mg.setAttribute('cy','50%');});svg.addEventListener('mousemove',function(e){var r=svg.getBoundingClientRect();mg.setAttribute('cx',(((e.clientX-r.left)/r.width)*100).toFixed(1)+'%');mg.setAttribute('cy',(((e.clientY-r.top)/r.height)*100).toFixed(1)+'%');});}var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('ft-vis');});},{threshold:0.1});document.querySelectorAll('.ft-col').forEach(function(el){obs.observe(el);});})();</script>
+</footer>
+
+<!-- ══════════ OFFCANVAS ══════════════════════════════════════════════ -->
+<div id="offcanvas" class="group">
+	<div class="fixed z-[49] top-0 right-0 bottom-0 left-0 group-[:not([data-t='a'])]:invisible">
+		<div class="absolute inset-0 bg-[#CC1414] group-[[data-t='a']]:scale-y-0 delay-0 transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#E86060] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.4s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#01010F] group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 bg-[#CC1414]/10 group-[:not([data-t='a'])]:scale-y-0 group-[:not([data-t='a'])]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
+		<div class="absolute inset-0 flex items-center justify-center group-[:not([data-t='a'])]:scale-y-0 delay-[.3s] transition-all duration-[.3s]">
+			<div class="pt-[90px]"><div class="grid grid-cols-1 gap-[20px] w-[300px] font-[Teko] text-[20px] font-semibold tracking-[2px] uppercase">
+				<a href="index.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Home</a>
+				<a href="programs.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Programs</a>
+				<a href="schedule.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Schedule</a>
+				<a href="community.html" class="border-b border-[#CC1414]/30 pb-[16px] hover:text-[#CC1414] transition-colors">Community</a>
+				<a href="learn.html" class="border-b border-[#CC1414]/30 pb-[16px] text-[#CC1414]">Learn</a>
+				<a href="book.html" class="pb-[16px] hover:text-[#CC1414] transition-colors">Book</a>
+				<a href="book.html" class="mt-[8px] bg-[#CC1414] text-white text-center py-[14px] tracking-[2px] hover:bg-[#E86060] transition-colors">Book Free Class</a>
+			</div></div>
+		</div>
+	</div>
+</div>
+
+<script src="js/all.js"></script>
+<script>
+window.addEventListener('scroll',function(){
+	var el=document.getElementById('read-progress');
+	var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+	el.style.width=Math.min(100,(s/d)*100)+'%';
+});
+(function(){
+	var obs=new IntersectionObserver(function(entries){
+		entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target);}});
+	},{threshold:0.1});
+	document.querySelectorAll('.sr').forEach(function(el){obs.observe(el);});
+})();
+</script>
+</body>
+</html>
