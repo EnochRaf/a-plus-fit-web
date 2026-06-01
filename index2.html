@@ -65,50 +65,44 @@
   }
   .marquee-overflow { overflow:hidden !important; }
 
-  /* ── GLOW CARDS: horizontal snap carousel ────────────────────────── */
+  /* ── GLOW CARDS: full-width snap carousel ───────────────────────── */
 
-  /* 1. Reduce section vertical padding so no giant blank space */
-  .glow-cards-section { padding-top:40px !important; padding-bottom:40px !important; }
-  .glow-cards-heading { margin-bottom:28px !important; }
+  /* Section: no giant blank space */
+  .glow-cards-section { padding-top:36px !important; padding-bottom:36px !important; }
+  .glow-cards-heading { margin-bottom:24px !important; }
 
-  /* 2. Kill entrance animation so translate-y doesn't push cards down */
+  /* Outer container: hide overflow so card never bleeds off screen */
+  .glow-cards-section .max-w-\[1320px\] { overflow:hidden; }
+
+  /* Kill entrance animation completely on mobile */
   .glow-cards-grid > div {
     transform:none !important;
     opacity:1 !important;
     transition:none !important;
   }
 
-  /* 3. Carousel layout */
+  /* Carousel: full-width cards, no gap, clean snap */
   .glow-cards-grid {
     display:flex !important;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
-    gap:14px !important;
-    padding-bottom:4px;
+    gap:0 !important;
+    padding:0 !important;
     align-items:stretch;
-    /* prevent the grid column classes from fighting flex */
     grid-template-columns:unset !important;
   }
   .glow-cards-grid::-webkit-scrollbar { display:none; }
   .glow-cards-grid > div {
-    min-width:84vw !important;
-    max-width:84vw !important;
+    min-width:100% !important;
+    max-width:100% !important;
     flex-shrink:0 !important;
     scroll-snap-align:start;
   }
 
-  /* 4. Fix background-attachment:fixed inside scroll container */
-  .glow-cards-grid [data-glow] {
-    background-attachment:scroll !important;
-    height:auto !important;
-  }
-
-  /* 5. Reduce card padding on mobile so text fits */
-  .glow-cards-grid .p-\[36px\] {
-    padding:22px !important;
-  }
+  /* Reduce card inner padding on mobile */
+  .grad-card > .relative { padding:24px !important; }
 
   /* ── THE WALL: faster scroll + smaller images on mobile ─────────── */
   .wall-left  { animation-duration: 9s  !important; }
