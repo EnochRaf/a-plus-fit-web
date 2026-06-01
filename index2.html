@@ -12,7 +12,76 @@
 		<link rel="stylesheet" href="https://ajax.cdnjs.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.min.css">
 		<script src="https://cdn.tailwindcss.com"></script>
 		<link rel="stylesheet" href="css/all.css">
-	</head>
+	
+<style id="mobile-fixes">
+/* ── HERO: stacked layout on mobile (text top / image bottom) ─────── */
+@media (max-width: 767px) {
+  .hero-slide {
+    display:flex !important;
+    flex-direction:column !important;
+    min-height:100svh !important;
+    height:auto !important;
+    overflow:visible !important;
+  }
+  .hs-bg {
+    position:relative !important;
+    inset:auto !important;
+    order:2;
+    height:54vw;
+    min-height:240px;
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .hs-bg img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 30%;
+  }
+  .hs-overlay,.hs-mob-overlay { display:none !important; }
+  .hs-content {
+    order:1;
+    height:auto !important;
+    background:#01010F;
+    align-items:flex-start !important;
+    padding-top:40px;
+    padding-bottom:36px;
+  }
+
+  /* ── MARQUEE: scale down text on mobile ───────────────────────── */
+  .marquee-row {
+    font-size:15px !important;
+    gap:18px !important;
+    justify-content:flex-start !important;
+    animation:mq-scroll 18s linear infinite;
+  }
+  @keyframes mq-scroll {
+    from { transform:translateX(0); }
+    to   { transform:translateX(-50%); }
+  }
+  .marquee-overflow { overflow:hidden !important; }
+
+  /* ── GLOW CARDS: horizontal swipe carousel on mobile ─────────── */
+  .glow-cards-grid {
+    display:flex !important;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    gap:16px !important;
+    padding-bottom:8px;
+  }
+  .glow-cards-grid::-webkit-scrollbar { display:none; }
+  .glow-cards-grid > div {
+    min-width:82vw;
+    flex-shrink:0;
+    scroll-snap-align:start;
+  }
+}
+</style>
+</head>
 	<body class="bg-white text-[#01010F] text-[18px] leading-[1.5] font-[Vazirmatn]">
 		<div class="pt-[40px]"></div>
 		<div class="sticky z-50 top-0 bg-white">
@@ -188,17 +257,17 @@
 			</div>
 			<div class="hero">
 				<div class="group/s">
-					<div class="relative min-h-[100svh] md:h-[88vh] md:min-h-[580px] overflow-hidden">
-						<div class="absolute inset-0">
+					<div class="hero-slide relative min-h-[100svh] md:h-[88vh] md:min-h-[580px] overflow-hidden">
+						<div class="hs-bg absolute inset-0">
 							<div class="absolute inset-0 bg-[#E86060] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.7s] delay-[.3s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#CC1414] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.6s] delay-[.4s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#01010F] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.5s] delay-[.5s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#CC1414] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.4s] delay-[.6s] transition-all duration-[.3s]"></div>
 							<img class="absolute inset-0 w-full h-full object-cover object-[50%_45%] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.3s] delay-[.7s] transition-all duration-[.3s]" src="slide1.png" alt="">
 						</div>
-						<div class="absolute inset-0" style="background: linear-gradient(to right, #01010F 0%, #01010F 38%, rgba(1,1,15,0.75) 58%, rgba(1,1,15,0.15) 80%, transparent 100%)"></div>
-						<div class="absolute inset-0 pointer-events-none md:hidden" style="background:linear-gradient(to bottom,rgba(1,1,15,0) 0%,rgba(1,1,15,0.65) 50%,rgba(1,1,15,0.92) 80%,#01010F 100%)"></div>
-						<div class="relative h-full flex items-end md:items-center">
+						<div class="hs-overlay absolute inset-0" style="background: linear-gradient(to right, #01010F 0%, #01010F 38%, rgba(1,1,15,0.75) 58%, rgba(1,1,15,0.15) 80%, transparent 100%)"></div>
+						<div class="hs-mob-overlay absolute inset-0 pointer-events-none md:hidden" style="background:linear-gradient(to bottom,rgba(1,1,15,0) 0%,rgba(1,1,15,0.65) 50%,rgba(1,1,15,0.92) 80%,#01010F 100%)"></div>
+						<div class="hs-content relative h-full flex items-end md:items-center">
 							<div class="max-w-[1320px] w-full mx-auto px-[30px] lg:px-[60px] pb-[48px] md:pb-0">
 								<div class="max-w-[600px]">
 									<div class="font-bold uppercase font-[Oswald]">
@@ -499,17 +568,17 @@
 					</div>
 				</div>
 				<div class="group/s">
-					<div class="relative min-h-[100svh] md:h-[88vh] md:min-h-[580px] overflow-hidden">
-						<div class="absolute inset-0">
+					<div class="hero-slide relative min-h-[100svh] md:h-[88vh] md:min-h-[580px] overflow-hidden">
+						<div class="hs-bg absolute inset-0">
 							<div class="absolute inset-0 bg-[#E86060] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.7s] delay-[.3s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#CC1414] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.6s] delay-[.4s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#01010F] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.5s] delay-[.5s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#CC1414] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.4s] delay-[.6s] transition-all duration-[.3s]"></div>
 							<img class="absolute inset-0 w-full h-full object-cover object-[50%_30%] brightness-110 contrast-110 group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.3s] delay-[.7s] transition-all duration-[.3s]" src="slide2.png" alt="">
 						</div>
-						<div class="absolute inset-0" style="background: linear-gradient(to right, #01010F 0%, #01010F 36%, rgba(1,1,15,0.15) 50%, transparent 64%, transparent 100%)"></div>
-						<div class="absolute inset-0 pointer-events-none md:hidden" style="background:linear-gradient(to bottom,rgba(1,1,15,0) 0%,rgba(1,1,15,0.65) 50%,rgba(1,1,15,0.92) 80%,#01010F 100%)"></div>
-						<div class="relative h-full flex items-end md:items-center">
+						<div class="hs-overlay absolute inset-0" style="background: linear-gradient(to right, #01010F 0%, #01010F 36%, rgba(1,1,15,0.15) 50%, transparent 64%, transparent 100%)"></div>
+						<div class="hs-mob-overlay absolute inset-0 pointer-events-none md:hidden" style="background:linear-gradient(to bottom,rgba(1,1,15,0) 0%,rgba(1,1,15,0.65) 50%,rgba(1,1,15,0.92) 80%,#01010F 100%)"></div>
+						<div class="hs-content relative h-full flex items-end md:items-center">
 							<div class="max-w-[1320px] w-full mx-auto px-[30px] lg:px-[60px] pb-[48px] md:pb-0">
 								<div class="max-w-[600px]">
 									<div class="font-bold uppercase font-[Oswald]">
@@ -791,17 +860,17 @@
 					</div>
 				</div>
 				<div class="group/s">
-					<div class="relative min-h-[100svh] md:h-[88vh] md:min-h-[580px] overflow-hidden">
-						<div class="absolute inset-0">
+					<div class="hero-slide relative min-h-[100svh] md:h-[88vh] md:min-h-[580px] overflow-hidden">
+						<div class="hs-bg absolute inset-0">
 							<div class="absolute inset-0 bg-[#E86060] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.7s] delay-[.3s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#CC1414] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.6s] delay-[.4s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#01010F] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.5s] delay-[.5s] transition-all duration-[.3s]"></div>
 							<div class="absolute inset-0 bg-[#CC1414] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.4s] delay-[.6s] transition-all duration-[.3s]"></div>
 							<img class="absolute inset-0 w-full h-full object-cover object-[50%_55%] group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-[.3s] delay-[.7s] transition-all duration-[.3s]" src="slide3.png" alt="">
 						</div>
-						<div class="absolute inset-0" style="background: linear-gradient(to right, #01010F 0%, #01010F 38%, rgba(1,1,15,0.75) 58%, rgba(1,1,15,0.15) 80%, transparent 100%)"></div>
-						<div class="absolute inset-0 pointer-events-none md:hidden" style="background:linear-gradient(to bottom,rgba(1,1,15,0) 0%,rgba(1,1,15,0.65) 50%,rgba(1,1,15,0.92) 80%,#01010F 100%)"></div>
-						<div class="relative h-full flex items-end md:items-center">
+						<div class="hs-overlay absolute inset-0" style="background: linear-gradient(to right, #01010F 0%, #01010F 38%, rgba(1,1,15,0.75) 58%, rgba(1,1,15,0.15) 80%, transparent 100%)"></div>
+						<div class="hs-mob-overlay absolute inset-0 pointer-events-none md:hidden" style="background:linear-gradient(to bottom,rgba(1,1,15,0) 0%,rgba(1,1,15,0.65) 50%,rgba(1,1,15,0.92) 80%,#01010F 100%)"></div>
+						<div class="hs-content relative h-full flex items-end md:items-center">
 							<div class="max-w-[1320px] w-full mx-auto px-[30px] lg:px-[60px] pb-[48px] md:pb-0">
 								<div class="max-w-[600px]">
 									<div class="font-bold uppercase font-[Oswald]">
@@ -1195,12 +1264,12 @@
 					}
 				</div>
 				<div data-scroll-item="" class="group">
-					<div class="origin-left relative top-[50px] text-[#01010F] overflow-hidden py-[20px] group-[.c-active]:rotate-[3deg] transition-all duration-[.3s]">
+					<div class="marquee-overflow origin-left relative top-[50px] text-[#01010F] overflow-hidden py-[20px] group-[.c-active]:rotate-[3deg] transition-all duration-[.3s]">
 						<div class="origin-top absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(.c-active)]:scale-y-0 group-[:not(.c-active)]:delay-[.09s] delay-0 transition-all duration-[.3s]"></div>
 						<div class="origin-top absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(.c-active)]:scale-y-0 group-[:not(.c-active)]:delay-[.06s] delay-[.03s] transition-all duration-[.3s]"></div>
 						<div class="origin-top absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(.c-active)]:scale-y-0 group-[:not(.c-active)]:delay-[.03s] delay-[.06s] transition-all duration-[.3s]"></div>
 						<div class="origin-top absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(.c-active)]:scale-y-0 group-[:not(.c-active)]:delay-0 delay-[.09s] transition-all duration-[.3s]"></div>
-						<div class="relative flex whitespace-nowrap items-center justify-center gap-[30px] font-[Teko] font-semibold text-[28px] uppercase">
+						<div class="marquee-row relative flex whitespace-nowrap items-center justify-center gap-[30px] font-[Teko] font-semibold text-[28px] uppercase">
 							<div class="origin-right group-[:not(.c-active)]:scale-x-0 group-[:not(.c-active)]:delay-0 delay-0 transition-all duration-[.3s]">Rise up</div>
 							<img class="origin-right group-[:not(.c-active)]:scale-x-0 group-[:not(.c-active)]:delay-[.03s] delay-0 transition-all duration-[.3s]" src="https://raw.githubusercontent.com/uiaextend/gymfito/main/home/sliding.svg" alt="">
 							<div class="origin-right group-[:not(.c-active)]:scale-x-0 group-[:not(.c-active)]:delay-[.06s] delay-0 transition-all duration-[.3s]">show up</div>
@@ -1227,7 +1296,7 @@
 						<div class="origin-bottom absolute top-0 right-0 bottom-0 left-0 bg-[#E86060] group-[:not(.c-active)]:scale-y-0 group-[:not(.c-active)]:delay-[.06s] delay-[.03s] transition-all duration-[.3s]"></div>
 						<div class="origin-bottom absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(.c-active)]:scale-y-0 group-[:not(.c-active)]:delay-[.03s] delay-[.06s] transition-all duration-[.3s]"></div>
 						<div class="origin-bottom absolute top-0 right-0 bottom-0 left-0 bg-[#CC1414] group-[:not(.c-active)]:scale-y-0 group-[:not(.c-active)]:delay-0 delay-[.09s] transition-all duration-[.3s]"></div>
-						<div class="relative flex whitespace-nowrap items-center justify-center gap-[30px] font-[Teko] font-semibold text-[28px] uppercase">
+						<div class="marquee-row relative flex whitespace-nowrap items-center justify-center gap-[30px] font-[Teko] font-semibold text-[28px] uppercase">
 							<div class="origin-left group-[:not(.c-active)]:scale-x-0 group-[:not(.c-active)]:delay-0 delay-0 transition-all duration-[.3s]">Sweat now, shine later</div>
 							<img class="origin-left group-[:not(.c-active)]:scale-x-0 group-[:not(.c-active)]:delay-[.03s] delay-0 transition-all duration-[.3s]" src="https://raw.githubusercontent.com/uiaextend/gymfito/main/home/sliding-black.svg" alt="">
 							<div class="origin-left group-[:not(.c-active)]:scale-x-0 group-[:not(.c-active)]:delay-[.06s] delay-0 transition-all duration-[.3s]">Stronger every rep</div>
@@ -1328,7 +1397,7 @@
 					</div>
 
 					<!-- glow cards -->
-					<div class="grid grid-cols-1 md:grid-cols-3 gap-[28px] items-stretch">
+					<div class="glow-cards-grid grid grid-cols-1 md:grid-cols-3 gap-[28px] items-stretch">
 
 						<!-- card 1: train outdoors -->
 						<div class="opacity-0 group-[.c-active]:opacity-100 translate-y-[32px] group-[.c-active]:translate-y-0 transition-all duration-[.6s] delay-[.2s]">
@@ -2030,5 +2099,25 @@
 		<script src="https://ajax.cdnjs.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
 		<script src="https://unpkg.com/typer-dot-js@0.1.0/typer.js"></script>
 		<script src="js/all.js"></script>
-	</body>
+	
+<script id="mobile-cards-js">
+(function(){
+  if(window.innerWidth >= 768) return;
+  var el = document.querySelector('.glow-cards-grid');
+  if(!el) return;
+  var touched = false;
+  el.addEventListener('touchstart', function(){ touched = true; }, {passive:true});
+  var cards = el.querySelectorAll(':scope > div');
+  if(!cards.length) return;
+  var idx = 0;
+  function advance(){
+    if(touched) return;
+    idx = (idx + 1) % cards.length;
+    el.scrollTo({left: cards[idx].offsetLeft - el.offsetLeft, behavior:'smooth'});
+    setTimeout(advance, 3000);
+  }
+  setTimeout(advance, 3000);
+})();
+</script>
+</body>
 </html>
