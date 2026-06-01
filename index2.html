@@ -13,9 +13,11 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		<link rel="stylesheet" href="css/all.css">
 	
+
 <style id="mobile-fixes">
-/* ── HERO: stacked layout on mobile (text top / image bottom) ─────── */
 @media (max-width: 767px) {
+
+  /* ── HERO: text on top, image below ─────────────────────────────── */
   .hero-slide {
     display:flex !important;
     flex-direction:column !important;
@@ -50,7 +52,7 @@
     padding-bottom:36px;
   }
 
-  /* ── MARQUEE: scale down text on mobile ───────────────────────── */
+  /* ── MARQUEE: scroll animation on mobile ─────────────────────────── */
   .marquee-row {
     font-size:15px !important;
     gap:18px !important;
@@ -63,22 +65,58 @@
   }
   .marquee-overflow { overflow:hidden !important; }
 
-  /* ── GLOW CARDS: horizontal swipe carousel on mobile ─────────── */
+  /* ── GLOW CARDS: horizontal snap carousel ────────────────────────── */
+
+  /* 1. Reduce section vertical padding so no giant blank space */
+  .glow-cards-section { padding-top:40px !important; padding-bottom:40px !important; }
+  .glow-cards-heading { margin-bottom:28px !important; }
+
+  /* 2. Kill entrance animation so translate-y doesn't push cards down */
+  .glow-cards-grid > div {
+    transform:none !important;
+    opacity:1 !important;
+    transition:none !important;
+  }
+
+  /* 3. Carousel layout */
   .glow-cards-grid {
     display:flex !important;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
-    gap:16px !important;
-    padding-bottom:8px;
+    gap:14px !important;
+    padding-bottom:4px;
+    align-items:stretch;
+    /* prevent the grid column classes from fighting flex */
+    grid-template-columns:unset !important;
   }
   .glow-cards-grid::-webkit-scrollbar { display:none; }
   .glow-cards-grid > div {
-    min-width:82vw;
-    flex-shrink:0;
+    min-width:84vw !important;
+    max-width:84vw !important;
+    flex-shrink:0 !important;
     scroll-snap-align:start;
   }
+
+  /* 4. Fix background-attachment:fixed inside scroll container */
+  .glow-cards-grid [data-glow] {
+    background-attachment:scroll !important;
+    height:auto !important;
+  }
+
+  /* 5. Reduce card padding on mobile so text fits */
+  .glow-cards-grid .p-\[36px\] {
+    padding:22px !important;
+  }
+
+  /* ── THE WALL: faster scroll + smaller images on mobile ─────────── */
+  .wall-left  { animation-duration: 9s  !important; }
+  .wall-right { animation-duration: 12s !important; }
+  .wall-left img, .wall-right img {
+    height: 170px !important;
+  }
+
 }
 </style>
 </head>
@@ -1315,128 +1353,100 @@
 		</div>
 		<!-- section: what makes a plus fit different -->
 		<style>
-			[data-glow] { --bg-spot-opacity: 0; }
-			[data-glow]:hover { --bg-spot-opacity: 0.09; }
-
-			[data-glow]::before,
-			[data-glow]::after {
-				pointer-events: none;
-				content: "";
-				position: absolute;
-				inset: 0;
-				border: 3px solid transparent;
-				border-radius: calc(var(--radius, 0) * 1px);
-				background-attachment: fixed;
-				background-size: calc(100% + 6px) calc(100% + 6px);
-				background-repeat: no-repeat;
-				background-position: 50% 50%;
-				mask: linear-gradient(#000, #000) padding-box, linear-gradient(#000, #000);
-				mask-composite: exclude;
-				-webkit-mask: linear-gradient(#000, #000) padding-box, linear-gradient(#000, #000);
-				-webkit-mask-composite: destination-out;
-				opacity: 0;
-				transition: opacity 0.4s ease;
+			.grad-card {
+				position:relative;border-radius:20px;overflow:hidden;background:#08080f;
+				transform-style:preserve-3d;transition:transform .35s ease,box-shadow .35s ease;
+				cursor:default;min-height:380px;
+				box-shadow:0 0 0 1px rgba(204,20,20,.14),0 24px 64px rgba(0,0,0,.55);
 			}
-			[data-glow]:hover::before,
-			[data-glow]:hover::after { opacity: 1; }
-			[data-glow]::before {
-				background-image: radial-gradient(
-					165px 165px at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-					hsl(calc(var(--base, 0) + var(--xp, 0) * var(--spread, 20)) 100% 55%), transparent 100%
-				);
-				filter: brightness(2);
+			.grad-card:hover {
+				box-shadow:0 0 0 1px rgba(204,20,20,.3),0 -6px 60px 6px rgba(204,20,20,.18),0 24px 64px rgba(0,0,0,.6);
 			}
-			[data-glow]::after {
-				background-image: radial-gradient(
-					110px 110px at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-					hsl(0 100% 100% / 0.85), transparent 100%
-				);
+			.gc-glass {
+				position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:20px;
+				background:linear-gradient(135deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 80%,rgba(255,255,255,.04) 100%);
 			}
-			[data-glow] > [data-glow] {
-				position: absolute;
-				inset: 0;
-				will-change: filter;
-				border-radius: calc(var(--radius, 0) * 1px);
-				filter: blur(28px);
-				background: none;
-				pointer-events: none;
-				border: none;
-				opacity: 0;
-				transition: opacity 0.4s ease;
+			.gc-glow {
+				position:absolute;bottom:0;left:0;right:0;height:65%;z-index:1;pointer-events:none;
+				background:radial-gradient(ellipse at bottom center,rgba(204,20,20,.55) -10%,transparent 65%);
+				filter:blur(36px);opacity:.7;transition:opacity .4s;
 			}
-			[data-glow]:hover > [data-glow] { opacity: 1; }
-			[data-glow]:hover > [data-glow]::before,
-			[data-glow]:hover > [data-glow]::after { opacity: 1; }
-			[data-glow] > [data-glow]::before {
-				inset: 0;
-				border-width: 3px;
+			.grad-card:hover .gc-glow { opacity:1; }
+			.gc-border-b {
+				position:absolute;bottom:0;left:0;right:0;height:1px;z-index:4;
+				background:linear-gradient(90deg,transparent,rgba(204,20,20,.9) 50%,transparent);
+				box-shadow:0 0 12px 3px rgba(204,20,20,.5),0 0 28px 6px rgba(204,20,20,.25);
+				transition:box-shadow .4s;
 			}
+			.grad-card:hover .gc-border-b { box-shadow:0 0 18px 5px rgba(204,20,20,.7),0 0 40px 10px rgba(204,20,20,.35); }
+			.gc-corner { position:absolute;bottom:0;width:1px;height:36%;z-index:4;background:linear-gradient(to top,rgba(204,20,20,.8),rgba(204,20,20,.3) 50%,transparent 85%);box-shadow:0 0 8px 2px rgba(204,20,20,.4); }
+			.gc-corner-l { left:0; } .gc-corner-r { right:0; }
+			.gc-noise {
+				position:absolute;inset:0;z-index:2;opacity:.2;mix-blend-mode:overlay;pointer-events:none;
+				background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+			}
+			.gc-icon {
+				width:48px;height:48px;border-radius:12px;margin-bottom:22px;
+				background:linear-gradient(225deg,#1c1c2c,#0e0e1c);
+				border:1px solid rgba(204,20,20,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+				box-shadow:inset 1px 1px 3px rgba(255,255,255,.08),inset -2px -2px 4px rgba(0,0,0,.5);
+				transition:border-color .3s,box-shadow .3s;
+			}
+			.grad-card:hover .gc-icon { border-color:rgba(204,20,20,.45);box-shadow:inset 1px 1px 3px rgba(255,255,255,.1),inset -2px -2px 4px rgba(0,0,0,.5),0 0 12px rgba(204,20,20,.3); }
+			.gc-link { display:inline-flex;align-items:center;gap:6px;transition:gap .25s,color .2s; }
+			.gc-link:hover { gap:10px; }
 		</style>
-		<div data-scroll="[data-scroll-item]" class="">
-			<div data-scroll-cog="" class="hidden">
-				{
-					"scrollTrigger": {
-						"trigger": "[data-scroll-item]"
-					}
-				}
-			</div>
-			<div data-scroll-item="" class="group bg-[#01010F] py-[80px] lg:py-[100px]">
-				<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
 
-					<!-- heading -->
-					<div class="mb-[60px] lg:mb-[80px]">
-						<div class="overflow-hidden mb-[4px]">
-							<div class="font-[Oswald] font-bold text-[36px] md:text-[50px] lg:text-[58px] leading-[1] uppercase text-white translate-y-full group-[.c-active]:translate-y-0 transition-all duration-[.5s] delay-[.05s]">What Makes</div>
-						</div>
-						<div class="overflow-hidden mb-[4px]">
-							<div class="font-[Oswald] font-bold text-[36px] md:text-[50px] lg:text-[58px] leading-[1] uppercase text-[#CC1414] translate-y-full group-[.c-active]:translate-y-0 transition-all duration-[.5s] delay-[.15s]">A Plus Fit</div>
-						</div>
-						<div class="overflow-hidden">
-							<div class="font-[Oswald] font-bold text-[36px] md:text-[50px] lg:text-[58px] leading-[1] uppercase text-white translate-y-full group-[.c-active]:translate-y-0 transition-all duration-[.5s] delay-[.25s]">Different.</div>
-						</div>
+		<div data-scroll="[data-scroll-item]" class="">
+			<div data-scroll-cog="" class="hidden">{"scrollTrigger":{"trigger":"[data-scroll-item]"}}</div>
+			<div data-scroll-item="" class="glow-cards-section group bg-[#01010F] py-[80px] lg:py-[100px]">
+				<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
+					<div class="glow-cards-heading mb-[60px] lg:mb-[80px]">
+						<div class="overflow-hidden mb-[4px]"><div class="font-[Oswald] font-bold text-[36px] md:text-[50px] lg:text-[58px] leading-[1] uppercase text-white translate-y-full group-[.c-active]:translate-y-0 transition-all duration-[.5s] delay-[.05s]">What Makes</div></div>
+						<div class="overflow-hidden mb-[4px]"><div class="font-[Oswald] font-bold text-[36px] md:text-[50px] lg:text-[58px] leading-[1] uppercase text-[#CC1414] translate-y-full group-[.c-active]:translate-y-0 transition-all duration-[.5s] delay-[.15s]">A Plus Fit</div></div>
+						<div class="overflow-hidden"><div class="font-[Oswald] font-bold text-[36px] md:text-[50px] lg:text-[58px] leading-[1] uppercase text-white translate-y-full group-[.c-active]:translate-y-0 transition-all duration-[.5s] delay-[.25s]">Different.</div></div>
 					</div>
 
-					<!-- glow cards -->
 					<div class="glow-cards-grid grid grid-cols-1 md:grid-cols-3 gap-[28px] items-stretch">
 
-						<!-- card 1: train outdoors -->
 						<div class="opacity-0 group-[.c-active]:opacity-100 translate-y-[32px] group-[.c-active]:translate-y-0 transition-all duration-[.6s] delay-[.2s]">
-							<div data-glow
-								style="--base:0;--spread:18;--radius:0;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%);background-image:radial-gradient(220px 220px at calc(var(--x,0)*1px) calc(var(--y,0)*1px),hsl(calc(var(--base,0)+var(--xp,0)*var(--spread,18)) 100% 70%/var(--bg-spot-opacity,0)),transparent);background-color:#111318;background-size:calc(100% + 6px) calc(100% + 6px);background-position:50% 50%;background-attachment:fixed;border:3px solid hsl(0 0% 100%/.06);position:relative;touch-action:none;"
-								class="h-full p-[36px] pt-[28px] backdrop-blur-[4px]">
-								<div data-glow></div>
-								<div class="relative z-10">
-									<div class="font-[Teko] font-semibold text-[12px] tracking-[3px] uppercase text-[#CC1414] mb-[14px]">Train Outdoors</div>
-									<div class="font-[Oswald] font-bold text-[24px] lg:text-[26px] uppercase text-white leading-[1.15] mb-[16px]">Sun, sweat, real air.</div>
-									<div class="font-[Montserrat] font-medium text-[14px] lg:text-[15px] leading-[1.85] text-[#E7E7E7]/65">We train under the sky. Concrete, kettlebells, the wind, your crew. No mirrors. No machines pretending to be effort. Just the work.</div>
+							<div class="grad-card h-full">
+								<div class="gc-glass"></div><div class="gc-noise"></div><div class="gc-glow"></div>
+								<div class="gc-border-b"></div><div class="gc-corner gc-corner-l"></div><div class="gc-corner gc-corner-r"></div>
+								<div class="relative z-10 p-[36px] pt-[32px] flex flex-col h-full">
+									<div class="gc-icon"><i class="fa-solid fa-sun text-[#CC1414] text-[18px]"></i></div>
+									<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[12px]">Train Outdoors</div>
+									<div class="font-[Oswald] font-bold text-[22px] lg:text-[24px] uppercase text-white leading-[1.15] mb-[14px]">Sun, sweat, real air.</div>
+									<div class="font-[Montserrat] font-medium text-[14px] leading-[1.85] text-[#E7E7E7]/60 flex-1">We train under the sky. Concrete, kettlebells, the wind, your crew. No mirrors. No machines pretending to be effort. Just the work.</div>
+									<a href="programs.html" class="gc-link font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#CC1414] hover:text-white mt-[24px]">See Programs <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
 								</div>
 							</div>
 						</div>
 
-						<!-- card 2: nasm coaching -->
 						<div class="opacity-0 group-[.c-active]:opacity-100 translate-y-[32px] group-[.c-active]:translate-y-0 transition-all duration-[.6s] delay-[.35s]">
-							<div data-glow
-								style="--base:0;--spread:18;--radius:0;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%);background-image:radial-gradient(220px 220px at calc(var(--x,0)*1px) calc(var(--y,0)*1px),hsl(calc(var(--base,0)+var(--xp,0)*var(--spread,18)) 100% 70%/var(--bg-spot-opacity,0)),transparent);background-color:#111318;background-size:calc(100% + 6px) calc(100% + 6px);background-position:50% 50%;background-attachment:fixed;border:3px solid hsl(0 0% 100%/.06);position:relative;touch-action:none;"
-								class="h-full p-[36px] pt-[28px] backdrop-blur-[4px]">
-								<div data-glow></div>
-								<div class="relative z-10">
-									<div class="font-[Teko] font-semibold text-[12px] tracking-[3px] uppercase text-[#CC1414] mb-[14px]">NASM-Certified Coaching</div>
-									<div class="font-[Oswald] font-bold text-[24px] lg:text-[26px] uppercase text-white leading-[1.15] mb-[16px]">A coach who actually coaches.</div>
-									<div class="font-[Montserrat] font-medium text-[14px] lg:text-[15px] leading-[1.85] text-[#E7E7E7]/65">Aaron Hester is NASM-certified and obsessed with form. You will learn how to move right before you are asked to move heavy. Every rep is watched. Every athlete is seen.</div>
+							<div class="grad-card h-full">
+								<div class="gc-glass"></div><div class="gc-noise"></div><div class="gc-glow"></div>
+								<div class="gc-border-b"></div><div class="gc-corner gc-corner-l"></div><div class="gc-corner gc-corner-r"></div>
+								<div class="relative z-10 p-[36px] pt-[32px] flex flex-col h-full">
+									<div class="gc-icon"><i class="fa-solid fa-dumbbell text-[#CC1414] text-[16px]"></i></div>
+									<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[12px]">NASM-Certified Coaching</div>
+									<div class="font-[Oswald] font-bold text-[22px] lg:text-[24px] uppercase text-white leading-[1.15] mb-[14px]">A coach who actually coaches.</div>
+									<div class="font-[Montserrat] font-medium text-[14px] leading-[1.85] text-[#E7E7E7]/60 flex-1">Aaron Hester is NASM-certified and obsessed with form. You will learn how to move right before you are asked to move heavy. Every rep is watched. Every athlete is seen.</div>
+									<a href="community.html" class="gc-link font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#CC1414] hover:text-white mt-[24px]">Meet Aaron <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
 								</div>
 							</div>
 						</div>
 
-						<!-- card 3: community -->
 						<div class="opacity-0 group-[.c-active]:opacity-100 translate-y-[32px] group-[.c-active]:translate-y-0 transition-all duration-[.6s] delay-[.5s]">
-							<div data-glow
-								style="--base:0;--spread:18;--radius:0;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%);background-image:radial-gradient(220px 220px at calc(var(--x,0)*1px) calc(var(--y,0)*1px),hsl(calc(var(--base,0)+var(--xp,0)*var(--spread,18)) 100% 70%/var(--bg-spot-opacity,0)),transparent);background-color:#111318;background-size:calc(100% + 6px) calc(100% + 6px);background-position:50% 50%;background-attachment:fixed;border:3px solid hsl(0 0% 100%/.06);position:relative;touch-action:none;"
-								class="h-full p-[36px] pt-[28px] backdrop-blur-[4px]">
-								<div data-glow></div>
-								<div class="relative z-10">
-									<div class="font-[Teko] font-semibold text-[12px] tracking-[3px] uppercase text-[#CC1414] mb-[14px]">A Community That Sticks</div>
-									<div class="font-[Oswald] font-bold text-[24px] lg:text-[26px] uppercase text-white leading-[1.15] mb-[16px]">People who notice when you are missing.</div>
-									<div class="font-[Montserrat] font-medium text-[14px] lg:text-[15px] leading-[1.85] text-[#E7E7E7]/65">We have watched first-timers become friends, training partners, and the loudest voices in someone else&#39;s corner. That is the part you cannot buy. Show up. You will see.</div>
+							<div class="grad-card h-full">
+								<div class="gc-glass"></div><div class="gc-noise"></div><div class="gc-glow"></div>
+								<div class="gc-border-b"></div><div class="gc-corner gc-corner-l"></div><div class="gc-corner gc-corner-r"></div>
+								<div class="relative z-10 p-[36px] pt-[32px] flex flex-col h-full">
+									<div class="gc-icon"><i class="fa-solid fa-users text-[#CC1414] text-[16px]"></i></div>
+									<div class="font-[Teko] font-semibold text-[11px] tracking-[3px] uppercase text-[#CC1414] mb-[12px]">A Community That Sticks</div>
+									<div class="font-[Oswald] font-bold text-[22px] lg:text-[24px] uppercase text-white leading-[1.15] mb-[14px]">People who notice when you are missing.</div>
+									<div class="font-[Montserrat] font-medium text-[14px] leading-[1.85] text-[#E7E7E7]/60 flex-1">We have watched first-timers become friends, training partners, and the loudest voices in someone else&#x27;s corner. That is the part you cannot buy. Show up. You will see.</div>
+									<a href="community.html" class="gc-link font-[Teko] font-semibold text-[14px] tracking-[1px] uppercase text-[#CC1414] hover:text-white mt-[24px]">Join the Community <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
 								</div>
 							</div>
 						</div>
@@ -1445,22 +1455,22 @@
 				</div>
 			</div>
 		</div>
+
 		<script>
-			(function() {
-				if (window.__glowInit) return;
-				window.__glowInit = true;
-				document.addEventListener('pointermove', function(e) {
-					var x = e.clientX.toFixed(2);
-					var xp = (e.clientX / window.innerWidth).toFixed(2);
-					var y = e.clientY.toFixed(2);
-					document.querySelectorAll('[data-glow]').forEach(function(el) {
-						el.style.setProperty('--x', x);
-						el.style.setProperty('--xp', xp);
-						el.style.setProperty('--y', y);
+			(function(){
+				document.querySelectorAll('.grad-card').forEach(function(card){
+					card.addEventListener('mousemove',function(e){
+						var r=card.getBoundingClientRect();
+						var x=e.clientX-r.left-r.width/2, y=e.clientY-r.top-r.height/2;
+						card.style.transform='perspective(1000px) rotateX('+(-(y/r.height)*7)+'deg) rotateY('+((x/r.width)*7)+'deg) translateY(-6px)';
+					});
+					card.addEventListener('mouseleave',function(){
+						card.style.transform='perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
 					});
 				});
 			})();
 		</script>
+
 
 		<!-- section: meet your coach -->
 		<div data-scroll="[data-scroll-item]" class="">
@@ -1557,7 +1567,7 @@
 					}
 				}
 			</div>
-			<div data-scroll-item="" class="group bg-[#01010F] py-[80px] lg:py-[100px]">
+			<div data-scroll-item="" class="glow-cards-section group bg-[#01010F] py-[80px] lg:py-[100px]">
 				<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
 
 					<!-- heading -->
@@ -1728,7 +1738,7 @@
 					}
 				}
 			</div>
-			<div data-scroll-item="" class="group bg-[#01010F] py-[80px] lg:py-[100px]">
+			<div data-scroll-item="" class="glow-cards-section group bg-[#01010F] py-[80px] lg:py-[100px]">
 				<div class="max-w-[1320px] mx-auto px-[30px] lg:px-[60px]">
 
 					<!-- heading -->
@@ -2100,6 +2110,7 @@
 		<script src="https://unpkg.com/typer-dot-js@0.1.0/typer.js"></script>
 		<script src="js/all.js"></script>
 	
+
 <script id="mobile-cards-js">
 (function(){
   if(window.innerWidth >= 768) return;
@@ -2107,13 +2118,13 @@
   if(!el) return;
   var touched = false;
   el.addEventListener('touchstart', function(){ touched = true; }, {passive:true});
-  var cards = el.querySelectorAll(':scope > div');
-  if(!cards.length) return;
+  var cards = Array.from(el.querySelectorAll(':scope > div'));
+  if(cards.length < 2) return;
   var idx = 0;
   function advance(){
     if(touched) return;
     idx = (idx + 1) % cards.length;
-    el.scrollTo({left: cards[idx].offsetLeft - el.offsetLeft, behavior:'smooth'});
+    el.scrollTo({ left: cards[idx].offsetLeft - el.offsetLeft, behavior:'smooth' });
     setTimeout(advance, 3000);
   }
   setTimeout(advance, 3000);
